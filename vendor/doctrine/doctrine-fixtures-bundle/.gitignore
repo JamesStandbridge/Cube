@@ -1,4 +1,0 @@
-vendor/
-/.phpunit.result.cache
-composer.lock
-.phpcs-cache
