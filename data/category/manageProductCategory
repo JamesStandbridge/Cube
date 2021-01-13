@@ -1,0 +1,46 @@
+{% extends 'basesshop/cardBase.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" />
+{% endblock %}
+
+{% block title %}Mes catégories - Zist{% endblock %}
+{% block cardtitle %}Catégories{% endblock %}
+{% block cardptitle %}doc{% endblock %}
+
+
+{% block cardcontent %}
+  <br /><br />
+  <div class="container" style="width:900px;">
+   <br /><br />
+   <a href="{{ path('get_tree') }}" class="btn btn-link js-tree">
+        <span class="js-trees">Afficher arbre</span>
+   </a>
+   <div id="treeview"></div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+    <script src="{{ asset('dist/js/bootstrap-treeview.js') }}"></script>
+    <script>
+
+
+        function onClickBtnTree(even) {
+            event.preventDefault();
+            const url = this.href;
+            
+            axios.get(url).then(function(response) {
+                $('#treeview').treeview({
+                    data: response.data
+                });
+            })
+        }
+
+        document.querySelectorAll('a.js-tree').forEach(function(link) {
+            link.addEventListener('click', onClickBtnTree);
+        })
+    </script>
+{% endblock %}

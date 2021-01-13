@@ -1,0 +1,10 @@
+    <h1>Bienvenue sur le dashboard du compte {{ accountname }}</h1>
+    
+    
+    {% if shops is not null %}
+        {% for shop in shops %}
+                <a href="{{ path('show_shop', {'id': shop.id}) }}" class="btn btn-behance" <span class="cib-behance btn-icon mr-2"></span>{{ shop.getName() }}</a>
+        {% endfor %}
+    {% endif %}
+
+    <a href="{{ path('new_shop') }}" class="btn btn-dribbble" <span class="cib-dribbble btn-icon mr-2"></span>Ajouter une boutique</a>

@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\ProductCategory;
+use App\Entity\Shop;
+use Symfony\Compenent\HttpFoundation\Response;
+
+class ProductCategoryController extends AbstractController
+{
+    /**
+     * @Route("/boutique/produits/categories", name="manage_catry")
+     */
+    public function index()
+    {
+        return $this->render('product_category/manageProductCategory.html.twig', [
+            'controller_name' => 'ProductCategoryController',
+        ]);
+    }
+
+    /**
+     * Undocumented function
+     *  @Route("/boutique/produits/categories/arborescence", name="geree")
+     * @return \Symfony\Compenent\HttpFoundation\Response
+     */
+    public function getTree(Request $request) 
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $session = $request->getSession();
+        $idshop = $session->get('idshop');
+    
+        $em = $this->getDoctrine()->getManager();
+
+        //-------------------Query get product_category-----------------//
+        //requete SQL pour recuperer toutes les catégories affiliées a la boutique idshop 
+        //ATTENTION SQL INJECT, A CHANGER !!!
+        $RAW_QUERY = 'SELECT C.id, C.parent_id, C.name FROM public."product_category" C  WHERE C.shop_id ='. $idshop;
+        
+        $statement = $em->getConnection()->prepare($RAW_QUERY);
+        $statement->execute();
+        $data = array();
+        $product_category = $statement->fetchAll();
+
+        for($i=0; $i<count($product_category); $i++) {
+            $sub_data["id"] = $product_category[$i]['id'];
+            $sub_data["name"] = $product_category[$i]['name'];
+            $sub_data["text"] = $product_category[$i]['name'];
+            $sub_data["parent_id"] = $product_category[$i]['parent_id'];
+            $data[] = $sub_data;
+        }
+
+        foreach($data as $key => &$value)
+        {
+            $output[$value["id"]] = &$value;
+        }
+        
+        foreach($data as $key => &$value)
+        {
+            if($value["parent_id"] && isset($output[$value["parent_id"]]))
+            {  
+                $output[$value["parent_id"]]["nodes"][] = &$value;
+            }
+        }
+        
+        foreach($data as $key => &$value)
+        {
+            if($value["parent_id"] && isset($output[$value["parent_id"]]))
+            {
+                unset($data[$key]);
+            }
+        }
+        
+        return $this->json(json_encode($data),200);   
+    }
+}
