@@ -16,7 +16,6 @@ cd {directory}
 # Configure docker
 
 cp docker/docker-compose.dev.yaml.dist docker/docker-compose.dev.yaml
-# Accorting to your OS and preferences, you can edit this file
 
 # Launch project
 
@@ -52,39 +51,5 @@ docker-compose exec application php bin/console doctrine:query:sql "$(cat data/s
 
 
 ```
-docker-compose exec application php bin/console doctrine:schema:update --dump-sql
+docker-compose exec application php bin/console doctrine:schema:update
 ```
-
-You need to get only lines concerned by your changes.
-
-## Capistrano deployment
-
-It uses capistrano & capistrano-symfony, see [capistrano installation](https://capistranorb.com/documentation/getting-started/installation/) and [capistrano symfony installation](https://github.com/capistrano/symfony)
-
-```
-cap preprod deploy
-```
-
-## Set Dev environment on remote pprod server
-
-```
-# edit .env and set
-APP_ENV=dev
-APP_DEBUG=true
-
-composer install --dev
-
-# don't forget to append --env=dev at each bin/console commands
-bin/console --env=dev { .... }
-```
-
-Don't forget, come back to PROD environment
-
-```
-# edit .env and set
-APP_ENV=prod
-APP_DEBUG=false
-
-composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
-```
-
