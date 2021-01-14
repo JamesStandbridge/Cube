@@ -43,8 +43,6 @@ Application is now available on http://127.0.0.1:8000
 ```
 docker-compose exec application php bin/console doctrine:database:create
 docker-compose exec application php bin/console doctrine:schema:create
-
-docker-compose exec application php bin/console doctrine:query:sql "$(cat data/sql/partitionned_stock_move.sql)"
 ```
 
 ## Database update
