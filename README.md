@@ -1,4 +1,4 @@
-# Boeki Bootstrap Application
+# Cube Bootstrap Application
 
 ## Requirements
 
