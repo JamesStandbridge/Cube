@@ -28,10 +28,16 @@ class User extends BaseUser
      */
     private $resources;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CitizenRelationship::class, mappedBy="user1", orphanRemoval=true)
+     */
+    private $citizenRelationships;
+
     public function __construct()
     {
         parent::__construct();
         $this->resources = new ArrayCollection();
+        $this->citizenRelationships = new ArrayCollection();
     }
 
 
@@ -64,6 +70,36 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($resource->getAuthor() === $this) {
                 $resource->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CitizenRelationship[]
+     */
+    public function getCitizenRelationships(): Collection
+    {
+        return $this->citizenRelationships;
+    }
+
+    public function addCitizenRelationship(CitizenRelationship $citizenRelationship): self
+    {
+        if (!$this->citizenRelationships->contains($citizenRelationship)) {
+            $this->citizenRelationships[] = $citizenRelationship;
+            $citizenRelationship->setUser1($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCitizenRelationship(CitizenRelationship $citizenRelationship): self
+    {
+        if ($this->citizenRelationships->removeElement($citizenRelationship)) {
+            // set the owning side to null (unless already changed)
+            if ($citizenRelationship->getUser1() === $this) {
+                $citizenRelationship->setUser1(null);
             }
         }
 

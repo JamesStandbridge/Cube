@@ -34,6 +34,18 @@ class ResourceUserState
      */
     private $isAside;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userEntity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Resource::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $resource;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +83,30 @@ class ResourceUserState
     public function setIsAside(bool $isAside): self
     {
         $this->isAside = $isAside;
+
+        return $this;
+    }
+
+    public function getUserEntity(): ?User
+    {
+        return $this->userEntity;
+    }
+
+    public function setUserEntity(?User $userEntity): self
+    {
+        $this->userEntity = $userEntity;
+
+        return $this;
+    }
+
+    public function getResource(): ?Resource
+    {
+        return $this->resource;
+    }
+
+    public function setResource(?Resource $resource): self
+    {
+        $this->resource = $resource;
 
         return $this;
     }

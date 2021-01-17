@@ -36,6 +36,7 @@ class ResourceContentValue
 
     /**
      * @ORM\ManyToOne(targetEntity=Resource::class, inversedBy="content")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $resource;
 

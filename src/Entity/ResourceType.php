@@ -29,7 +29,7 @@ class ResourceType
     /**
      * @ORM\OneToMany(targetEntity=ResourceAttribute::class, mappedBy="resourceType")
      */
-    private $attribute;
+    private $attributes;
 
     /**
      * @ORM\OneToMany(targetEntity=Resource::class, mappedBy="type")
@@ -62,15 +62,15 @@ class ResourceType
     /**
      * @return Collection|ResourceAttribute[]
      */
-    public function getAttribute(): Collection
+    public function getAttributes(): Collection
     {
-        return $this->attribute;
+        return $this->attributes;
     }
 
     public function addAttribute(ResourceAttribute $attribute): self
     {
-        if (!$this->attribute->contains($attribute)) {
-            $this->attribute[] = $attribute;
+        if (!$this->attributes->contains($attribute)) {
+            $this->attributes[] = $attribute;
             $attribute->setResourceType($this);
         }
 
@@ -79,7 +79,7 @@ class ResourceType
 
     public function removeAttribute(ResourceAttribute $attribute): self
     {
-        if ($this->attribute->removeElement($attribute)) {
+        if ($this->attributes->removeElement($attribute)) {
             // set the owning side to null (unless already changed)
             if ($attribute->getResourceType() === $this) {
                 $attribute->setResourceType(null);
