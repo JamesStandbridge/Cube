@@ -8,6 +8,7 @@
         "friendsofsymfony/jsrouting-bundle": "^2.6",
         "friendsofsymfony/user-bundle": "^2.1",
         "gedmo/doctrine-extensions": "^2.4",
+        "lexik/jwt-authentication-bundle": "^2.10",
         "ramsey/uuid-doctrine": "^1.6",
         "stripe/stripe-php": "^7.49",
         "symfony/apache-pack": "^1.0",

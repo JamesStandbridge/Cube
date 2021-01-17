@@ -3,6 +3,10 @@
 #    controller: App\Controller\DefaultController::index
 #
 # app/config/routing.yml
+# 
+api_login_check:
+    path: /api/login_check
+    
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
