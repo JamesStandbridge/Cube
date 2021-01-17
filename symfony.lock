@@ -425,9 +425,6 @@
     "symfony/options-resolver": {
         "version": "v4.4.10"
     },
-    "symfony/orm-pack": {
-        "version": "v1.0.8"
-    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.17.0"
     },
