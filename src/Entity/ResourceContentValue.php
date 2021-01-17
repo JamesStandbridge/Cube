@@ -39,6 +39,12 @@ class ResourceContentValue
      */
     private $resource;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ResourceAttribute::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $attribute;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +94,18 @@ class ResourceContentValue
     public function setResource(?Resource $resource): self
     {
         $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getAttribute(): ?ResourceAttribute
+    {
+        return $this->attribute;
+    }
+
+    public function setAttribute(?ResourceAttribute $attribute): self
+    {
+        $this->attribute = $attribute;
 
         return $this;
     }

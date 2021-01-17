@@ -24,9 +24,6 @@ Encore
 
     // enables Sass/SCSS support
     //.enableSassLoader()
-
-    // uncomment if you use API Platform Admin (composer req api-admin)
-    .addEntry('admin', './assets/api_platform_admin/App.jsx')
 ;
 
 module.exports = Encore.getWebpackConfig();
