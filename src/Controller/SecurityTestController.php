@@ -25,4 +25,20 @@ class SecurityTestController extends AbstractController
     public function testUser() {
     	dd('ca marche !');
     }
+
+    /**
+     * @Route("/", name="entry")
+     */
+    public function homepage() {
+        return $this->render('cube_react_app/appEntryPoint.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/admin", name="api_admin_entry")
+     */
+    public function apiAdmin() {
+        return $this->render('api_platform_admin/appEntryPoint.html.twig', [
+        ]);
+    }
 }
