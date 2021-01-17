@@ -1,0 +1,19 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}Profil - Cube{% endblock %}
+
+{% block content %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bonjour {{ userfn }} {{userln}} </h1>
+
+    <p>Vous venez de créer votre compte Cube, nous vous invitons a vous connecter pour la première fois :</p>
+    <a href="{{ path('compte_dashboard') }}" class="btn btn-behance" <span class="cib-behance btn-icon mr-2"></span>Acceder au formulaire de connexion</a>
+
+</div>
+{% endblock %}

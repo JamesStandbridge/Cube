@@ -1,0 +1,113 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Créer un compte - Cube{% endblock %}
+
+
+{% block content %}
+    <div class="register_template">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mx-4">
+                        <div class="card-body p-4">
+                            <h1>Enregistrement</h1>
+                            <p class="text-muted">Créez votre compte Cube</p>
+                             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'} }) }}
+                                        {{ form_errors(form.email) }}
+                                    </div>
+
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Identifiant' } }) }}
+                                        {{ form_errors(form.username) }}
+                                    </div>
+
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                                </svg> 
+                                            </span>
+                                        </div>                                
+                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe' } }) }}
+                                        {{ form_errors(form.plainPassword.first) }}
+                                    </div>
+
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirmez votre mot de passe' } }) }}
+                                        {{ form_errors(form.plainPassword.second) }}
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Nom' } }) }}
+                                        {{ form_errors(form.lastname) }}
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <svg class="c-icon">
+                                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'Prénom' } }) }}
+                                    {{ form_errors(form.firstname) }}
+                                    </div>
+                                    
+                                    <div>
+                                        <input class="btn btn-primary px-4"  type="submit" value="S'enregistrer" />
+                                    </div>
+                            {{ form_end(form) }}
+                        </div>
+                        <div class="card-footer p-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
