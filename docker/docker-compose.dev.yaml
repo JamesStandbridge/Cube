@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres:11-alpine
+    ports:
+        - "5432:5432"
+    volumes:
+      - 'boeki_database:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_PASSWORD: root
+
+  database_pg_admin:
+    image: dpage/pgadmin4
+    ports:
+        - "8001:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+  application:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    working_dir: /var/www/project
+    ports:
+        - "8000:80"
+    volumes:
+      - ./:/var/www/project:rw,cached
+      - ./docker/http/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:rw,cached
+
+volumes:
+  boeki_database: {}
