@@ -1,3 +1,8 @@
+/**
+ * author: JamesStandbridge
+ * date: 22/01/2021
+ */
+
 import React from "react";
 
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
