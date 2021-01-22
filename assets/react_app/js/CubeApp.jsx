@@ -1,9 +1,22 @@
+/**
+ * author: JamesStandbridge
+ * date: 22/01/2021
+ */
+
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { Provider } from 'react-redux';
+import Store from './store/configureStore';
+
+import Router from './Router';
+
+require("../css/main.css");
 
 const CubeApp = () => {
 	return (
-		<p>React Cube Application</p>
+		<Provider store={ Store }>
+			<Router />
+		</Provider>
 	);	
 }
 

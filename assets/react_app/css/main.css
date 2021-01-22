@@ -1,0 +1,36 @@
+.app-login-register {
+  	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	
+}
+
+.form-register{
+	margin: auto;
+	width: 50%;
+}
+
+
+
+.MuiFormControl-root.form-field {
+	margin: 5px;
+	width: 60%;
+}
+
+.MuiButtonBase-root.btn-confirm {
+	width: 60%;
+	margin: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.MuiFormControl-root.cp input::-webkit-outer-spin-button,
+.MuiFormControl-root.cp input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.MuiFormControl-root.cp input[type=number] {
+  -moz-appearance: textfield;
+}

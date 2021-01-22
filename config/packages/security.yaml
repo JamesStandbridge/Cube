@@ -4,7 +4,9 @@ security:
         FOS\UserBundle\Model\UserInterface: auto
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_CITIZEN:     ROLE_USER 
+        ROLE_MODERATOR:   ROLE_CITIZEN
+        ROLE_ADMIN:       ROLE_MODERATOR
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -37,10 +39,8 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/app/security/register, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/api/,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        

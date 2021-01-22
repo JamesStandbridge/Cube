@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\AdressRepository;
+use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AdressRepository::class)
+ * @ORM\Entity(repositoryClass=AddressRepository::class)
  * @ApiResource
  */
-class Adress
+class Address
 {
     /**
      * @ORM\Id
