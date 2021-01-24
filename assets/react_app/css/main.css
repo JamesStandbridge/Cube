@@ -114,6 +114,17 @@ font-family: "OpenSans-Regular";
 	font-family: "OpenSans-Bold"
 }
 
+.pro-sidebar-header h1.collapse {
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.popper-inner {
+    background-color: white!important;
+    color: black;
+}
+
 .MuiPaper-elevation4 {
 	box-shadow: none!important;
 }
@@ -124,6 +135,10 @@ font-family: "OpenSans-Regular";
     float: right;
     margin-right: 15px;
     margin-top: 15px;
+}
+
+.app-bar.collapse {
+    width: calc(100% - 110px);
 }
 
 .app-bar.full {
@@ -143,6 +158,10 @@ font-family: "OpenSans-Regular";
     margin-right: 15px;
     background-color: #e6e5e5;
     height: 100vh;
+}
+
+.app-body.collapse {
+   width: calc(100% - 110px);
 }
 
 .app-body.full {
