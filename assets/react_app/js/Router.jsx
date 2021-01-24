@@ -15,12 +15,14 @@ import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
 import Welcome from "./pages/app/Welcome"
+import Resources from "./pages/app/Resources"
 
 const Router = ({ AuthHandler }) => {
 
 	return (
 		<HashRouter>		
 			<Switch>
+				<Route path="/catalogue" component={Resources} />
 				<Route path="/register" component={Register} />
 				<Route path="/login" component={Login} />
 				<Route path="/" component={Welcome} />
