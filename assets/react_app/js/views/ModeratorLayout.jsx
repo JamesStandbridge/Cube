@@ -18,11 +18,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import 'react-pro-sidebar/dist/css/styles.css';
 
-const ModeratorLayout = ({children, onDisconnect}) => {
+const ModeratorLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 	return (
 		<>
 			<div className="app-nav-bar">
-				<ProSidebar>
+				<ProSidebar collapsed={isCollapsed}>
 					<SidebarHeader>
 						<h1>Cube</h1>
 					</SidebarHeader>
@@ -45,7 +45,7 @@ const ModeratorLayout = ({children, onDisconnect}) => {
 			<div className="app-bar">
 				<AppBar position="static">
 					<Toolbar>
-						<IconButton edge="start" color="inherit" aria-label="menu">
+						<IconButton onClick={collapse}>
 						<MenuIcon />
 						</IconButton>
 						<Typography variant="h6">

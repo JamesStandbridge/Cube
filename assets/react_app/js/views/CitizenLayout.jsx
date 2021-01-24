@@ -23,11 +23,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 
-const CitizenLayout = ({children, onDisconnect}) => {
+const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 	return (
 		<>
 			<div className="app-nav-bar">
-				<ProSidebar>
+				<ProSidebar collapsed={isCollapsed}>
 					<SidebarHeader>
 						<h1>Cube</h1>
 					</SidebarHeader>
@@ -51,7 +51,7 @@ const CitizenLayout = ({children, onDisconnect}) => {
 			<div className="app-bar">
 				<AppBar position="static">
 					<Toolbar>
-						<IconButton edge="start" color="inherit" aria-label="menu">
+						<IconButton onClick={collapse}>
 						<MenuIcon />
 						</IconButton>
 						<Typography variant="h6">
