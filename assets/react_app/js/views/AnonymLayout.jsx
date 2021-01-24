@@ -16,27 +16,11 @@ const AnonymLayout = ({children}) => {
 
 	return (
 		<div>
-			<div className="app-nav-bar">
-				<ProSidebar>
-					<SidebarHeader>
-						<h1>Cube</h1>
-					</SidebarHeader>
-					<SidebarContent>
-						<Menu iconShape="square" popperArrow={true}>
-							<MenuItem>Catalogue <Link to="/catalogue" replace/> </MenuItem>
-						</Menu>
-					</SidebarContent>
-					<SidebarFooter>
-
-					</SidebarFooter>
-				</ProSidebar>
-			</div>
-
-			<div className="app-bar">
+			<div className="app-bar full">
 				<AppBar position="static">
 					<Toolbar>
 						<IconButton edge="start" color="inherit" aria-label="menu">
-						<MenuIcon />
+							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6">
 							Accueil

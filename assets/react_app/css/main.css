@@ -1,3 +1,21 @@
+@font-face {
+ font-family: "Open-Sans-light";
+ src: url("../fonts/OpenSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "OpenSans-Regular";
+ src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+ font-family: "OpenSans-Bold";
+ src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+ font-family: "OpenSans-SemiBold";
+ src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
+}
+
 .app-login-register {
   	display: flex;
 	align-items: center;
@@ -10,8 +28,6 @@
 	margin: auto;
 	width: 50%;
 }
-
-
 
 .MuiFormControl-root.form-field {
 	margin: 5px;
@@ -33,4 +49,68 @@
 /* Firefox */
 .MuiFormControl-root.cp input[type=number] {
   -moz-appearance: textfield;
+}
+
+.app-nav-bar {
+	height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed; 
+    
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+	color: white;
+	font-family: "OpenSans-SemiBold";
+	background-color: #1667a6;
+	background-image: url(../img/background-vertical.png)!important;
+}
+
+
+
+.pro-sidebar-header {
+	height: 70px;
+}
+
+.pro-sidebar-header h1 {
+    width: 100px;
+    display: block;
+    margin: 15px auto;
+	font-family: "OpenSans-Bold"
+}
+
+.MuiPaper-elevation4 {
+	box-shadow: none!important;
+}
+
+.app-bar {
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+    width: calc(100% - 300px);
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.MuiAppBar-colorPrimary {
+	background-color: #1667a6!important;
+}
+
+.app-body {
+	width: calc(100% - 300px);
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    background-color: $f8f8f8;
+    height: 100vh;
+}
+
+#root {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: $f8f8f8;
+
 }
