@@ -139,6 +139,7 @@ font-family: "OpenSans-Regular";
 
 .app-bar.collapse {
     width: calc(100% - 110px);
+    transition: 0.3s;
 }
 
 .app-bar.full {
@@ -162,6 +163,7 @@ font-family: "OpenSans-Regular";
 
 .app-body.collapse {
    width: calc(100% - 110px);
+   transition: 0.3s;
 }
 
 .app-body.full {
