@@ -19,7 +19,6 @@ use App\Entity\Address;
 
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/app/security/register", name="api_register")
      * @param  Request $request 
@@ -58,6 +57,18 @@ class SecurityController extends AbstractController
                 'error' => $e->getMessage()
             ], 404);   
         }
+    }
+
+    public function createModerator() {
+
+    }
+
+    public function createAdmin() {
+
+    }
+
+    public function createSuperAdmin() {
+        
     }
 
     /**

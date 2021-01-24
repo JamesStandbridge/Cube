@@ -15,7 +15,7 @@ const AnonymLayout = ({children}) => {
 
 
 	return (
-		<div>
+		<>
 			<div className="app-bar full">
 				<AppBar position="static">
 					<Toolbar>
@@ -25,11 +25,18 @@ const AnonymLayout = ({children}) => {
 						<Typography variant="h6">
 							Accueil
 						</Typography>
-						<Button color="inherit">Login</Button>
+						<div className="app-bar-actions">
+						<Link to="/login" replace>
+							<Button className="btn" variant="contained" >Se connecter</Button>
+						</Link>
+						<Link to="/register" replace>
+							<Button className="btn" variant="contained" >Créer un compte</Button>
+						</Link>
+						</div>
 					</Toolbar>
 				</AppBar>
 			</div>
-		</div>
+		</>
 	)
 }
 
