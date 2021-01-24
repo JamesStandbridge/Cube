@@ -23,7 +23,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 
-const CitizenLayout = ({children}) => {
+const CitizenLayout = ({children, onDisconnect}) => {
 	return (
 		<>
 			<div className="app-nav-bar">
@@ -33,12 +33,12 @@ const CitizenLayout = ({children}) => {
 					</SidebarHeader>
 					<SidebarContent>
 						<Menu iconShape="square" popperArrow={true}>
-							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/compte/boutiques" replace/> </MenuItem>
+							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/" replace/> </MenuItem>
 							<SubMenu title="Ressources" icon={<MenuBookIcon className="navbar-icon"/>}>
 								<MenuItem className="sub-item"> Catalogue <Link to="/catalogue" replace/></MenuItem>
-								<MenuItem className="sub-item"> Mes ressources <Link to="/profil/mes-ressources" replace/></MenuItem>
+								<MenuItem className="sub-item"> Mes ressources <Link to="/profil/ressources" replace/></MenuItem>
 							</SubMenu>   
-							<MenuItem icon={<PeopleAltIcon className="navbar-icon"/>}>Mes relations<Link to="/compte/boutiques" replace/> </MenuItem>
+							<MenuItem icon={<PeopleAltIcon className="navbar-icon"/>}>Mes relations<Link to="/profil/relations" replace/> </MenuItem>
  
 						</Menu>
 					</SidebarContent>
@@ -58,10 +58,10 @@ const CitizenLayout = ({children}) => {
 							Accueil
 						</Typography>
 						<div className="app-bar-actions">
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton>
 								<AccountCircleIcon />
 							</IconButton>
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton onClick={onDisconnect}>
 								<PowerSettingsNewIcon />
 							</IconButton>
 						</div>

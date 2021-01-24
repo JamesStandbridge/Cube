@@ -9,14 +9,18 @@ import SuperAdminLayout from './SuperAdminLayout'
 
 import TokenManager from '../services/security/TokenManager'
 
-const Layout = ({AuthHandler, children}) => {
+const Layout = ({dispatch, AuthHandler, children}) => {
+
+	const handleDisconnect = () => {
+		dispatch({type: 'RESET_AUTH'});
+	}
 
 	const layoutToDisplay = () => {
 		if(AuthHandler.token === null) return (<AnonymLayout />)
-		if(TokenManager.isCitizen(AuthHandler.token)) return (<CitizenLayout />)
-		if(TokenManager.isModerator(AuthHandler.token)) return (<ModeratorLayout />)
-		if(TokenManager.isAdmin(AuthHandler.token)) return (<AdminLayout />)
-		if(TokenManager.isSuperAdmin(AuthHandler.token)) return (<SuperAdminLayout />)
+		if(TokenManager.isCitizen(AuthHandler.token)) return (<CitizenLayout onDisconnect={handleDisconnect}/>)
+		if(TokenManager.isModerator(AuthHandler.token)) return (<ModeratorLayout onDisconnect={handleDisconnect}/>)
+		if(TokenManager.isAdmin(AuthHandler.token)) return (<AdminLayout onDisconnect={handleDisconnect}/>)
+		if(TokenManager.isSuperAdmin(AuthHandler.token)) return (<SuperAdminLayout onDisconnect={handleDisconnect}/>)
 	}
 
 	return (

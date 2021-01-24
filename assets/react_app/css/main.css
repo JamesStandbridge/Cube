@@ -16,6 +16,12 @@ font-family: "OpenSans-Regular";
  src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
 }
 
+--colorWhite: #FFF8F0;
+--colorBlue: #0A0A73;
+--colorLightBlue: #117BCF;
+--colorYellow: #FF9F1C;
+--colorLightYellow: #FFA831;
+
 .app-login-register {
   	display: flex;
 	align-items: center;

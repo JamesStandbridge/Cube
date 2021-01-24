@@ -19,7 +19,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import 'react-pro-sidebar/dist/css/styles.css';
 
-const SuperAdminLayout = ({children}) => {
+const SuperAdminLayout = ({children, onDisconnect}) => {
 	return (
 		<>
 			<div className="app-nav-bar">
@@ -48,10 +48,10 @@ const SuperAdminLayout = ({children}) => {
 							Accueil
 						</Typography>
 						<div className="app-bar-actions">
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton>
 								<AccountCircleIcon />
 							</IconButton>
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton onClick={onDisconnect}>
 								<PowerSettingsNewIcon />
 							</IconButton>
 						</div>

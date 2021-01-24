@@ -10,15 +10,15 @@ import Typography from '@material-ui/core/Typography';
 
 //icons
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import PowerSettingsNewIcon from '@material-ui/icons/ExitToApp';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 import 'react-pro-sidebar/dist/css/styles.css';
 
-const ModeratorLayout = ({children}) => {
+const ModeratorLayout = ({children, onDisconnect}) => {
 	return (
 		<>
 			<div className="app-nav-bar">
@@ -28,8 +28,13 @@ const ModeratorLayout = ({children}) => {
 					</SidebarHeader>
 					<SidebarContent>
 						<Menu iconShape="square" popperArrow={true}>
-							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/compte/boutiques" replace/> </MenuItem>
-						</Menu>
+							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/" replace/> </MenuItem>
+							<MenuItem icon={<MenuBookIcon className="navbar-icon"/>}>Catalogue<Link to="/catalogue" replace/> </MenuItem>
+							<SubMenu title="Modération" icon={<VisibilityIcon className="navbar-icon"/>}>
+								<MenuItem className="sub-item"> Ressources <Link to="/moderation/resources" replace/></MenuItem>
+								<MenuItem className="sub-item"> Commentaires <Link to="/moderation/commentaires" replace/></MenuItem>
+							</SubMenu>   
+ 						</Menu>
 					</SidebarContent>
 					<SidebarFooter>
 
@@ -47,10 +52,10 @@ const ModeratorLayout = ({children}) => {
 							Accueil
 						</Typography>
 						<div className="app-bar-actions">
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton>
 								<AccountCircleIcon />
 							</IconButton>
-							<IconButton edge="start" color="inherit" aria-label="menu">
+							<IconButton onClick={onDisconnect}>
 								<PowerSettingsNewIcon />
 							</IconButton>
 						</div>
