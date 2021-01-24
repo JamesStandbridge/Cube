@@ -1,6 +1,8 @@
 import React from 'react';
 
-const CitizenLayout = ({children}) => {
+const AnonymLayout = ({children}) => {
+
+
 	return (
 		<>
 			<div className="app-nav-bar">
@@ -8,10 +10,10 @@ const CitizenLayout = ({children}) => {
 			</div>
 
 			<div className="app-bar">
-				
+
 			</div>
 		</>
 	)
 }
 
-export default CitizenLayout;
+export default AnonymLayout;

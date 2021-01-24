@@ -13,6 +13,7 @@ const CitizenRoute = ({path, component, AuthHandler, dispatch}) => {
 	const token = AuthHandler.token;
   	return (
   		<>
+
 		{
 			TokenManager.isCitizen(token) ? (
 				<Route path={path} component={component} />

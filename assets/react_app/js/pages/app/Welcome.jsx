@@ -5,13 +5,13 @@
 
 import React from 'react';
 
-import CitizenLayout from '../../views/CitizenLayout'
+import Layout from '../../views/Layout'
 
 const Welcome = (props) => {
   return (
-    <CitizenLayout>
+    <Layout>
     	<h1>Accueil</h1>
-    </CitizenLayout>
+    </Layout>
   )
 }
 

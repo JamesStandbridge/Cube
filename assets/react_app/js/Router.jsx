@@ -19,11 +19,11 @@ import Welcome from "./pages/app/Welcome"
 const Router = ({ AuthHandler }) => {
 
 	return (
-		<HashRouter>			
+		<HashRouter>		
 			<Switch>
 				<Route path="/register" component={Register} />
 				<Route path="/login" component={Login} />
-				<CitizenRoute path="/" component={Welcome} />
+				<Route path="/" component={Welcome} />
 			</Switch>
 		</HashRouter>
 	);
