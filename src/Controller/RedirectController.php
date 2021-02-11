@@ -41,4 +41,11 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+    /**
+     * @Route("/categories/creer", name="create_category")
+     */
+    public function createCategory() {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 }

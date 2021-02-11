@@ -23,6 +23,8 @@ import Login from "./pages/security/Login"
 import Welcome from "./pages/app/Welcome"
 import Resources from "./pages/app/Resources"
 
+import CreateCategory from "./pages/app/CreateCategory"
+
 require("../css/main.css");
 
 const CubeApp = () => {
@@ -31,6 +33,7 @@ const CubeApp = () => {
 			<Provider store={ Store }>	
 				<AppContainer>		
 					<Switch>
+						<AdminRoute path="/categories/creer" component={CreateCategory} />
 						<CitizenRoute path="/profil/relations" component={null} />
 						<CitizenRoute path="/profil/ressources" component={null} />
 						<ModeratorRoute path="/moderation/commentaires" component={null} />

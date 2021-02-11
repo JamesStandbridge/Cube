@@ -1,0 +1,63 @@
+App\Entity\Address:
+    address_1:
+        street: "15 rue pavillon"
+        cp: "13100"
+        city: "Aix-en-Provence"
+    address_2:
+        street: "31 rue emanuel"
+        cp: "13100"
+        city: "Aix-en-Provence"
+    address_3:
+        street: "8 rue Italie"
+        cp: "13100"
+        city: "Aix-en-Provence"
+    address_4:
+        street: "7 rue des epinettes"
+        cp: "78630"
+        city: "Morainvilliers"
+
+App\Entity\User:
+    user_citizen_{1..2}:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: 'username_<current()>'
+        usernameCanonical: <username()>
+        email: 'username_<current()>@gmail.com'
+        emailCanonical: 'username<current()>@gmail.com'
+        enabled: true
+        plainPassword: root
+        roles: <randomElements(['ROLE_CITIZEN'], 1)>
+
+    user_moderator:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: 'moderator'
+        usernameCanonical: <username()>
+        email: 'moderator@gmail.com'
+        emailCanonical: 'moderator@gmail.com'
+        enabled: true
+        plainPassword: root
+        roles: <randomElements(['ROLE_MODERATOR'], 1)>
+
+    user_admin:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: 'admin'
+        usernameCanonical: <username()>
+        email: 'admin@gmail.com'
+        emailCanonical: 'admin@gmail.com'
+        enabled: true
+        plainPassword: root
+        roles: <randomElements(['ROLE_ADMIN'], 1)>
+
+    user_super_admin:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: 'superadmin'
+        usernameCanonical: <username()>
+        email: 'superadmin@gmail.com'
+        emailCanonical: 'superadmin@gmail.com'
+        enabled: true
+        plainPassword: root
+        roles: <randomElements(['ROLE_SUPER_ADMIN'], 1)>
+
