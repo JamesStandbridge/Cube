@@ -13,6 +13,8 @@ const EndPoints = {
 
 	//categories
 	URL_POST_CATEGORY: "/api/categories",
+	URL_GET_CATEGORY: "/api/categories",
+	URL_POST_CATEGORY: "/api/categories",
 
 	//resources
 	URL_POST_RESOURCE: "/profil/ressources"

@@ -30,20 +30,19 @@ class ResourceType
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity=ResourceAttribute::class, mappedBy="resourceType")
-     * @Groups({"resource:read", "resource:create"})
-     */
-    private $attributes;
-
-    /**
      * @ORM\OneToMany(targetEntity=Resource::class, mappedBy="type")
      */
     private $resources;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ResourceAttribute::class)
+     */
+    private $attributes;
+
     public function __construct()
     {
-        $this->attribute = new ArrayCollection();
         $this->resources = new ArrayCollection();
+        $this->attributes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,36 +58,6 @@ class ResourceType
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ResourceAttribute[]
-     */
-    public function getAttributes(): Collection
-    {
-        return $this->attributes;
-    }
-
-    public function addAttribute(ResourceAttribute $attribute): self
-    {
-        if (!$this->attributes->contains($attribute)) {
-            $this->attributes[] = $attribute;
-            $attribute->setResourceType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAttribute(ResourceAttribute $attribute): self
-    {
-        if ($this->attributes->removeElement($attribute)) {
-            // set the owning side to null (unless already changed)
-            if ($attribute->getResourceType() === $this) {
-                $attribute->setResourceType(null);
-            }
-        }
 
         return $this;
     }
@@ -119,6 +88,30 @@ class ResourceType
                 $resource->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ResourceAttribute[]
+     */
+    public function getAttributes(): Collection
+    {
+        return $this->attributes;
+    }
+
+    public function addAttribute(ResourceAttribute $attribute): self
+    {
+        if (!$this->attributes->contains($attribute)) {
+            $this->attributes[] = $attribute;
+        }
+
+        return $this;
+    }
+
+    public function removeAttribute(ResourceAttribute $attribute): self
+    {
+        $this->attributes->removeElement($attribute);
 
         return $this;
     }
