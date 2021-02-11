@@ -7,44 +7,45 @@ import Button from '@material-ui/core/Button';
 
 import CategoryRepository from "../../../services/ORM/repository/CategoryRepository"
 
+import { wrapComponent } from 'react-snackbar-alert';
+
 require("../../../../css/category.css");
 
-const CategoryForm = ({dispatch, AuthHandler}) => {
+const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandler}) {
 	const [ category, setCategory ] = useState({
 		label: {value: "", error: ""}
 	})
 
+	function showSnackbar(theme, message) {
+		createSnackbar({
+			message: message,
+			dismissable: true,
+      		pauseOnHover: true,
+      		theme: theme,
+		});
+	}
+
     const handleChange = (event) => {
     	const value = event.currentTarget.value
-
  		setCategory({...category, label: {...category.label, value, error: ""}})
     }
 
     const handleSubmit = () => {
-    	//valider le formulaire
     	if(validateForm()) {
-    		
     		const categoryToSend = {
     			label: category.label.value
     		}
 
-
     		CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
-    			console.log(res)
+    			showSnackbar('success', "Nouvelle categorie enregistrée");
     		})
-
-
-
     	}
-    	//optionnel tu formate les données
-    	//post
     }
 
     const validateForm = () => {
     	let bool = true
 
     	if(category.label.value.trim().length === 0) {
-    		console.log('ici')
     		bool = false
     		setCategory({...category, label: {...category.label, error: "Le label est incorrect"}})
     	}
@@ -54,7 +55,6 @@ const CategoryForm = ({dispatch, AuthHandler}) => {
 
     return (
     	<div>
-
     		{
     			category.label.error !== "" ? (
 					<TextField
@@ -75,8 +75,6 @@ const CategoryForm = ({dispatch, AuthHandler}) => {
     			)
     		}
 
-
-
     		<Button
     			onClick={handleSubmit}
     			color='primary'
@@ -86,7 +84,7 @@ const CategoryForm = ({dispatch, AuthHandler}) => {
     		</Button>
     	</div>
     )
-}
+})
 
 const mapStateToProps = (state) => {
 	return state

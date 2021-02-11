@@ -15,7 +15,6 @@ const CategoryRepository = {
 			HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
 			category
 		);
-
 		return res
 	}
 }

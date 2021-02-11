@@ -17,6 +17,8 @@ import SuperAdminRoute from "./components/router/SuperAdminRoute";
 
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 
+import { SnackbarProvider } from 'react-snackbar-alert';
+
 import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
@@ -31,19 +33,21 @@ const CubeApp = () => {
 	return (
 		<BrowserRouter>	
 			<Provider store={ Store }>	
-				<AppContainer>		
-					<Switch>
-						<AdminRoute path="/categories/creer" component={CreateCategory} />
-						<CitizenRoute path="/profil/relations" component={null} />
-						<CitizenRoute path="/profil/ressources" component={null} />
-						<ModeratorRoute path="/moderation/commentaires" component={null} />
-						<ModeratorRoute path="/moderation/resources" component={null} />
-						<Route path="/catalogue" component={Resources} />
-						<Route path="/register" component={Register} />
-						<Route path="/login" component={Login} />
-						<Route path="/" component={Welcome} />
-					</Switch>
-				</AppContainer>
+				<SnackbarProvider position="top-right">
+					<AppContainer>		
+						<Switch>
+							<AdminRoute path="/categories/creer" component={CreateCategory} />
+							<CitizenRoute path="/profil/relations" component={null} />
+							<CitizenRoute path="/profil/ressources" component={null} />
+							<ModeratorRoute path="/moderation/commentaires" component={null} />
+							<ModeratorRoute path="/moderation/resources" component={null} />
+							<Route path="/catalogue" component={Resources} />
+							<Route path="/register" component={Register} />
+							<Route path="/login" component={Login} />
+							<Route path="/" component={Welcome} />
+						</Switch>
+					</AppContainer>
+				</SnackbarProvider>
 			</Provider>
 		</BrowserRouter>
 	);	
