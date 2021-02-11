@@ -11,20 +11,11 @@ import { wrapComponent } from 'react-snackbar-alert';
 
 require("../../../../css/category.css");
 
-const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandler}) {
+const CategoryForm = ({ dispatch, AuthHandler}) => {
 	const [ category, setCategory ] = useState({
 		label: {value: "", error: ""}
 	})
-
-	function showSnackbar(theme, message) {
-		createSnackbar({
-			message: message,
-			dismissable: true,
-      		pauseOnHover: true,
-      		theme: theme,
-		});
-	}
-
+    
     const handleChange = (event) => {
     	const value = event.currentTarget.value
  		setCategory({...category, label: {...category.label, value, error: ""}})
@@ -37,7 +28,6 @@ const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     		}
 
     		CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
-    			showSnackbar('success', "Nouvelle categorie enregistrée");
     		})
     	}
     }
@@ -84,7 +74,7 @@ const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     		</Button>
     	</div>
     )
-})
+}
 
 const mapStateToProps = (state) => {
 	return state

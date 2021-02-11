@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, forwardRef} from "react";
 import Modal from '@material-ui/core/Modal';
-
+import CategoryForm from './form/app/CategoryForm'
 
 const CustomModal = ({btnTitle, children}) => {
     const [open, setOpen] = useState(false)
@@ -13,14 +13,12 @@ const CustomModal = ({btnTitle, children}) => {
         setOpen(false);
     }
 
-    console.log(children)
     return (
         <div>
             <button onClick={handleOpen}>{btnTitle}</button>
             <Modal
-            open = {open}
-            onClose = {handleClose}
-
+                open = {open}
+                onClose = {handleClose}
             >
                 {children}
             </Modal>

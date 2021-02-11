@@ -17,47 +17,308 @@ App\Entity\Address:
         city: "Morainvilliers"
 
 App\Entity\User:
-    user_citizen_{1..2}:
+    user_citizen_1:
         firstname: <firstname()>
         lastname: <lastname()>
-        username: 'username_<current()>'
-        usernameCanonical: <username()>
-        email: 'username_<current()>@gmail.com'
-        emailCanonical: 'username<current()>@gmail.com'
+        username: 'citizen_1@gmail.com'
+        usernameCanonical: 'citizen_1@gmail.com'
+        email: 'citizen_1@gmail.com'
+        emailCanonical: 'citizen_1@gmail.com'
         enabled: true
-        plainPassword: root
+        plainPassword: "root"
         roles: <randomElements(['ROLE_CITIZEN'], 1)>
+        address: '@address_1'
+
+    user_citizen_2:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: 'citizen_2@gmail.com'
+        usernameCanonical: 'citizen_2@gmail.com'
+        email: 'citizen_2@gmail.com'
+        emailCanonical: 'citizen_2@gmail.com'
+        enabled: true
+        plainPassword: "root"
+        roles: <randomElements(['ROLE_CITIZEN'], 1)>
+        address: '@address_2'
 
     user_moderator:
         firstname: <firstname()>
         lastname: <lastname()>
-        username: 'moderator'
-        usernameCanonical: <username()>
+        username: 'moderator@gmail.com'
+        usernameCanonical: 'moderator@gmail.com'
         email: 'moderator@gmail.com'
         emailCanonical: 'moderator@gmail.com'
         enabled: true
-        plainPassword: root
+        plainPassword: "root"
         roles: <randomElements(['ROLE_MODERATOR'], 1)>
+        address: '@address_3'
 
     user_admin:
         firstname: <firstname()>
         lastname: <lastname()>
-        username: 'admin'
-        usernameCanonical: <username()>
+        username: 'admin@gmail.com'
+        usernameCanonical: 'admin@gmail.com'
         email: 'admin@gmail.com'
         emailCanonical: 'admin@gmail.com'
         enabled: true
-        plainPassword: root
+        plainPassword: "root"
         roles: <randomElements(['ROLE_ADMIN'], 1)>
+        address: '@address_4'
 
     user_super_admin:
         firstname: <firstname()>
         lastname: <lastname()>
-        username: 'superadmin'
-        usernameCanonical: <username()>
+        username: 'superadmin@gmail.com'
+        usernameCanonical: 'superadmin@gmail.com'
         email: 'superadmin@gmail.com'
         emailCanonical: 'superadmin@gmail.com'
         enabled: true
-        plainPassword: root
+        plainPassword: "root"
         roles: <randomElements(['ROLE_SUPER_ADMIN'], 1)>
+        address: '@address_4'
+
+App\Entity\ResourceAttribute:
+    attribute_enonce:
+        label: "Énoncé"
+        type: "textArea"
+
+    attribute_video:
+        label: "Video"
+        type: "video"
+
+    attribute_article:
+        label: "Article"
+        type: "textArea"
+
+    attribute_carte_defi:
+        label: "Carte défi"
+        type: "textArea"
+
+    attribute_bonus: 
+        label: "Bonus"
+        type: "textArea"
+
+    attribute_game:
+        label: "Jeu"
+        type: "link"
+
+    attribute_file:
+        label: "Fichier"
+        type: "file"
+
+App\Entity\ResourceType: 
+    resource_type_1: 
+        label: 'Activité'
+        attributes: ['@attribute_enonce']
+
+    resource_type_2: 
+        label: 'Article'
+        attributes: ['@attribute_article']
+
+    resource_type_3: 
+        label: 'Carte défi'
+        attributes: ['@attribute_carte_defi', '@attribute_bonus']
+
+    resource_type_4:
+        label: 'Cours au format PDF'
+        attributes: ['@attribute_file']
+
+    resource_type_5:
+        label: 'Exercice'
+        attributes: ['@attribute_enonce']
+
+    resource_type_6:  
+        label: 'Fiche de lecture' 
+        attributes: ['@attribute_enonce']
+
+    resource_type_7: 
+        label: 'Jeu en ligne'
+        attributes: ['@attribute_game']
+
+    resource_type_8: 
+        label: 'Vidéo'
+        attributes: ['@attribute_video']
+
+App\Entity\TypeOfRelationship: 
+    type_relation_1:
+        label: 'Soi'
+
+    type_relation_2:
+        label: 'Conjoints'
+
+    type_relation_3:
+        label: 'Famille : enfants / parents / fratrie'
+
+    type_relation_4:
+        label: 'Professionnelle : collègue, collaborateurs et managers'
+
+    type_relation_5:
+        label: 'Amis et communautés'
+
+    type_relation_6:
+        label: 'Inconnus'
+
+App\Entity\Category: 
+    category_1:
+        label: "Communication"
+
+    category_2:
+        label: "Culture" 
+
+    category_3:
+        label: "Développement personnel" 
+
+    category_4:
+        label: "Intelligence émotionnelle"
+
+    category_5:
+        label: "Loisirs"
+
+    category_6:
+        label: "Monde professionnel"
+
+    category_7:
+        label: "Parentalité"
+
+    category_8:
+        label: "Qualité de vie"
+
+    category_9:
+        label: "Recherche de sens"
+
+    category_10:
+        label: "Santé physique"
+
+    category_11:
+        label: "Santé psychique"
+
+    category_12:
+        label: "Spiritualité"
+
+    category_13:
+        label: "Vie affective"   
+
+App\Entity\Resource:
+    resource_1: 
+        title: 'Développement musculaire'
+        type: '@resource_type_5'
+        createdAt: <(new DateTime())>
+        updatedAt: <(new DateTime())>
+        numberViews: 0
+        isValidated: true
+        author: '@user_citizen_1'
+        isPublic: true
+        typeofrelationship: ['@type_relation_1']
+        category: '@category_10'
+
+    resource_2: 
+        title: 'Le solfège'
+        type: '@resource_type_2'
+        createdAt: <(new DateTime())>
+        updatedAt: <(new DateTime())>
+        numberViews: 0
+        isValidated: true
+        author: '@user_citizen_1'
+        isPublic: true
+        typeofrelationship: ['@type_relation_5']
+        category: '@category_2'
+
+    resource_3: 
+        title: 'Partager des vrais moments de vie de famille'
+        type: '@resource_type_3'
+        createdAt: <(new DateTime())>
+        updatedAt: <(new DateTime())>
+        numberViews: 0
+        isValidated: true
+        author: '@user_citizen_1'
+        isPublic: true
+        typeofrelationship: ['@type_relation_3']
+        category: '@category_8'
+
+    resource_4: 
+        title: 'Emission ARTE : Travail | Travail, Salaire, Profit'
+        type: '@resource_type_8'
+        createdAt: <(new DateTime())>
+        updatedAt: <(new DateTime())>
+        numberViews: 0
+        isValidated: true
+        author: '@user_citizen_2'
+        isPublic: true
+        typeofrelationship: ['@type_relation_4']
+        category: '@category_6'
+
+    resource_5: 
+        title: 'Reconnaître ses émotions'
+        type: '@resource_type_5'
+        createdAt: <(new DateTime())>
+        updatedAt: <(new DateTime())>
+        numberViews: 0
+        isValidated: true
+        author: '@user_citizen_2'
+        isPublic: true
+        typeofrelationship: ['@type_relation_1']
+        category: '@category_4'
+
+
+App\Entity\ResourceContentValue:
+    content_value_1: 
+        attribute: '@attribute_enonce'
+        resource: '@resource_1'
+        textValue: 'C’est un programme ludique et rapide qui vous permettra de gagner 
+                    en tonicité musculaire sans augmenter le volume de vos muscles. Exactement ce 
+                    qu’il faut pour un coureur. Le principe est simple, solliciter l’ensemble de 
+                    votre chaîne musculaire en enchaînant plusieurs exercices différents les uns 
+                    après les autres avec une récupération courte de 10 à 15 secondes entre chaque 
+                    exercice et de 2 min entre chaque série.
+                    L’objectif du Circuit Training est de travailler l’ensemble du corps (haut et bas) , 
+                    d’améliorer sa force, son endurance et son cardio. En fonction de votre niveau, 
+                    vous pouvez augmenter l’intensité des exercices et le nombre de répétitions des séries. 
+                    Nous conseillons pour les débutants de commencer par une série par jour. Au fil des 
+                    jours, augmenter progressivement les répétitions des séries.'
+        
+
+    content_value_2:
+        attribute: '@attribute_article'
+        resource: '@resource_2'
+        textValue: 'Les gammes dont la tonalité est autre que Do majeur ou La mineur, comportent comme 
+                    matériel mélodique des notes altérées. Les morceaux écrits dans ces tonalités 
+                    utiliseront donc de façon permanente (sauf exception locale) ces notes altérées. 
+                    Pour éviter de surcharger l’écriture en indiquant l’altération devant chacune de 
+                    ces notes, on place au début de chaque portée un signe, appelé armure, formé de 
+                    l’ensemble des altérations nécessaires. Ces altérations sont placées sur la ligne 
+                    ou interligne de la note qu’elles altèrent, mais à la différence des altérations 
+                    accidentelles, valent pour toutes les hauteurs d’octave et pour toutes les mesures 
+                    du morceau. Leur effet est donc permanent sauf contre indication explicite.'
+
+    content_value_3:
+        attribute: '@attribute_carte_defi'
+        resource: '@resource_3'
+        textValue: 'pendant une semaine, passer un repas en famille par jour, à table sans écrans 
+                    (télévision, smartphone, tablette, etc.).'
+
+    content_value_4:
+        attribute: '@attribute_bonus'
+        resource: '@resource_3'
+        textValue: 'cuisiner en famille en amont du repas.'
+
+    content_value_5:
+        attribute: '@attribute_video'
+        resource: '@resource_4'
+        stringValue: 'https://www.youtube.com/watch?v=Dpzv8H16R-Q'
+
+    content_value_6:
+        attribute: '@attribute_enonce'
+        resource: '@resource_5'
+        textValue: L’objectif de cet exercice est de reconnaître les émotions sur soi. Pour ce faire, 
+                    nous noterons dans un petit cahier prévu à cet effet, à des moments prédéfinis 
+                    de la journée, comment nous nous sentons émotionnellement. Quelle émotion nous 
+                    habite ? Cette émotion est-elle positive ou négative ? Avec quelle force ? 
+                    Quel a été le facteur déclencheur ? Nous répèterons la démarche durant une semaine.
+                    Après une semaine, reprenons nos notes et identifions avec un marqueur les émotions 
+                    que nous ressentons le plus souvent, si elles sont positives ou négatives et quel
+                    type de facteur déclencheur est observé le plus souvent.
+                    Pour conclure, demandons-nous si nos émotions auraient pu être différentes et si 
+                    la situation en aurait été changée.
+
+
 

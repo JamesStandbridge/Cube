@@ -25,9 +25,9 @@ class ResourceAttribute
     private $label;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="attribute")
+     * @ORM\Column(type="string", length=255)
      */
-    private $resourceType;
+    private $type;
 
     public function getId(): ?int
     {
@@ -46,14 +46,14 @@ class ResourceAttribute
         return $this;
     }
 
-    public function getResourceType(): ?ResourceType
+    public function getType(): ?string
     {
-        return $this->resourceType;
+        return $this->type;
     }
 
-    public function setResourceType(?ResourceType $resourceType): self
+    public function setType(string $type): self
     {
-        $this->resourceType = $resourceType;
+        $this->type = $type;
 
         return $this;
     }

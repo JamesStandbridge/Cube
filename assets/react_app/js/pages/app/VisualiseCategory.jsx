@@ -13,7 +13,7 @@ const VisualiseCategory = (props) => {
         <CustomModal
             btnTitle={"Ajouter une nouvelle catégorie"}
         >
-            {CategoryForm}
+            <CategoryForm />
         </CustomModal>
          
     </Layout>
