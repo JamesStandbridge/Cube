@@ -7,10 +7,14 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * collectionOperations = {"get" = {"normalization_context"= {"groups"="category:list"}}, "post" = {"denormalization_context"= {"groups"="category:create"}}},
+ * )
+ * 
  */
 class Category
 {
@@ -23,11 +27,13 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"category:list","category:create"})
      */
     private $label;
 
     /**
      * @ORM\OneToMany(targetEntity=Resource::class, mappedBy="category")
+     * @Groups({"category:list"})
      */
     private $resources;
 
