@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ResourceContentValueRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceContentValueRepository::class)
@@ -21,16 +22,21 @@ class ResourceContentValue
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"resource:read", "resource:create"})
      */
     private $stringValue;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"resource:read", "resource:create"})
      */
     private $textValue;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Groups({"resource:read", "resource:create"})
      */
     private $imageValue;
 

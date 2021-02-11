@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ResourceTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceTypeRepository::class)
@@ -23,11 +25,13 @@ class ResourceType
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"resource:read", "resource:create"})
      */
     private $label;
 
     /**
      * @ORM\OneToMany(targetEntity=ResourceAttribute::class, mappedBy="resourceType")
+     * @Groups({"resource:read", "resource:create"})
      */
     private $attributes;
 

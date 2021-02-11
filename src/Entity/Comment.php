@@ -2,13 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
- * @ApiResource
+ *
+ * @ApiResource(
+ *     subresourceOperations={
+ *          "api_resources_comment_get_subresource"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                  "groups"={
+ *                      "comment"
+ *                  }
+ *              }
+ *          }
+ *     }
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"resource": "exact"})
  */
 class Comment
 {
@@ -16,42 +32,53 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @Groups({"comment"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @Groups({"comment"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      */
     private $isValidated;
 
     /**
      * @ORM\OneToOne(targetEntity=Comment::class, cascade={"persist", "remove"})
+     *
      */
     private $parentComment;
 
     /**
      * @ORM\ManyToOne(targetEntity=Resource::class, inversedBy="comments")
+     *
      */
     private $resource;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Groups({"comment"})
      */
     private $userEntity;
 

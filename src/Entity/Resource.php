@@ -3,14 +3,26 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ResourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceRepository::class)
- * @ApiResource
+ *
+ * @ApiResource(
+ *     normalizationContext={"groups"="resource:read"},
+ *     collectionOperations={"get"={"normalization_context"={"groups"="resource:list"}},
+ *          "post"={"denormalization_context"={"groups"="resource:create"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="resource:read", "resource:read:full"}},
+ *          "put"={"denormalization_context"={"groups"="resource:update"}},
+ *          "delete"={"normalization_context"={"groups"="resource:remove"}}},
+ *     order={"createdAt"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Resource
 {
@@ -18,66 +30,86 @@ class Resource
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"resource:list", "resource:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Groups({"resource:list", "resource:read", "resource:create"})
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="resources")
+     *
+     * @Groups({"resource:read", "resource:create"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @Groups({"resource:list", "resource:read", "resource:create"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="integer")
+     *
      */
     private $numberViews;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      */
     private $isValidated;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resources")
+     *
+     * @Groups({"resource:read"})
      */
     private $author;
 
     /**
      * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource")
+     *
+     * @Groups({"resource:read", "resource:create"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      */
     private $isPublic;
 
     /**
      * @ORM\ManyToMany(targetEntity=TypeOfRelationship::class, inversedBy="resources")
+     *
      */
     private $typeofrelationship;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="resources")
+     * @Groups({"resource:list", "resource:read", "resource:create"})
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="resource")
+     *
+     * @ApiSubresource
      */
     private $comments;
 

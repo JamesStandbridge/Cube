@@ -35,6 +35,22 @@ class RedirectController extends AbstractController
     }
 
     /**
+     * @Route("/profil/ressources/nouveau", name="resource_new")
+     */
+    public function createResource(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
+     * @Route("/catalogue/{id}", name="resource_show")
+     */
+    public function getResource(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
      * @Route("/catalogue", name="catalogue")
      */
     public function catalogue() {

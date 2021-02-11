@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ResourceAttributeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceAttributeRepository::class)
@@ -21,11 +22,13 @@ class ResourceAttribute
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"resource:read", "resource:create"})
      */
     private $label;
 
     /**
      * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="attribute")
+     * @Groups({"resource:read", "resource:create"})
      */
     private $resourceType;
 

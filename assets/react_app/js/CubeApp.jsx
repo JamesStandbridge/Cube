@@ -26,6 +26,9 @@ import Welcome from "./pages/app/Welcome"
 import Resources from "./pages/app/Resources"
 
 import CreateCategory from "./pages/app/CreateCategory"
+import CreateResource from "./pages/app/resource/CreateResource";
+import MyResources from "./pages/app/resource/MyResources";
+
 
 require("../css/main.css");
 
@@ -38,7 +41,8 @@ const CubeApp = () => {
 						<Switch>
 							<AdminRoute path="/categories/creer" component={CreateCategory} />
 							<CitizenRoute path="/profil/relations" component={null} />
-							<CitizenRoute path="/profil/ressources" component={null} />
+							<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
+							<CitizenRoute path="/profil/ressources" component={MyResources} />
 							<ModeratorRoute path="/moderation/commentaires" component={null} />
 							<ModeratorRoute path="/moderation/resources" component={null} />
 							<Route path="/catalogue" component={Resources} />
