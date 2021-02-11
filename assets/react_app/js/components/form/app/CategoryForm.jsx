@@ -17,7 +17,7 @@ const CategoryForm = ({dispatch}) => {
 
     const handleSubmit = () => {
     	//valider le formulaire
-    	if(validateForm) {
+    	if(validateForm()) {
     		console.log("je poste")
     	}
     	//optionnel tu formate les données
@@ -27,7 +27,8 @@ const CategoryForm = ({dispatch}) => {
     const validateForm = () => {
     	let bool = true
 
-    	if(value.trim().length === 0) {
+    	if(category.label.value.trim().length === 0) {
+    		console.log('ici')
     		bool = false
     		setCategory({...category, label: {...category.label, error: "Le label est incorrect"}})
     	}
