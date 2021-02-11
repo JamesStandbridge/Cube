@@ -12,7 +12,8 @@ const EndPoints = {
 	URL_GET_USER: "/api/user",
 
 	//categories
-	URL_POST_CATEGORY: "/api/categories"
+	URL_POST_CATEGORY: "/api/categories",
+	URL_GET_CATEGORY: "/api/categories",
 };
 
 export default EndPoints;

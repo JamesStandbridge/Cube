@@ -16,7 +16,15 @@ const CategoryRepository = {
 			category
 		);
 		return res
-	}
+	},
+
+	visualise: async function(token) {
+		const res = await HttpService.sendGetRequest(
+			EndPoints.URL_GET_CATEGORY,
+			HeaderBuilder.GET_HEADER_AUTHORIZATION(token),
+		);
+		return res
+	},
 }
 
 export default CategoryRepository;
