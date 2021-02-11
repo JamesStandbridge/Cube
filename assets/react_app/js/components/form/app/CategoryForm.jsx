@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+import CategoryRepository from "../../../services/ORM/repository/CategoryRepository"
+
 require("../../../../css/category.css");
 
-const CategoryForm = ({dispatch}) => {
+const CategoryForm = ({dispatch, AuthHandler}) => {
 	const [ category, setCategory ] = useState({
 		label: {value: "", error: ""}
 	})
@@ -12,13 +17,24 @@ const CategoryForm = ({dispatch}) => {
     const handleChange = (event) => {
     	const value = event.currentTarget.value
 
- 		setCategory({...category, label: {...category.label, value}})
+ 		setCategory({...category, label: {...category.label, value, error: ""}})
     }
 
     const handleSubmit = () => {
     	//valider le formulaire
     	if(validateForm()) {
-    		console.log("je poste")
+    		
+    		const categoryToSend = {
+    			label: category.label.value
+    		}
+
+
+    		CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
+    			console.log(res)
+    		})
+
+
+
     	}
     	//optionnel tu formate les données
     	//post
@@ -41,26 +57,42 @@ const CategoryForm = ({dispatch}) => {
 
     		{
     			category.label.error !== "" ? (
-    				<p>{category.label.error}</p>
+					<TextField
+						error
+						label="Label"
+						variant="outlined"
+						onChange={handleChange}
+						helperText={category.label.error}
+						size="small"
+					/>
     			) : (
-    				null
+					<TextField
+						label="Label"
+						variant="outlined"
+						onChange={handleChange}
+						size="small"
+					/>
     			)
     		}
 
-    		<input 
-    			onChange={handleChange}
-    		/>
 
-    		<button
+
+    		<Button
     			onClick={handleSubmit}
+    			color='primary'
+    			variant="contained"
     		>
     			Confirmer
-    		</button>
+    		</Button>
     	</div>
     )
 }
 
-export default CategoryForm
+const mapStateToProps = (state) => {
+	return state
+}
+
+export default connect(mapStateToProps)(CategoryForm)
 
     
 
