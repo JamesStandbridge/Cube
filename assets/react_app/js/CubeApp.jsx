@@ -27,8 +27,9 @@ import Resources from "./pages/app/Resources"
 
 import CreateCategory from "./pages/app/CreateCategory"
 import VisualiseCategory from "./pages/app/VisualiseCategory"
-import CreateResource from "./pages/app/resource/CreateResource";
-import MyResources from "./pages/app/resource/MyResources";
+
+import CreateResource from "./pages/app/resource/CreateResource"
+import MyResources from "./pages/app/resource/MyResources"
 
 
 require("../css/main.css");

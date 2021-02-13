@@ -11,52 +11,42 @@ import { wrapComponent } from 'react-snackbar-alert';
 
 require("../../../../css/category.css");
 
-const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandler}) {
+const CategoryForm = ({ dispatch, AuthHandler}) => {
 	const [ category, setCategory ] = useState({
 		label: {value: "", error: ""}
 	})
 
-	function showSnackbar(theme, message) {
-		createSnackbar({
-			message: message,
-			dismissable: true,
-      		pauseOnHover: true,
-      		theme: theme,
-		});
+	const handleChange = (event) => {
+		const value = event.currentTarget.value
+		setCategory({...category, label: {...category.label, value, error: ""}})
 	}
 
-    const handleChange = (event) => {
-    	const value = event.currentTarget.value
- 		setCategory({...category, label: {...category.label, value, error: ""}})
-    }
+	const handleSubmit = () => {
+		if(validateForm()) {
+			const categoryToSend = {
+				label: category.label.value
+			}
 
-    const handleSubmit = () => {
-    	if(validateForm()) {
-    		const categoryToSend = {
-    			label: category.label.value
-    		}
+			CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
+			})
+		}
+	}
 
-    		CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
-    			showSnackbar('success', "Nouvelle categorie enregistrée");
-    		})
-    	}
-    }
+	const validateForm = () => {
+		let bool = true
 
-    const validateForm = () => {
-    	let bool = true
+		if(category.label.value.trim().length === 0) {
+			bool = false
+			setCategory({...category, label: {...category.label, error: "Le label est incorrect"}})
+		}
 
-    	if(category.label.value.trim().length === 0) {
-    		bool = false
-    		setCategory({...category, label: {...category.label, error: "Le label est incorrect"}})
-    	}
+		return bool
+	}
 
-    	return bool
-    }
-
-    return (
-    	<div>
-    		{
-    			category.label.error !== "" ? (
+	return (
+		<div>
+			{
+				category.label.error !== "" ? (
 					<TextField
 						error
 						label="Label"
@@ -65,26 +55,26 @@ const CategoryForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
 						helperText={category.label.error}
 						size="small"
 					/>
-    			) : (
+				) : (
 					<TextField
 						label="Label"
 						variant="outlined"
 						onChange={handleChange}
 						size="small"
 					/>
-    			)
-    		}
+				)
+			}
 
-    		<Button
-    			onClick={handleSubmit}
-    			color='primary'
-    			variant="contained"
-    		>
-    			Confirmer
-    		</Button>
-    	</div>
-    )
-})
+			<Button
+				onClick={handleSubmit}
+				color='primary'
+				variant="contained"
+			>
+				Confirmer
+			</Button>
+		</div>
+	)
+}
 
 const mapStateToProps = (state) => {
 	return state

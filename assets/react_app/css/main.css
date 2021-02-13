@@ -1,19 +1,19 @@
 @font-face {
- font-family: "Open-Sans-light";
- src: url("../fonts/OpenSans-Light.ttf") format("truetype");
+    font-family: "Open-Sans-light";
+    src: url("../fonts/OpenSans-Light.ttf") format("truetype");
 }
 
 @font-face {
-font-family: "OpenSans-Regular";
- src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+    font-family: "OpenSans-Regular";
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
 }
 @font-face {
- font-family: "OpenSans-Bold";
- src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+    font-family: "OpenSans-Bold";
+    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
 }
 @font-face {
- font-family: "OpenSans-SemiBold";
- src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
+    font-family: "OpenSans-SemiBold";
+    src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
 }
 
 {
@@ -23,49 +23,49 @@ font-family: "OpenSans-Regular";
     --colorYellow: #FF9F1C;
     --colorLightYellow: #FFA831;
 }
+
 .app-login-register {
-  	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
 }
 
 .form-register{
-	margin: auto;
-	width: 50%;
+    margin: auto;
+    width: 50%;
 }
 
 .MuiFormControl-root.form-field {
-	margin: 5px;
-	width: 60%;
+    margin: 5px;
+    width: 60%;
 }
 
 .MuiButtonBase-root.btn-confirm {
-	width: 60%;
-	margin: 5px;
+    width: 60%;
+    margin: 5px;
 }
 
 /* Chrome, Safari, Edge, Opera */
 .MuiFormControl-root.cp input::-webkit-outer-spin-button,
 .MuiFormControl-root.cp input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 .MuiFormControl-root.cp input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 
 
 .app-nav-bar {
-	height: 100vh;
+    height: 100vh;
     left: 0;
     top: 0;
     position: fixed;
-    background-color: var(--colorBlue)!important;
 
 }
 
@@ -83,10 +83,11 @@ font-family: "OpenSans-Regular";
 }
 
 .pro-sidebar > .pro-sidebar-inner {
-	color: white;
-	font-family: "OpenSans-SemiBold";
-	background-color: var(--colorBlue)!important;
-/*	background-image: url(../img/background-vertical.png);*/
+    color: white;
+    font-family: "OpenSans-SemiBold";
+    background-color: white;
+    /*	background-image: url(../img/background-vertical.png);*/
+    color: black;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu:active {
@@ -94,7 +95,7 @@ font-family: "OpenSans-Regular";
 }
 
 .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
-    background-color: var(--colorBlue);
+    background-color: white;
 }
 
 .pro-inner-item:hover {
@@ -105,15 +106,14 @@ font-family: "OpenSans-Regular";
 
 
 .pro-sidebar-header {
-	height: 70px;
-    background-color: var(--colorBlue)!important;
+    height: 70px;
 }
 
 .pro-sidebar-header h1 {
     width: 100px;
     display: block;
     margin: 15px auto;
-	font-family: "OpenSans-Bold"
+    font-family: "OpenSans-Bold"
 }
 
 .pro-sidebar-header h1.collapse {
@@ -123,21 +123,20 @@ font-family: "OpenSans-Regular";
 }
 
 .popper-inner {
-    /*background-color: var(--colorWhite)!important;*/
+    background-color: white!important;
     color: black;
 }
 
 .MuiPaper-elevation4 {
-	box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 .app-bar {
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
     width: calc(100% - 300px);
     float: right;
     margin-right: 15px;
     margin-top: 15px;
-    background-color: var(--colorBlue)!important;
 }
 
 .app-bar.collapse {
@@ -146,17 +145,17 @@ font-family: "OpenSans-Regular";
 }
 
 .app-bar.full {
-   width: calc(100% - 30px);
+    width: calc(100% - 30px);
 }
 
 .MuiAppBar-colorPrimary {
-	/*background-color: #1667a6!important;*/
-    background-color: var(--colorBlue)!important;
+    /*background-color: #1667a6!important;*/
+    background-color: white!important;
     color: black!important;
 }
 
 .app-body {
-	width: calc(100% - 300px);
+    width: calc(100% - 300px);
     float: right;
     margin-top: 10px;
     margin-right: 15px;
@@ -165,8 +164,8 @@ font-family: "OpenSans-Regular";
 }
 
 .app-body.collapse {
-   width: calc(100% - 110px);
-   transition: 0.3s;
+    width: calc(100% - 110px);
+    transition: 0.3s;
 }
 
 .app-body.full {
@@ -185,5 +184,5 @@ font-family: "OpenSans-Regular";
 }
 
 .pro-sidebar .pro-menu.shaped .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
-	background-color: var(--colorBlue);
+    background-color: white;
 }

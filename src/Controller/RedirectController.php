@@ -16,21 +16,24 @@ class RedirectController extends AbstractController
     /**
      * @Route("/", name="entry")
      */
-    public function homepage() {
+    public function homepage()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
-        /**
+    /**
      * @Route("/register", name="register")
      */
-    public function registerRoute() {
+    public function registerRoute()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
     /**
      * @Route("/login", name="login")
      */
-    public function login() {
+    public function login()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
@@ -53,21 +56,24 @@ class RedirectController extends AbstractController
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function catalogue() {
+    public function catalogue()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
     /**
      * @Route("/categories/creer", name="create_category")
      */
-    public function createCategory() {
+    public function createCategory()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
     /**
      * @Route("/categories/visualise", name="visualise_category")
      */
-    public function visualiseCategory() {
+    public function visualiseCategory()
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 

@@ -25,7 +25,8 @@ class SecurityController extends AbstractController
      * @param  Request $request 
      * @return Json
      */
-    public function register(Request $request) {
+    public function register(Request $request): Json
+    {
         $entityManager = $this->getDoctrine()->getManager();
         $content = json_decode($request->getContent(), true);
 

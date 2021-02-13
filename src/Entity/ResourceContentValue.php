@@ -34,13 +34,6 @@ class ResourceContentValue
     private $textValue;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     *
-     * @Groups({"resource:read", "resource:create"})
-     */
-    private $imageValue;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Resource::class, inversedBy="content")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -77,18 +70,6 @@ class ResourceContentValue
     public function setTextValue(?string $textValue): self
     {
         $this->textValue = $textValue;
-
-        return $this;
-    }
-
-    public function getImageValue(): ?string
-    {
-        return $this->imageValue;
-    }
-
-    public function setImageValue(?string $imageValue): self
-    {
-        $this->imageValue = $imageValue;
 
         return $this;
     }
