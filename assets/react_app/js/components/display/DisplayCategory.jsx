@@ -6,6 +6,16 @@ import CategoryRepository from "../../services/ORM/repository/CategoryRepository
 
 import { wrapComponent } from 'react-snackbar-alert';
 import { CardMembership } from '@material-ui/icons';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 require("../../../css/category.css");
 
@@ -21,17 +31,37 @@ const DisplayCategory = ({AuthHandler}) => {
 
     const [ categories, setCategories ] = useState([]) 
 
-    
+    const useStyles = makeStyles({
+        table: {
+          minWidth: 200,
+          maxWidth: 400,
+        },
+      });
+
+    const classes = useStyles();
 
     return (
     	<div>
-            <p>CATEGORIE</p>
-            {
-                categories.map(category => (
-                    <p key={category.id}>{category.label}</p>
+            <h1>CATEGORIE</h1>
+            <TableContainer component={Paper}> 
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Label</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableCell align="center">
+                        {
+                        categories.map(category => (
+                            <p key={category.id}>{category.label}</p>
 
-                ))
-            }
+                        ))
+                        } 
+                        </TableCell>
+                    </TableBody>
+                </Table>
+            </TableContainer>           
     	</div>
     )
 }
