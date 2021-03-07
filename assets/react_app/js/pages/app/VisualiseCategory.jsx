@@ -13,9 +13,17 @@ const VisualiseCategory = (props) => {
         <CustomModal
             btnTitle={"Ajouter une nouvelle catégorie"}
         >
-            <CategoryForm />
-        </CustomModal>
-         
+          <div
+              style={{
+                  position: 'absolute', 
+                  left: '50%', 
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+              }}
+          >
+          <CategoryForm />
+          </div>            
+        </CustomModal>        
     </Layout>
   )
 }
