@@ -4,13 +4,13 @@
  */
 
 import React from 'react';
-
+import Dashboard from '../../components/stats/Dashboard'
 import Layout from '../../views/Layout'
 
 const Welcome = (props) => {
   return (
     <Layout>
-    	<h1>Accueil</h1>
+    	<Dashboard />
     </Layout>
   )
 }

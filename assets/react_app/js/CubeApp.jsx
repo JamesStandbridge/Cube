@@ -8,6 +8,7 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import Store from './store/configureStore';
 import AppContainer from './AppContainer';
+import 'fontsource-roboto';
 
 //routes
 import CitizenRoute from "./components/router/CitizenRoute";
@@ -22,7 +23,7 @@ import { SnackbarProvider } from 'react-snackbar-alert';
 import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
-import Welcome from "./pages/app/Welcome"
+import Dashboard from "./pages/app/Dashboard"
 import Resources from "./pages/app/Resources"
 
 import CreateCategory from "./pages/app/CreateCategory"
@@ -46,7 +47,7 @@ const CubeApp = () => {
 							<Route path="/catalogue" component={Resources} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
-							<Route path="/" component={Welcome} />
+							<Route path="/" component={Dashboard} />
 						</Switch>
 					</AppContainer>
 				</SnackbarProvider>

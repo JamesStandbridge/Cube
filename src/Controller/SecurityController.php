@@ -78,8 +78,17 @@ class SecurityController extends AbstractController
      */
     public function getCurrentUser() {
         $user = $this->getUser();
+
+        $userNormalise = array(            
+            'id' => $user->getId(),
+            'firstname' => $user->getFirstname(),
+            'lastname' => $user->getLastname(),
+            'roles' => $user->getRoles(),
+            'email' => $user->getEmail()
+        );
+
         return $this->json([
-            'user' => $user
+            'user' => $userNormalise
         ], 200);     
     }
 }
