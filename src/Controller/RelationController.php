@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use App\Repository\UserRepository;
 use App\Repository\TypeOfRelationshipRepository;
+use App\Repository\CitizenRelationshipRepository;
 
 use App\Entity\CitizenRelationship;
 
@@ -42,28 +43,47 @@ class RelationController extends AbstractController
     }
 
     /**
-     * @Route("/api/citizen-relationships", name="api_create_relation", methods={"POST"})
+     * @Route("/api/citizen-relationships", name="api_create_citizen_relation", methods={"POST"})
      * @param  Request $request
      * @return CitizenRelation
      */
-    public function createRelation(Request $request, UserRepository $userRepo, TypeOfRelationshipRepository $typeRepo) 
+    public function createCitizenRelation(Request $request, UserRepository $userRepo, TypeOfRelationshipRepository $typeRepo) 
     {
         $content = json_decode($request->getContent(), true);
-
         $em = $this->getDoctrine()->getManager();
         $user = $userRepo->find($content['user_id']);
+        $userSource = $this->getUser();
+
         $relationType = $typeRepo->find($content['type_id']);
 
         $relation = new CitizenRelationship();
         $relation
-            ->setUserSource($this->getUser())
+            ->setUserSource($userSource)
             ->setUserTarget($user)
             ->setType($relationType);
 
-        $em->persist($relation); $em->flush();
+        $userSource->addRelationship($relation);
+        $em->persist($relation);
+        $em->persist($userSource); 
+        $em->flush();
 
         return $this->json([
             'relation_id' => $relation->getId()
         ], 200);
     }   
+
+    /**
+     * @Route("/api/citizen-relationships", name="api_get_citizen_relations")
+     * @param  CitizenRelationshipRepository $repo 
+     * @return json(CitizenRelationship[])
+     */
+    public function getCitizenRelations(CitizenRelationshipRepository $repo)
+    {
+
+        $relations = $this->getUser()->getRelationships();
+
+        return $this->json([
+            'relations' => $relations
+        ], 200, [], ['groups'=>'app:read:relations']);
+    }
 }

@@ -27,8 +27,7 @@ const DropdownIndicator = props => {
     )
 }
 
-const UserSearch = ({ AuthHandler, onChange }) => {
-    const [user, setUser] = useState("");
+const UserSearch = ({ AuthHandler, onChange, value }) => {
 
 
     const fetchData = (inputValue, callback) => {
@@ -46,14 +45,13 @@ const UserSearch = ({ AuthHandler, onChange }) => {
     }
 
     const onSearchChange = (newUser) => {
-        setUser(newUser);
-        onChange(newUser.value);
+        onChange(newUser);
     }
 
   return (
         <Container>
             <AsyncSelect
-                value={user}
+                value={value}
                 loadOptions={fetchData}
                 placeholder="Rechercher un utilisateur"
                 onChange={(e) => { onSearchChange(e) }}

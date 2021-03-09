@@ -26,9 +26,8 @@ const DropdownIndicator = props => {
     )
 }
 
-const RelationSelect = ({AuthHandler, onChange}) => {
+const RelationSelect = ({AuthHandler, onChange, value}) => {
 
-	const [ relation, setRelation ] = useState("")
 	const [ relations, setRelations ] = useState([])
 
 	useEffect(() => {
@@ -45,7 +44,7 @@ const RelationSelect = ({AuthHandler, onChange}) => {
 	}, [])
 
 	const handleChange = (relation) => {
-		onChange(relation.value)
+		onChange(relation)
 	}
 
 	return (
@@ -53,8 +52,9 @@ const RelationSelect = ({AuthHandler, onChange}) => {
 			<Select
 				defaultValue={relations[0]}
 				onChange={handleChange}
+				value={value}
 				isLoading={false}
-				isClearable={true}
+				isClearable={false}
 				isSearchable={true}
 				name="relation"
 				placeholder="Selectionnez un type de relation"

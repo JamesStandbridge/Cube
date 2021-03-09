@@ -12,37 +12,38 @@ import RelationRepository from '../../../services/ORM/repository/RelationReposit
 
 const RelationShipForm = ({AuthHandler}) => {
 	const [relation, setRelation] = useState({
-		type_id: null,
-		user_id: null
+		type: "",
+		user: ""
 	})
 
 	const [ error, setError ] = useState("")
 
-	const handleUserChange = (user_id) => {
-		setRelation({...relation, user_id})
+	const handleUserChange = (user) => {
+		setRelation({...relation, user})
 		setError("")
 	}
 
-	const handleRelationChange = (type_id) => {
-		setRelation({...relation, type_id})
+	const handleRelationChange = (type) => {
+		setRelation({...relation, type})
 		setError("")
 	}
+
+	console.log(relation)
 
 	const handleSubmit = () => {
 		if(isValid()) {
-			console.log('submit')
 			RelationRepository.createRelation(
-				relation,
+				{type_id: relation.type.value, user_id: relation.user.value},
 				AuthHandler.token
 			).then(res => {
-				console.log(res)
+				if(res.status === 200) setRelation({type: "", user: ""})
 			})
 		}
 	}
 
 	const isValid = () => {
-		if(!relation.type_id || !relation.user_id) {
-			setError("Veuillez remplir tout les champs")
+		if(relation.type === "" || relation.user === "") {
+			setError("Veuillez saisir tous les champs")
 			return false
 		}
 		return true
@@ -53,8 +54,8 @@ const RelationShipForm = ({AuthHandler}) => {
 
 			<Title>Ajouter une nouvelle relation</Title>
 			<FormContainer>
-				<SearchUser onChange={handleUserChange} />
-				<RelationSelect onChange={handleRelationChange} />
+				<SearchUser value={relation.user} onChange={handleUserChange} />
+				<RelationSelect value={relation.type} onChange={handleRelationChange} />
 				<div style={{display: "flex", marginTop: "20px"}}>
 					{error !== "" ? (<FormHelperText error>{error}</FormHelperText>) : (null)}
 					<Button 
