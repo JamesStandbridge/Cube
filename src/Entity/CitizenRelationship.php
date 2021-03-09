@@ -20,60 +20,64 @@ class CitizenRelationship
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=TypeOfRelationship::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="citizenRelationships")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="relationships")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user1;
+    private $UserSource;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user2;
+    private $UserTarget;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getType(): ?TypeOfRelationship
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?TypeOfRelationship $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getUser1(): ?User
+    public function getUserSource(): ?User
     {
-        return $this->user1;
+        return $this->UserSource;
     }
 
-    public function setUser1(?User $user1): self
+    public function setUserSource(?User $UserSource): self
     {
-        $this->user1 = $user1;
+        $this->UserSource = $UserSource;
 
         return $this;
     }
 
-    public function getUser2(): ?User
+    public function getUserTarget(): ?User
     {
-        return $this->user2;
+        return $this->UserTarget;
     }
 
-    public function setUser2(?User $user2): self
+    public function setUserTarget(?User $UserTarget): self
     {
-        $this->user2 = $user2;
+        $this->UserTarget = $UserTarget;
 
         return $this;
     }
+
 }

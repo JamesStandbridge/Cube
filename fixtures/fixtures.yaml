@@ -41,6 +41,18 @@ App\Entity\User:
         roles: <randomElements(['ROLE_CITIZEN'], 1)>
         address: '@address_2'
 
+    user_citizen_{3..200}:
+        firstname: <firstname()>
+        lastname: <lastname()>
+        username: <email()>
+        usernameCanonical: <email()>
+        email: <email()>
+        emailCanonical: <email()>
+        enabled: true
+        plainPassword: "root"
+        roles: <randomElements(['ROLE_CITIZEN'], 1)>
+        address: '@address_*'        
+
     user_moderator:
         firstname: <firstname()>
         lastname: <lastname()>
@@ -76,6 +88,8 @@ App\Entity\User:
         plainPassword: "root"
         roles: <randomElements(['ROLE_SUPER_ADMIN'], 1)>
         address: '@address_4'
+
+
 
 App\Entity\ResourceAttribute:
     attribute_enonce:
@@ -320,5 +334,10 @@ App\Entity\ResourceContentValue:
                     Pour conclure, demandons-nous si nos émotions auraient pu être différentes et si 
                     la situation en aurait été changée.
 
+App\Entity\CitizenRelationship:
+    relation_{1..500}:
+        UserSource: '@user_citizen_*'
+        UserTarget: '@user_citizen_*'
+        type: '@type_relation_*'
 
 

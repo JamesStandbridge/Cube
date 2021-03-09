@@ -55,4 +55,11 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+    /**
+     * @Route("/profil/relations", name="user_relations")
+     */
+    public function userRelations() {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 }
