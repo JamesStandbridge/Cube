@@ -11,6 +11,7 @@ import EndPoints from "../endpoints";
 const ResourceRepository = {
 
     getResourceList: async function(resource) {
+        console.log(resource)
         return await HttpService.sendGetRequest(
             EndPoints.URL_GET_RESOURCE_LIST,
             HeaderBuilder.GET_HEADER(),

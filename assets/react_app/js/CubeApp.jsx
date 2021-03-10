@@ -23,18 +23,15 @@ import { SnackbarProvider } from 'react-snackbar-alert';
 import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
-import Dashboard from "./pages/app/Dashboard"
-import Resources from "./pages/app/Resources"
+import DashboardCitizen from "./pages/app/citizenSpace/DashboardCitizen"
 import ResourceTemplate from "./pages/app/front/resourceTemplate"
 
-import CreateCategory from "./pages/app/CreateCategory"
-import VisualiseCategory from "./pages/app/VisualiseCategory"
-
-import CreateResource from "./pages/app/resourceManagement/CreateResource"
-import RelationShips from "./pages/app/RelationShips"
-
-import CreateResource from "./pages/app/resource/CreateResource"
-import MyResources from "./pages/app/resource/MyResources"
+import CreateCategory from "./pages/app/adminSpace/category/CreateCategory"
+import VisualiseCategory from "./pages/app/adminSpace/category/VisualiseCategory"
+import RelationShips from "./pages/app/citizenSpace/RelationShips"
+import CreateResource from "./pages/app/citizenSpace/resourceManagement/CreateResource"
+import MyResources from "./pages/app/citizenSpace/resourceManagement/MyResources"
+import Home from "./pages/app/front/home"
 
 
 require("../css/main.css");
@@ -51,16 +48,15 @@ const CubeApp = () => {
 							<CitizenRoute path="/profil/relations" component={RelationShips} />
 							<CitizenRoute path="/profil/ressources" component={null} />
 							<CitizenRoute path="/profil/relations" component={null} />
-							<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
 							<CitizenRoute path="/profil/ressources" component={MyResources} />
+							<CitizenRoute path="/profil" component={DashboardCitizen} />
 							<ModeratorRoute path="/moderation/commentaires" component={null} />
 							<ModeratorRoute path="/moderation/resources" component={null} />
 							<Route path="/nouveau" component={CreateResource} />
 							<Route path="/catalogue/:id" component={ResourceTemplate}/>
-							<Route path="/catalogue" component={Resources} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
-							<Route path="/" component={Dashboard} />
+							<Route path="/" component={Home} />
 						</Switch>
 					</AppContainer>
 				</SnackbarProvider>

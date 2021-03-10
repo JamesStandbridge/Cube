@@ -8,7 +8,7 @@ import React from 'react';
 import Layout from '../../../views/Layout'
 import CardCatalogDisplay from "../../../components/display/front/cardCatalogDisplay";
 
-const Welcome = (props) => {
+const Home = (props) => {
   return (
     <Layout>
     	<h1>Accueil</h1>
@@ -17,4 +17,4 @@ const Welcome = (props) => {
   )
 }
 
-export default Welcome;
+export default Home

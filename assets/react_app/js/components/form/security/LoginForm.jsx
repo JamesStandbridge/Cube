@@ -67,7 +67,7 @@ const LoginForm = ({dispatch}) => {
 						}
 
 						dispatch({type: "SET_AUTH", auth});
-						setRedirect(true);		
+						setRedirect(true);
 					})
 				}
 			}).catch(error => {

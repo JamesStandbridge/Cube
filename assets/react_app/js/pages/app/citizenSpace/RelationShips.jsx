@@ -4,10 +4,10 @@
  */
 
 import React from 'react';
-import Dashboard from '../../components/stats/Dashboard'
-import Layout from '../../views/Layout'
+import Dashboard from '../../../components/stats/Dashboard'
+import Layout from '../../../views/Layout'
 
-import RelationShipForm from '../../components/form/app/RelationShipForm'
+import RelationShipForm from '../../../components/form/app/RelationShipForm'
 
 const RelationShip = (props) => {
 	return (

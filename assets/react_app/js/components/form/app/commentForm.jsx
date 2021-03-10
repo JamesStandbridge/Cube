@@ -15,7 +15,7 @@ const CommentForm = ({ dispatch, resourceId}) => {
         content: {value:""},
         resource: {value: `/api/resources/${resourceId}`},
         createdAt: {value: new Date()},
-        userEntity: {value:`api/users/9`},
+        userEntity: {value:`api/users/16`},
     })
 
     const handleChange = (event) => {

@@ -30,11 +30,11 @@ const SecurityRepository = {
 	},
 
 	getUser: async function(token) {
+		console.log(token)
 		const res = await HttpService.sendGetRequest(
 			EndPoints.URL_GET_USER,
 			HeaderBuilder.GET_HEADER_AUTHORIZATION(token)
 		)
-
 		return res.data.user
 	}
 }
