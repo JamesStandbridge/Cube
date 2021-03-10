@@ -8,6 +8,7 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import Store from './store/configureStore';
 import AppContainer from './AppContainer';
+import 'fontsource-roboto';
 
 //routes
 import CitizenRoute from "./components/router/CitizenRoute";
@@ -22,11 +23,13 @@ import { SnackbarProvider } from 'react-snackbar-alert';
 import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
-import Welcome from "./pages/app/Welcome"
+import Dashboard from "./pages/app/Dashboard"
 import Resources from "./pages/app/Resources"
 
 import CreateCategory from "./pages/app/CreateCategory"
 import VisualiseCategory from "./pages/app/VisualiseCategory"
+
+import RelationShips from "./pages/app/RelationShips"
 
 import CreateResource from "./pages/app/resource/CreateResource"
 import MyResources from "./pages/app/resource/MyResources"
@@ -43,6 +46,8 @@ const CubeApp = () => {
 						<Switch>
 							<AdminRoute path="/categories/creer" component={CreateCategory} />
 							<AdminRoute path="/categories/visualise" component={VisualiseCategory} />
+							<CitizenRoute path="/profil/relations" component={RelationShips} />
+							<CitizenRoute path="/profil/ressources" component={null} />
 							<CitizenRoute path="/profil/relations" component={null} />
 							<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
 							<CitizenRoute path="/profil/ressources" component={MyResources} />
@@ -51,7 +56,7 @@ const CubeApp = () => {
 							<Route path="/catalogue" component={Resources} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
-							<Route path="/" component={Welcome} />
+							<Route path="/" component={Dashboard} />
 						</Switch>
 					</AppContainer>
 				</SnackbarProvider>

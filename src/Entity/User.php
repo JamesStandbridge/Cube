@@ -29,11 +29,6 @@ class User extends BaseUser
     private $resources;
 
     /**
-     * @ORM\OneToMany(targetEntity=CitizenRelationship::class, mappedBy="user1", orphanRemoval=true)
-     */
-    private $citizenRelationships;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
@@ -50,13 +45,23 @@ class User extends BaseUser
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CitizenRelationship::class, mappedBy="UserSource", orphanRemoval=true)
+     */
+    private $relationships;
+
     public function __construct()
     {
         parent::__construct();
         $this->resources = new ArrayCollection();
         $this->citizenRelationships = new ArrayCollection();
+        $this->relationships = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getFirstname().' '.$this->getLastname();
+    }
 
     public function getId(): ?int
     {
@@ -87,36 +92,6 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($resource->getAuthor() === $this) {
                 $resource->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|CitizenRelationship[]
-     */
-    public function getCitizenRelationships(): Collection
-    {
-        return $this->citizenRelationships;
-    }
-
-    public function addCitizenRelationship(CitizenRelationship $citizenRelationship): self
-    {
-        if (!$this->citizenRelationships->contains($citizenRelationship)) {
-            $this->citizenRelationships[] = $citizenRelationship;
-            $citizenRelationship->setUser1($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCitizenRelationship(CitizenRelationship $citizenRelationship): self
-    {
-        if ($this->citizenRelationships->removeElement($citizenRelationship)) {
-            // set the owning side to null (unless already changed)
-            if ($citizenRelationship->getUser1() === $this) {
-                $citizenRelationship->setUser1(null);
             }
         }
 
@@ -155,6 +130,36 @@ class User extends BaseUser
     public function setAddress(?Address $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CitizenRelationship[]
+     */
+    public function getRelationships(): Collection
+    {
+        return $this->relationships;
+    }
+
+    public function addRelationship(CitizenRelationship $relationship): self
+    {
+        if (!$this->relationships->contains($relationship)) {
+            $this->relationships[] = $relationship;
+            $relationship->setUserSource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelationship(CitizenRelationship $relationship): self
+    {
+        if ($this->relationships->removeElement($relationship)) {
+            // set the owning side to null (unless already changed)
+            if ($relationship->getUserSource() === $this) {
+                $relationship->setUserSource(null);
+            }
+        }
 
         return $this;
     }

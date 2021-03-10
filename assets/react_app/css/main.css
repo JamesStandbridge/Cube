@@ -23,6 +23,10 @@
     --colorYellow: #FF9F1C;
     --colorLightYellow: #FFA831;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "OpenSans-Bold"
+}
+
 
 .app-login-register {
     display: flex;

@@ -19,22 +19,18 @@ class CitizenRelationshipRepository extends ServiceEntityRepository
         parent::__construct($registry, CitizenRelationship::class);
     }
 
-    // /**
-    //  * @return CitizenRelationship[] Returns an array of CitizenRelationship objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByUser(int $user_id)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.UserSource = :user_id')
+            ->setParameter('user_id', $user_id)
+            ->orderBy('c.type', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?CitizenRelationship
