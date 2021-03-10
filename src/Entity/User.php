@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="fos_user")
- *
+ * @ApiResource
  */
 class User extends BaseUser
 {
@@ -35,7 +36,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"resource:read", "comment"})
+     * @Groups({"resource:read", "comments:read"})
      */
     private $firstname;
 

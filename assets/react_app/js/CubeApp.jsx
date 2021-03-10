@@ -25,10 +25,12 @@ import Login from "./pages/security/Login"
 
 import Dashboard from "./pages/app/Dashboard"
 import Resources from "./pages/app/Resources"
+import ResourceTemplate from "./pages/app/front/resourceTemplate"
 
 import CreateCategory from "./pages/app/CreateCategory"
 import VisualiseCategory from "./pages/app/VisualiseCategory"
 
+import CreateResource from "./pages/app/resourceManagement/CreateResource"
 import RelationShips from "./pages/app/RelationShips"
 
 import CreateResource from "./pages/app/resource/CreateResource"
@@ -53,6 +55,8 @@ const CubeApp = () => {
 							<CitizenRoute path="/profil/ressources" component={MyResources} />
 							<ModeratorRoute path="/moderation/commentaires" component={null} />
 							<ModeratorRoute path="/moderation/resources" component={null} />
+							<Route path="/nouveau" component={CreateResource} />
+							<Route path="/catalogue/:id" component={ResourceTemplate}/>
 							<Route path="/catalogue" component={Resources} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />

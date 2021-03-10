@@ -1,14 +1,16 @@
 import React from 'react';
-
-import CitizenLayout from '../../../views/CitizenLayout'
+import ResourceForm from "../../../components/form/app/ResourceForm";
+import Layout from "../../../views/Layout"
 
 const MyResources = (props) => {
     return (
-        <CitizenLayout>
+        <Layout>
             <div>
                 <h1>Mes ressources</h1>
+
             </div>
-        </CitizenLayout>
+
+        </Layout>
     )
 }
 

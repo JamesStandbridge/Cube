@@ -13,12 +13,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=CommentRepository::class)
  *
  * @ApiResource(
+ *     normalizationContext={"groups"="comment:read"},
+ *     denormalizationContext={"groups"="comment:create"},
  *     subresourceOperations={
- *          "api_resources_comment_get_subresource"={
+ *          "api_resources_comments_get_subresource"={
  *              "method"="GET",
  *              "normalization_context"={
  *                  "groups"={
- *                      "comment"
+ *                      "comments:read"
  *                  }
  *              }
  *          }
@@ -39,38 +41,40 @@ class Comment
     /**
      * @ORM\Column(type="text")
      *
-     * @Groups({"comment"})
+     * @Groups({"comments:read","comment:read","comment:create"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
      *
-     * @Groups({"comment"})
+     * @Groups({"comments:read","comment:read","comment:create"})
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"comments:read","comment:read"})
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="boolean")
-     *
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"comments:read","comment:read"})
      */
     private $isValidated;
 
     /**
      * @ORM\OneToOne(targetEntity=Comment::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     * @Groups({"comments:read","comment:create","comment:read"})
      *
      */
     private $parentComment;
 
     /**
      * @ORM\ManyToOne(targetEntity=Resource::class, inversedBy="comments")
-     *
+     * @Groups({"comment:create"})
      */
     private $resource;
 
@@ -78,7 +82,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      *
-     * @Groups({"comment"})
+     * @Groups({"comments:read","comment:create","comment:read"})
      */
     private $userEntity;
 
