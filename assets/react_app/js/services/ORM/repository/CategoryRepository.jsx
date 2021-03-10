@@ -16,7 +16,23 @@ const CategoryRepository = {
 			category
 		);
 		return res
-	}
+	},
+	createPub: async function(category) {
+		const res = await HttpService.sendPostRequest(
+			EndPoints.URL_POST_CATEGORY,
+			HeaderBuilder.POST_HEADER(),
+			category
+		);
+		return res
+	},
+	getCategoriesList: async function(category) {
+		const res = await HttpService.sendGetRequest(
+			EndPoints.URL_GET_CATEGORY,
+			HeaderBuilder.GET_HEADER(),
+			category
+		);
+		return res
+	},
 }
 
 export default CategoryRepository;

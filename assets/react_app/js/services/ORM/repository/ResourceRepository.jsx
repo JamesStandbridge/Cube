@@ -9,13 +9,38 @@ import HeaderBuilder from "../HeaderBuilder";
 import EndPoints from "../endpoints";
 
 const ResourceRepository = {
+
+    getResourceList: async function(resource) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_RESOURCE_LIST,
+            HeaderBuilder.GET_HEADER(),
+            resource
+        )
+    },
+
     create: async function(resource, token) {
-        const res = await HttpService.sendPostRequest(
+        return await HttpService.sendPostRequest(
             EndPoints.URL_POST_RESOURCE,
             HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
             resource
         );
-        return res
+    },
+
+    getResource : async function(resource) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_RESOURCE(resource),
+            HeaderBuilder.GET_HEADER(),
+            resource.id
+        )
+    },
+
+    getCommmentsResource : async function(resource) {
+        console.log(resource)
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_COMMENTS_RESOURCE(resource),
+            HeaderBuilder.GET_HEADER(),
+            resource.id
+        )
     }
 }
 

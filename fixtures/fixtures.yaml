@@ -309,16 +309,16 @@ App\Entity\ResourceContentValue:
     content_value_6:
         attribute: '@attribute_enonce'
         resource: '@resource_5'
-        textValue: L’objectif de cet exercice est de reconnaître les émotions sur soi. Pour ce faire, 
-                    nous noterons dans un petit cahier prévu à cet effet, à des moments prédéfinis 
-                    de la journée, comment nous nous sentons émotionnellement. Quelle émotion nous 
-                    habite ? Cette émotion est-elle positive ou négative ? Avec quelle force ? 
+        textValue: 'L’objectif de cet exercice est de reconnaître les émotions sur soi. Pour ce faire,
+                    nous noterons dans un petit cahier prévu à cet effet, à des moments prédéfinis
+                    de la journée, comment nous nous sentons émotionnellement. Quelle émotion nous
+                    habite ? Cette émotion est-elle positive ou négative ? Avec quelle force ?
                     Quel a été le facteur déclencheur ? Nous répèterons la démarche durant une semaine.
-                    Après une semaine, reprenons nos notes et identifions avec un marqueur les émotions 
+                    Après une semaine, reprenons nos notes et identifions avec un marqueur les émotions
                     que nous ressentons le plus souvent, si elles sont positives ou négatives et quel
                     type de facteur déclencheur est observé le plus souvent.
-                    Pour conclure, demandons-nous si nos émotions auraient pu être différentes et si 
-                    la situation en aurait été changée.
+                    Pour conclure, demandons-nous si nos émotions auraient pu être différentes et si
+                    la situation en aurait été changée.'
 
 
 

@@ -36,6 +36,7 @@ class ResourceType
 
     /**
      * @ORM\ManyToMany(targetEntity=ResourceAttribute::class)
+     * @Groups({"resource:read", "resource:create"})
      */
     private $attributes;
 

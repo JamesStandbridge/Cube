@@ -27,8 +27,7 @@ const CategoryForm = ({ dispatch, AuthHandler}) => {
 				label: category.label.value
 			}
 
-			CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
-			})
+			CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {})
 		}
 	}
 

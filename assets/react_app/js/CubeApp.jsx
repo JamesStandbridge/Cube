@@ -22,13 +22,14 @@ import { SnackbarProvider } from 'react-snackbar-alert';
 import Register from "./pages/security/Register"
 import Login from "./pages/security/Login"
 
-import Welcome from "./pages/app/Welcome"
+import Welcome from "./pages/app/front/Welcome"
 import Resources from "./pages/app/Resources"
+import ResourceTemplate from "./pages/app/front/resourceTemplate"
 
 import CreateCategory from "./pages/app/CreateCategory"
 import VisualiseCategory from "./pages/app/VisualiseCategory"
 
-import CreateResource from "./pages/app/resource/CreateResource"
+import CreateResource from "./pages/app/resourceManagement/CreateResource"
 import MyResources from "./pages/app/resource/MyResources"
 
 
@@ -44,10 +45,12 @@ const CubeApp = () => {
 							<AdminRoute path="/categories/creer" component={CreateCategory} />
 							<AdminRoute path="/categories/visualise" component={VisualiseCategory} />
 							<CitizenRoute path="/profil/relations" component={null} />
-							<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
+
 							<CitizenRoute path="/profil/ressources" component={MyResources} />
 							<ModeratorRoute path="/moderation/commentaires" component={null} />
 							<ModeratorRoute path="/moderation/resources" component={null} />
+							<Route path="/nouveau" component={CreateResource} />
+							<Route path="/catalogue/:id" component={ResourceTemplate}/>
 							<Route path="/catalogue" component={Resources} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />

@@ -28,7 +28,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category:list","category:create"})
+     * @Groups({"category:list","category:create","resource:list","resource:read","resource:create"})
      *
      */
     private $label;

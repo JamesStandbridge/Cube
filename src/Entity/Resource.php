@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "put"={"denormalization_context"={"groups"="resource:update"}},
  *          "delete"={"normalization_context"={"groups"="resource:remove"}}},
  *     order={"createdAt"="DESC"},
- *     paginationEnabled=false
+ *     paginationEnabled=true
  * )
  */
 class Resource
@@ -31,14 +31,14 @@ class Resource
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      *
-     * @Groups({"resource:list", "resource:read"})
+     * @Groups({"resource:list","resource:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"resource:list", "resource:read", "resource:create"})
+     * @Groups({"resource:list", "resource:read"})
      */
     private $title;
 
@@ -70,7 +70,7 @@ class Resource
 
     /**
      * @ORM\Column(type="boolean")
-     *
+     * @Groups({"resource:list","resource:read"})
      */
     private $isValidated;
 
@@ -91,6 +91,7 @@ class Resource
     /**
      * @ORM\Column(type="boolean")
      *
+     * @Groups({"resource:list","resource:read"})
      */
     private $isPublic;
 
