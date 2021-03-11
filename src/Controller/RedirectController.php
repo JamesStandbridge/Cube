@@ -38,7 +38,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("nouveau", name="resource_new")
+     * @Route("/profil/ressources/nouveau", name="resource_new")
      */
     public function createResource(): Response
     {

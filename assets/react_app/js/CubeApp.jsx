@@ -45,14 +45,15 @@ const CubeApp = () => {
 						<Switch>
 							<AdminRoute path="/categories/creer" component={CreateCategory} />
 							<AdminRoute path="/categories/visualise" component={VisualiseCategory} />
+
 							<CitizenRoute path="/profil/relations" component={RelationShips} />
-							<CitizenRoute path="/profil/ressources" component={null} />
-							<CitizenRoute path="/profil/relations" component={null} />
+							<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
 							<CitizenRoute path="/profil/ressources" component={MyResources} />
 							<CitizenRoute path="/profil" component={DashboardCitizen} />
+
 							<ModeratorRoute path="/moderation/commentaires" component={null} />
 							<ModeratorRoute path="/moderation/resources" component={null} />
-							<Route path="/nouveau" component={CreateResource} />
+
 							<Route path="/catalogue/:id" component={ResourceTemplate}/>
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
