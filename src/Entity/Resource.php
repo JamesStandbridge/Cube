@@ -38,7 +38,7 @@ class Resource
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"resource:list", "resource:read"})
+     * @Groups({"resource:list", "resource:read", "resource:create"})
      */
     private $title;
 
@@ -63,13 +63,13 @@ class Resource
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      */
     private $numberViews;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"resource:list","resource:read"})
      */
     private $isValidated;
@@ -77,13 +77,13 @@ class Resource
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resources")
      *
-     * @Groups({"resource:read"})
+     * @Groups({"resource:read", "resource:create"})
      */
     private $author;
 
     /**
      * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource")
-     *
+     * @ORM\JoinColumn(nullable=true)
      * @Groups({"resource:read", "resource:create"})
      */
     private $content;
@@ -97,7 +97,7 @@ class Resource
 
     /**
      * @ORM\ManyToMany(targetEntity=TypeOfRelationship::class, inversedBy="resources")
-     *
+     * @ORM\JoinColumn(nullable=true)
      */
     private $typeofrelationship;
 
@@ -109,7 +109,7 @@ class Resource
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="resource")
-     *
+     * @ORM\JoinColumn(nullable=true)
      * @ApiSubresource
      */
     private $comments;

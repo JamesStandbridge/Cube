@@ -12,7 +12,6 @@ const CreateResource = (props) => {
             </div>
             <div>
                 <ResourceForm/>
-                <DisplayResourceCategoriesList/>
             </div>
         </Layout>
     )

@@ -22,7 +22,7 @@ class ResourceAttribute
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read"})
      */
     private $label;
 

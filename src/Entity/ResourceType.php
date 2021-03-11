@@ -20,12 +20,13 @@ class ResourceType
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"resource:read", "resource:create"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read"})
      */
     private $label;
 

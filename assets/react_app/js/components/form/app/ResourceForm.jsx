@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
@@ -17,9 +17,6 @@ import ResourceRepository from "../../../services/ORM/repository/ResourceReposit
 
 import { wrapComponent } from 'react-snackbar-alert';
 
-import DisplayResourceTypeList from "../../display/Resource/DisplayResourceTypesList";
-import DisplayResourceAttributeList from "../../display/Resource/DisplayResourceAttributeList";
-import DisplayResourceCategoriesList from "../../display/Resource/DisplayResourceCategoriesList";
 import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository";
 import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository";
 import CategoryRepository from "../../../services/ORM/repository/CategoryRepository";
@@ -40,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandler}) {
+
     const classes = useStyles();
+
     useEffect(() => {
         const init = async () => {
             let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token);
@@ -51,8 +50,8 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
             const newResourceAttributes = resAttr.data["hydra:member"];
             setResourceAttributesList(newResourceAttributes);
 
-            let res = await CategoryRepository.getCategoriesList();
-            const resourceCategories = res.data["hydra:member"];
+            let resCat = await CategoryRepository.getCategoriesList();
+            const resourceCategories = resCat.data["hydra:member"];
             setResourceCategoryList(resourceCategories);
         }
         init()
@@ -62,19 +61,20 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     const [resourceTypeList, setResourceTypeList] = useState([])
     const [resourceCategoryList, setResourceCategoryList] = useState([]);
 
+    const [ resourceType, setResourceType ] = useState( '')
+    const [ resourceAttribute, setResourceAttribute ] = useState( '')
+    const [ resourceCategory, setResourceCategory ] = useState( '')
+
+
     const [ resource, setResource ] = useState({
         title: {value: "", error: ""},
         createdAt: {value: new Date()},
-        author:{value:`api/users/9`},
+        author:{value: `/api/users/14`},
         type: {
-            label: {value:""},
-            attributes:{
-                label: {value:""}
-            }
+            value:"",
+            attributes: {value: ""},
         },
-        category: {
-            label: {value: ""},
-        },
+        category: { value:""},
         content: {
             stringValue: {value: ""},
             textValue: {value: ""}
@@ -97,50 +97,55 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
             {
             ...resource,
                 title: {...resource.title, value, error: ""},
-                type: {
-                    label: {...resource.type.label, value},
-                    attributes: {
-                        label: {...resource.type.attributes.label, value}
-                    }
-                },
-                category: {
-                    label: {...resource.category.label, value},
-                },
                 content: {
                     stringValue: {...resource.content.stringValue, value},
                     textValue: {...resource.content.textValue, value}
                 }
             }
         )
+    }
 
+    const handleChangeType = (event) => {
+        setResourceType(event.target.value)
+        console.log((event.target.value))
+    }
+
+    const handleChangeAttribute = (event) => {
+        setResourceAttribute(event.target.value)
+        console.log((event.target.value))
+    }
+
+    const handleChangeCategory = (event) => {
+        setResourceCategory(event.target.value)
+        console.log((event.target.value))
     }
 
     const handleSubmit = () => {
 
             const resourceToSend = {
-                title: resource.title.value,
-                createdAt: resource.createdAt.value,
                 author:resource.author.value,
+                title: resource.title.value,
+
                 type: {
-                    label: resource.type.label.value,
-                    attributes: {
-                        label: resource.type.attributes.label
+                    attributes: [`api/resource_attributes/${resourceAttribute}`]
+
+                },
+                createdAt: resource.createdAt.value,
+                content: [
+                    {
+                        stringValue: resource.content.stringValue.value,
+                        textValue: resource.content.textValue.value
                     }
-                },
-                category: {
-                    label: resource.category.label,
-                },
-                content: {
-                    stringValue: resource.content.stringValue,
-                    textValue: resource.content.textValue
-                }
+                ],
+                category: `api/categories/${resourceCategory}`
             }
 
 
 
-           ResourceRepository.create(resourceToSend, AuthHandler.token).then(res => {
+
+           ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
                 showSnackbar('success', "Nouvelle ressource enregistrée");
-            })
+           })
 
     }
 
@@ -156,7 +161,8 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div >
+
             {
                 resource.title.error !== "" ? (
                     <TextField
@@ -181,18 +187,18 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                 <Select
                     labelId="resourceType-label"
                     id="resourceType"
-                    value={resource.type.label}
-                    onChange={handleChange}
+                    value={resourceType}
+                    onChange={handleChangeType}
                     label="resourceType"
                 >
                     {
                         resourceTypeList.map(
                             resourceType =>(
-                                <option key={resourceType.id}
-                                          value={resourceType.label}
+                                <MenuItem key={resourceType.id}
+                                          value={resourceType.id}
                                 >
                                     {resourceType.label}
-                                </option>
+                                </MenuItem>
                             )
                         )
                     }
@@ -204,41 +210,41 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                 <Select
                     labelId="resourceAttribute-label"
                     id="resourceAttribute"
-                    value={resource.type.attributes.label}
-                    onChange={handleChange}
+                    value={resourceAttribute}
+                    onChange={handleChangeAttribute}
                     label="resourceAttribute"
                 >
                     {
                         resourceAttributes.map(
                             resourceAttribute => (
-                                <option key={resourceAttribute.id}
-                                          value={resourceAttribute.label}
+                                <MenuItem key={resourceAttribute.id}
+                                          value={resourceAttribute.id}
                                 >
                                     {resourceAttribute.label}
-                                </option>
+                                </MenuItem>
                             )
                         )
                     }
                 </Select>
             </FormControl>
 
-            <FormControl variant="outlined" >
+            <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="resourceCategory-label">resourceCategory</InputLabel>
                 <Select
                     labelId="resourceCategory-label"
                     id="resourceCategory"
-                    value={resource.category.label}
-                    onChange={handleChange}
+                    value={resourceCategory}
+                    onChange={handleChangeCategory}
                     label="resourceCategory"
                 >
                     {
                         resourceCategoryList.map(
                             resourceCategory =>(
-                                <option key={resourceCategory.id}
-                                          value={resourceCategory.label}
+                                <MenuItem key={resourceCategory.id}
+                                          value={resourceCategory.id}
                                 >
                                     {resourceCategory.label}
-                                </option>
+                                </MenuItem>
                             )
                         )
                     }
@@ -263,7 +269,7 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
 
             <input type="submit" value = "Enregistrer"/>
 
-        </form>
+        </div>
     )
 })
 

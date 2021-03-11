@@ -19,6 +19,7 @@ const ResourceRepository = {
     },
 
     create: async function(resource, token) {
+        console.log(resource)
         return await HttpService.sendPostRequest(
             EndPoints.URL_POST_RESOURCE,
             HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
