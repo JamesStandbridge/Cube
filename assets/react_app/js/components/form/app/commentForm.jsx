@@ -9,13 +9,13 @@ import ResourceRepository from "../../../services/ORM/repository/ResourceReposit
 import {TextareaAutosize} from "@material-ui/core";
 import CommentRepository from "../../../services/ORM/repository/commentRepository";
 
-const CommentForm = ({ dispatch, resourceId}) => {
+const CommentForm = ({ dispatch, resourceId, AuthHandler}) => {
 
     const [ comment, setComment ] = useState({
         content: {value:""},
         resource: {value: `/api/resources/${resourceId}`},
         createdAt: {value: new Date()},
-        userEntity: {value:`api/users/16`},
+        userEntity: {value:`api/users/${AuthHandler.user.id}\`},`},
     })
 
     const handleChange = (event) => {

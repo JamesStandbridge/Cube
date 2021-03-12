@@ -59,6 +59,8 @@ const LoginForm = ({dispatch}) => {
 						const auth = {
 							token,
 							user: {
+								id: user.id,
+								username: user.username,
 								firstname: user.firstname,
 								lastname: user.lastname,
 								role: TokenManager.getRole(token),

@@ -20,7 +20,7 @@ class ResourceType
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read"})
      */
     private $id;
 
@@ -37,7 +37,8 @@ class ResourceType
 
     /**
      * @ORM\ManyToMany(targetEntity=ResourceAttribute::class)
-     * @Groups({"resource:read", "resource:create"})
+     * @ORM\JoinColumn(nullable=true)
+     * @Groups({"resource:read"})
      */
     private $attributes;
 

@@ -57,7 +57,7 @@ class Resource
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      *
      */
     private $updatedAt;
@@ -82,14 +82,14 @@ class Resource
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource")
+     * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource", cascade="persist")
      * @ORM\JoinColumn(nullable=true)
      * @Groups({"resource:read", "resource:create"})
      */
     private $content;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean",nullable=true)
      *
      * @Groups({"resource:list","resource:read"})
      */

@@ -69,7 +69,7 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     const [ resource, setResource ] = useState({
         title: {value: "", error: ""},
         createdAt: {value: new Date()},
-        author:{value: `/api/users/14`},
+        author:{value: `/api/users/${AuthHandler.user.id}`},
         type: {
             value:"",
             attributes: {value: ""},
@@ -77,7 +77,8 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
         category: { value:""},
         content: {
             stringValue: {value: ""},
-            textValue: {value: ""}
+            textValue: {value: ""},
+            attribute:{value: ""}
         }
     })
 
@@ -125,28 +126,21 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
             const resourceToSend = {
                 author:resource.author.value,
                 title: resource.title.value,
-
-                type: {
-                    attributes: [`api/resource_attributes/${resourceAttribute}`]
-
-                },
+                type: `api/resource_types/${resourceType}`,
                 createdAt: resource.createdAt.value,
                 content: [
                     {
                         stringValue: resource.content.stringValue.value,
-                        textValue: resource.content.textValue.value
+                        textValue: resource.content.textValue.value,
+                        attribute: `api/resource_attributes/${resourceAttribute}`
                     }
                 ],
                 category: `api/categories/${resourceCategory}`
             }
 
-
-
-
-           ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
-                showSnackbar('success', "Nouvelle ressource enregistrée");
-           })
-
+        ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
+            showSnackbar('success', "Nouvelle ressource enregistrée")
+        })
     }
 
     const validateForm = () => {
@@ -267,7 +261,13 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                     size="small"
                 />
 
-            <input type="submit" value = "Enregistrer"/>
+            <Button
+                onClick={handleSubmit}
+                color='primary'
+                variant="contained"
+            >
+                Envoyer
+            </Button>
 
         </div>
     )
