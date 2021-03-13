@@ -3,7 +3,8 @@ import React from 'react';
 import Layout from '../../../../views/Layout'
 import DisplayCategory from '../../../../components/display/DisplayCategory'
 import CategoryForm from '../../../../components/form/app/CategoryForm'
-import CustomModal from '../../../../components/Modal'
+import CustomModal from '../../../../components/modals/Modal'
+
 
 
 const VisualiseCategory = (props) => {
@@ -13,6 +14,7 @@ const VisualiseCategory = (props) => {
         <CustomModal
             btnTitle={"Ajouter une nouvelle catégorie"}
         >
+          
           <div
               style={{
                   position: 'absolute', 
@@ -21,11 +23,15 @@ const VisualiseCategory = (props) => {
                   transform: 'translate(-50%, -50%)'
               }}
           >
+
           <CategoryForm />
-          </div>            
+          </div>        
+          
         </CustomModal>        
     </Layout>
   )
 }
 
 export default VisualiseCategory;
+
+
