@@ -1,6 +1,6 @@
 import React, {useState, forwardRef} from "react";
 import Modal from '@material-ui/core/Modal';
-import CategoryForm from './form/app/CategoryForm'
+import CategoryForm from '../form/app/CategoryForm'
 
 const CustomModal = ({btnTitle, children}) => {
     const [open, setOpen] = useState(false)

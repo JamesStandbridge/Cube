@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import CommentRepository from "../../../services/ORM/repository/ResourceRepository";
-import {Link} from "@material-ui/core";
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
+import CommentForm from "../../form/app/commentForm";
+import CustomModal from "../../modals/Modal";
+
 
 require("../../../../css/resource.css");
 
@@ -28,9 +29,21 @@ const CommentsDisplay = ({resourceId}) => {
             {
                 comments.map(comment => (
                     <div key={comment.id}>
-                        <p><a href={`/catalogue/${comment.id}`}>{comment.content}</a></p>
+                        <p>{comment.content}</p>
                         <p>{comment.createdAt}</p>
                         <p>{comment.userEntity.firstname}</p>
+                        <CustomModal
+                            btnTitle={"Répondre"}
+                        >
+                            <div style={{
+                                position: 'absolute',
+                                left: '50%',
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)'
+                            }}>
+                                <CommentForm resourceId = {resourceId} commentId = {comment.id}/>
+                            </div>
+                        </CustomModal>
                     </div>
                 ))
             }

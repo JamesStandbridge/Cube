@@ -15,6 +15,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiResource(
  *     normalizationContext={"groups"="comment:read"},
  *     denormalizationContext={"groups"="comment:create"},
+ *     collectionOperations={"get"={"normalization_context"={"groups"="comments:read"}},
+ *          "post"={"denormalization_context"={"groups"="comment:create"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="comment:read"}},
+ *          "put"={"denormalization_context"={"groups"="comment:update"}},
+ *          "delete"={"normalization_context"={"groups"="comment:remove"}}},
  *     subresourceOperations={
  *          "api_resources_comments_get_subresource"={
  *              "method"="GET",
@@ -34,7 +39,7 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
+     * @Groups({"comments:read","comment:read","comment:create"})
      */
     private $id;
 
