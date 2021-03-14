@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { connect } from 'react-redux';
+import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from 'react-router-dom';
 import {
     Checkbox,
@@ -9,7 +10,7 @@ import {
     InputLabel,
     Select,
     MenuItem,
-    FormControl, makeStyles
+    FormControl, makeStyles, Input, Chip, Icon, Fab
 } from '@material-ui/core';
 
 
@@ -34,7 +35,15 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    extendedIcon: {
+        marginRight: theme.spacing(1),
+    },
+
 }));
+
 
 const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandler}) {
 
@@ -60,7 +69,7 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
     const [ resourceAttributes, setResourceAttributesList ] = useState([])
     const [resourceTypeList, setResourceTypeList] = useState([])
     const [resourceCategoryList, setResourceCategoryList] = useState([]);
-
+    console.log(resourceAttributes)
     const [ resourceType, setResourceType ] = useState( '')
     const [ resourceAttribute, setResourceAttribute ] = useState( '')
     const [ resourceCategory, setResourceCategory ] = useState( '')
@@ -72,14 +81,13 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
         author:{value: `/api/users/${AuthHandler.user.id}`},
         type: {
             value:"",
-            attributes: {value: ""},
         },
         category: { value:""},
-        content: {
+        content: [{
             stringValue: {value: ""},
             textValue: {value: ""},
             attribute:{value: ""}
-        }
+        }]
     })
 
     function showSnackbar(theme, message) {
@@ -96,12 +104,12 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
         const value = event.currentTarget.value
         setResource(
             {
-            ...resource,
+                ...resource,
                 title: {...resource.title, value, error: ""},
-                content: {
+                content: [{
                     stringValue: {...resource.content.stringValue, value},
                     textValue: {...resource.content.textValue, value}
-                }
+                }]
             }
         )
     }
@@ -123,20 +131,20 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
 
     const handleSubmit = () => {
 
-            const resourceToSend = {
-                author:resource.author.value,
-                title: resource.title.value,
-                type: `api/resource_types/${resourceType}`,
-                createdAt: resource.createdAt.value,
-                content: [
-                    {
-                        stringValue: resource.content.stringValue.value,
-                        textValue: resource.content.textValue.value,
-                        attribute: `api/resource_attributes/${resourceAttribute}`
-                    }
-                ],
-                category: `api/categories/${resourceCategory}`
-            }
+        const resourceToSend = {
+            author:resource.author.value,
+            title: resource.title.value,
+            type: resourceType,
+            createdAt: resource.createdAt.value,
+            content: [
+                {
+                    stringValue: resource.content.stringValue.value,
+                    textValue: resource.content.textValue.value,
+                    attribute: resourceAttribute
+                }
+            ],
+            category: resourceCategory
+        }
 
         ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
             showSnackbar('success', "Nouvelle ressource enregistrée")
@@ -154,8 +162,113 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
         return bool
     }
 
+    const checkContentValue=(attributes, attributeUri)=>{
+
+        let attribute = attributeUri.resourceAttribute.split('/')
+        let attributeIdSelect = attribute[3]
+        console.log(typeof(attributeIdSelect))
+        let  contentType=""
+
+        for (let i = 0; i < attributes.resourceAttributes.length; i++) {
+            let id = attributes.resourceAttributes[i].id
+
+            if (id.toString() === attributeIdSelect ) {
+                console.log(typeof id)
+                contentType = attributes.resourceAttributes[i].type
+                console.log(contentType)
+                switch (contentType) {
+                    case 'textArea':
+                        return (
+                            <div>
+                                <TextareaAutosize
+                                    title="ContentText"
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                    size="small"
+                                />
+                            </div>
+                        )
+                    case 'file':
+                        return (
+                            <TextField
+                                title="ContentString"
+                                type="file"
+                                variant="outlined"
+                                onChange={handleChange}
+                                size="small"
+                            />
+                        )
+                    default:
+                        return (
+                            <TextField
+                                title="ContentString"
+                                type="url"
+                                variant="outlined"
+                                onChange={handleChange}
+                                size="small"
+                            />)
+
+                }
+            }
+        }
+    }
+
+    const viewAttribute=()=>{
+
+    }
+
+    const addAttributeContent=(click)=> {
+        console.log(click)
+        return (
+            <div>
+                <li id={click++}>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="resourceAttribute-label">resourceAttribute</InputLabel>
+                        <Select
+                            labelId="resourceAttribute-label"
+                            id="resourceAttribute"
+                            value={resourceAttribute}
+                            onChange={handleChangeAttribute}
+                            label="resourceAttribute"
+
+                        >
+                            {
+                                resourceAttributes.map(
+                                    resourceAttribute => (
+                                        <MenuItem key={'/api/resource_attributes/'+ resourceAttribute.id}
+                                                  value={'/api/resource_attributes/'+ resourceAttribute.id}
+                                        >
+                                            {resourceAttribute.label} {resourceAttribute.type}
+                                        </MenuItem>
+                                    )
+                                )
+                            }
+                        </Select>
+                    </FormControl>
+                    {resourceAttribute !== "" ? (
+                        <div>
+                            {checkContentValue({resourceAttributes},{resourceAttribute})}
+                            <Fab size="small"
+                                 color="secondary"
+                                 aria-label="add"
+                                 className={classes.margin}
+                                 onClick={addAttributeContent}>
+                                <AddIcon />
+                            </Fab>
+                        </div>
+                    ):(
+                        <p>Veuillez selectionner un attribut</p>
+                    )
+                    }
+                </li>
+            </div>
+        )
+    }
+
+    let i;
+    let click;
     return (
-        <div >
+        <div>
 
             {
                 resource.title.error !== "" ? (
@@ -175,53 +288,6 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                         size="small"
                     />
                 )}
-
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="resourceType-label">Type</InputLabel>
-                <Select
-                    labelId="resourceType-label"
-                    id="resourceType"
-                    value={resourceType}
-                    onChange={handleChangeType}
-                    label="resourceType"
-                >
-                    {
-                        resourceTypeList.map(
-                            resourceType =>(
-                                <MenuItem key={resourceType.id}
-                                          value={resourceType.id}
-                                >
-                                    {resourceType.label}
-                                </MenuItem>
-                            )
-                        )
-                    }
-                </Select>
-            </FormControl>
-
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="resourceAttribute-label">resourceAttribute</InputLabel>
-                <Select
-                    labelId="resourceAttribute-label"
-                    id="resourceAttribute"
-                    value={resourceAttribute}
-                    onChange={handleChangeAttribute}
-                    label="resourceAttribute"
-                >
-                    {
-                        resourceAttributes.map(
-                            resourceAttribute => (
-                                <MenuItem key={resourceAttribute.id}
-                                          value={resourceAttribute.id}
-                                >
-                                    {resourceAttribute.label}
-                                </MenuItem>
-                            )
-                        )
-                    }
-                </Select>
-            </FormControl>
-
             <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="resourceCategory-label">resourceCategory</InputLabel>
                 <Select
@@ -233,9 +299,9 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                 >
                     {
                         resourceCategoryList.map(
-                            resourceCategory =>(
-                                <MenuItem key={resourceCategory.id}
-                                          value={resourceCategory.id}
+                            resourceCategory => (
+                                <MenuItem key={'api/categories/' + resourceCategory.id}
+                                          value={'/api/categories/' + resourceCategory.id}
                                 >
                                     {resourceCategory.label}
                                 </MenuItem>
@@ -244,22 +310,79 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                     }
                 </Select>
             </FormControl>
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="resourceType-label">Type</InputLabel>
+                <Select
+                    labelId="resourceType-label"
+                    id="resourceType"
+                    value={resourceType}
+                    onChange={handleChangeType}
+                    label="resourceType"
+                >
+                    {
+                        resourceTypeList.map(
+                            resourceType => (
+                                <MenuItem key={'/api/resource_types/' + resourceType.id}
+                                          value={'/api/resource_types/' + resourceType.id}
+                                >
+                                    {resourceType.label}
+                                </MenuItem>
+                            )
+                        )
+                    }
+                </Select>
+            </FormControl>
 
-                <TextareaAutosize
-                    title="ContentText"
-                    variant="outlined"
-                    onChange={handleChange}
-                    size="small"
-                />
+            {resourceType !== "" ? (
+                <div>
+                    <ul>
+                        <li id={click=0}>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <InputLabel id="resourceAttribute-label">resourceAttribute</InputLabel>
+                                <Select
+                                    labelId="resourceAttribute-label"
+                                    id="resourceAttribute"
+                                    value={resourceAttribute}
+                                    onChange={handleChangeAttribute}
+                                    label="resourceAttribute"
 
-                <TextField
-                    title="ContentString"
-                    type="file"
-                    variant="outlined"
-                    onChange={handleChange}
+                                >
+                                    {
+                                        resourceAttributes.map(
+                                            resourceAttribute => (
+                                                <MenuItem key={'/api/resource_attributes/' + resourceAttribute.id}
+                                                          value={'/api/resource_attributes/' + resourceAttribute.id}
+                                                >
+                                                    {resourceAttribute.label} {resourceAttribute.type}
+                                                </MenuItem>
+                                            )
+                                        )
+                                    }
+                                </Select>
+                            </FormControl>
+                            {resourceAttribute !== "" ? (
+                                <div>
+                                    {checkContentValue({resourceAttributes}, {resourceAttribute})}
+                                    <Fab size="small"
+                                         color="secondary"
+                                         aria-label="add"
+                                         className={classes.margin}
+                                         onClick={addAttributeContent(click)}>
+                                        <AddIcon/>
+                                    </Fab>
+                                </div>
+                            ) : (
+                                <p>Veuillez selectionner un attribut</p>
+                            )
+                            }
+                        </li>
+                    </ul>
+                </div>
 
-                    size="small"
-                />
+            ) : (
+                <p>Veuillez selectionner un type de ressource</p>
+            )}
+
 
             <Button
                 onClick={handleSubmit}
