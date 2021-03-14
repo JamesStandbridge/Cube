@@ -5,36 +5,32 @@ import CommentForm from "../../form/app/commentForm";
 import CustomModal from "../../modals/Modal";
 
 
-const ResourceDetailDisplay = ({resourceId}) => {
+const ResourceDetailDisplay = ({resourceId, props}) => {
     useEffect(() => {
         const init = async () => {
             let res = await ResourceRepository.getResource(resourceId);
+            console.log(res);
             const newResource = res.data;
             setResource(newResource);
+
         }
         init()
 
     }, [])
     const [ resource, setResource ] = useState([])
 
-
     return (
         <div>
-            <p>about {resourceId}</p>
-            <h1>{resource.title}</h1>
-            <p>{resource.createdAt}</p>
+            {
+                console.log(resource)
+            }
 
-            {/*{*/}
 
-            {/*    resource.content.map(content => (*/}
-            {/*        <div>*/}
+                    <p>about {resourceId}</p>
+                    <h1>{resource.title}</h1>
+                    <p>{resource.createdAt}</p>
+                    <p>{resource.author.firstname}</p>
 
-            {/*            <p key={content.id}>{content.textValue}</p>*/}
-            {/*            <p key={content.id}>{content.stringValue}</p>*/}
-            {/*        </div>*/}
-            {/*    ))*/}
-
-            {/*}*/}
         </div>
 
     )

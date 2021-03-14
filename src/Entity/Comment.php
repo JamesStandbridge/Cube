@@ -29,7 +29,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *                  }
  *              }
  *          }
- *     }
+ *     },
+ *     order={"createdAt"="ASC"},
  * )
  * @ApiFilter(SearchFilter::class, properties={"resource": "exact"})
  */
