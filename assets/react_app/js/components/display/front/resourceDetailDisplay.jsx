@@ -6,31 +6,37 @@ import CustomModal from "../../modals/Modal";
 
 
 const ResourceDetailDisplay = ({resourceId, props}) => {
+    const [ resource, setResource ] = useState(null)
+    const [ loading, setLoading ] = useState(true)
+
+
     useEffect(() => {
         const init = async () => {
             let res = await ResourceRepository.getResource(resourceId);
-            console.log(res);
             const newResource = res.data;
             setResource(newResource);
+            setLoading(false)
 
         }
-        init()
 
+        setLoading(true)
+        init()
     }, [])
-    const [ resource, setResource ] = useState([])
+    
 
     return (
         <div>
-            {
-                console.log(resource)
-            }
 
-
-                    <p>about {resourceId}</p>
+            {loading ? (
+                null
+            ) : (
+                <div>
                     <h1>{resource.title}</h1>
+                    <p>about {resourceId}</p>
                     <p>{resource.createdAt}</p>
                     <p>{resource.author.firstname}</p>
-
+                </div>
+            )}
         </div>
 
     )
@@ -40,3 +46,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ResourceDetailDisplay)
+
+                    // 
+                    // 
+                    // 
+                    // 
