@@ -13,6 +13,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @ApiResource(
  * collectionOperations = {"get" = {"normalization_context"= {"groups"="category:list"}}, "post" = {"denormalization_context"= {"groups"="category:create"}}},
+ *     subresourceOperations={
+ *          "api_resources_category_get_subresource"={
+ *              "method"="GET",
+ *              "path"="/resources/{id}/category"
+ *          }},
  * )
  * 
  */

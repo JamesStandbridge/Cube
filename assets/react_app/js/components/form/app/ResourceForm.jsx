@@ -248,13 +248,13 @@ const ResourceForm = wrapComponent(function({createSnackbar, dispatch, AuthHandl
                     {resourceAttribute !== "" ? (
                         <div>
                             {checkContentValue({resourceAttributes},{resourceAttribute})}
-                            <Fab size="small"
-                                 color="secondary"
-                                 aria-label="add"
-                                 className={classes.margin}
-                                 onClick={addAttributeContent}>
-                                <AddIcon />
-                            </Fab>
+                            {/*<Fab size="small"*/}
+                            {/*     color="secondary"*/}
+                            {/*     aria-label="add"*/}
+                            {/*     className={classes.margin}*/}
+                            {/*     onClick={addAttributeContent}>*/}
+                            {/*    <AddIcon />*/}
+                            {/*</Fab>*/}
                         </div>
                     ):(
                         <p>Veuillez selectionner un attribut</p>

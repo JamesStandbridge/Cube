@@ -15,13 +15,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ApiResource(
  *     normalizationContext={"groups"="resource:read"},
- *     collectionOperations={"get"={"normalization_context"={"groups"="resource:list"}},
+ *     collectionOperations={"get"={"normalization_context"={"groups"="resource:read"}},
  *          "post"={"denormalization_context"={"groups"="resource:create"}}},
  *     itemOperations={"get"={"normalization_context"={"groups"="resource:read", "resource:read:full"}},
  *          "put"={"denormalization_context"={"groups"="resource:update"}},
  *          "delete"={"normalization_context"={"groups"="resource:remove"}}},
  *     order={"createdAt"="DESC"},
- *     paginationEnabled=true
+ *     paginationEnabled=true,
+ *     subresourceOperations={
+ *          "api_resources_type_get_subresource"={
+ *              "method"="GET",
+ *              "path"="/resources/{id}/type",
+ *           },
+ *
+ *     }
  * )
  */
 class Resource
@@ -30,8 +37,7 @@ class Resource
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @Groups({"resource:list","resource:read"})
+     * @Groups({"resource:read"})
      * @groups("read:resource_state")
      * @groups("read:resource_states")
      */
@@ -40,14 +46,14 @@ class Resource
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"resource:list", "resource:read", "resource:create"})
+     * @Groups({"resource:read", "resource:create"})
      * @groups("read:resource_state")
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="resources")
-     *
+     * @ApiSubresource(maxDepth=1)
      * @Groups({"resource:read", "resource:create"})
      */
     private $type;
@@ -73,13 +79,13 @@ class Resource
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"resource:list","resource:read"})
+     * @Groups({"resource:read"})
      */
     private $isValidated;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resources")
-     *
+     * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
      */
     private $author;
@@ -87,6 +93,7 @@ class Resource
     /**
      * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource", cascade="persist")
      * @ORM\JoinColumn(nullable=true)
+     * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
      */
     private $content;
@@ -94,7 +101,7 @@ class Resource
     /**
      * @ORM\Column(type="boolean",nullable=true)
      *
-     * @Groups({"resource:list","resource:read"})
+     * @Groups({"resource:read"})
      */
     private $isPublic;
 
@@ -106,7 +113,8 @@ class Resource
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="resources")
-     * @Groups({"resource:list", "resource:read", "resource:create"})
+     * @ApiSubresource
+     * @Groups({"resource:read", "resource:create"})
      */
     private $category;
 

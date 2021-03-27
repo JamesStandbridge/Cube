@@ -11,7 +11,6 @@ const ResourceTemplate = ({match:{params:{id}}}) => {
     return (
         <Layout>
             <div>
-
                 <ResourceDetailDisplay resourceId = {id}/>
                 <div>
                     <CommentForm resourceId = {id}/>
