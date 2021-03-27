@@ -30,16 +30,13 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
     //const [ category, setCategory ] = useState([])
     //const [ contents, setContents ] = useState([])
     const [ attribute, setAttribute ] = useState([])
-    console.log(resource.content)
-    console.log(author)
-    console.log(type)
 
     const checkTagModel=(label, content) => {
         console.log(label)
        switch (label) {
            case 'image':
                return(
-                   <img src={resource.stringValue} alt={content.stringValue}/>
+                   <img src={content.stringValue} alt={content.stringValue}/>
                )
            case 'video':
                return(
@@ -78,12 +75,6 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                 null
             ) : (
                 <div>
-                    <h1>{resource.title}</h1>
-                    <p>about {resourceId}</p>
-                    <p>{resource.createdAt}</p>
-                    <p>{resource.author.firstname}</p>
-                </div>
-            )}
             <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth="lg">
@@ -96,11 +87,9 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                         {
                             resource.contents.map(content=>(
                                 <div key={content.id}>
-
-
-                                        <div>
                                             {checkTagModel(content.attribute.label, content)}
-                                        ? <div><iframe src={content.stringValue}
+                                        ? <div>
+                                                <iframe src={content.stringValue}
                                                     frameBorder="0"
                                                     allow="autoplay; encrypted-media"
                                                     allowFullScreen={true}
@@ -108,7 +97,7 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                                             </div>
                                          :<div>{content.textValue}</div>
                                     }
-                                        </div>
+
                                 </div>
                             ))
                         }
@@ -116,6 +105,8 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                     </Typography>
                 </Container>
             </React.Fragment>
+                </div>
+                )}
         </div>
 
     )
