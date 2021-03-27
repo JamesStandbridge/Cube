@@ -91,14 +91,21 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
                     const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resource.id)
                     let isFavorite = false
+                    let isExploited = false
 
                     if(stateIndex !== -1) {
                         isFavorite = ResourceUserStateHandler.resourceStates[stateIndex].isFavorite
+                        isExploited = ResourceUserStateHandler.resourceStates[stateIndex].isExploited
                     }
 
                     return (
                         <GridListTile key={resource.id} cols={resource.cols || 1}>
-                            <Card className={classes.rootCard}>
+                            <Card 
+                                style={{
+                                    backgroundColor: isExploited ? "#80808045" : "white"
+                                }} 
+                                className={classes.rootCard}
+                            >
                                 <CardHeader
                                     avatar={
                                         <Avatar aria-label="recipe" className={classes.avatar}>

@@ -6,8 +6,9 @@ import CustomModal from "../../modals/Modal";
 import {Container, CssBaseline} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
+import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
 
-const ResourceDetailDisplay = ({resourceId, props}) => {
+const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler}) => {
     const [ resource, setResource ] = useState(null)
     const [ loading, setLoading ] = useState(true)
 
@@ -15,13 +16,17 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
     useEffect(() => {
         const init = async () => {
             let res = await ResourceRepository.getResource(resourceId);
-            console.log(res);
             const newResource = res.data;
             setResource(newResource);
         }
 
         setLoading(true)
         init()
+
+        const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resourceId)
+        if(ResourceUserStateHandler.resourceStates[stateIndex].isExploited === false) {
+          ResourceStateRepository.exploitResource(resourceId, AuthHandler.token).then(res => {})
+        }
     }, [])
 
 

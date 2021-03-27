@@ -30,18 +30,12 @@ class ResourceUserStateController extends AbstractController
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
-
 			$em = $this->getDoctrine()->getManager();
 			$resourceState = $repo->findByResourceID($resourceID, $user->getId());
 
 			if(!$resourceState) {
-				$resourceState = new ResourceUserState();
-				$resourceState->setUserEntity($user)
-							  ->setIsFavorite(true)
-							  ->setIsAside(false)
-							  ->setIsExploited(false)
-							  ->setResource($resRepo->find($resourceID))
-				;
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+				$resourceState->setIsFavorite(true);
 			} else {
 				$resourceState->setIsFavorite(!$resourceState->getIsFavorite());
 			}
@@ -57,6 +51,46 @@ class ResourceUserStateController extends AbstractController
 	            'error' => "bad request"
 	        ], 500);
 		}
+	}
+
+	
+	/**
+	 * @Route("/api/resource/exploited", name="app_resource_exploit", methods={"GET"})
+	 * @param  Request $request 
+	 */
+	public function exploitResource(Request $request, ResourceUserStateRepository $repo) {
+		try {
+			$resourceID = $request->get('resource_id');
+			$user = $this->getUser();
+			$em = $this->getDoctrine()->getManager();
+			$resourceState = $repo->findByResourceID($resourceID, $user->getId());
+
+			if(!$resourceState) {
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+			} 
+
+			$resourceState->setIsExploited(true);
+			
+			$em->persist($resourceState);
+			$em->flush();			
+	        return $this->json([
+	            'resourceState' => $resourceState
+	        ], 200, [], ['groups' => 'read:resource_state']);
+		} catch(ErrorException $e) {
+	        return $this->json([
+	            'error' => "bad request"
+	        ], 500);
+		}
+	}
+
+	private function initResourceState($em, $user, $resource) {
+		$resourceState = new ResourceUserState();
+		$resourceState->setUserEntity($user)
+					  ->setIsFavorite(false)
+					  ->setIsAside(false)
+					  ->setIsExploited(false)
+					  ->setResource($resource)
+		;
 	}
 
 	/**
