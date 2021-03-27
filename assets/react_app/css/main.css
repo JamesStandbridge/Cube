@@ -70,12 +70,12 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     top: 0;
     position: fixed;
-
 }
+
+
 
 .app-bar-actions {
     margin-left: auto;
-
 }
 
 .app-bar-actions a {
@@ -86,25 +86,9 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: capitalize!important;
 }
 
-.pro-sidebar > .pro-sidebar-inner {
-    color: white;
-    font-family: "OpenSans-SemiBold";
-    background-color: #5F9EA0;
-    /*	background-image: url(../img/background-vertical.png);*/
-    color: black;
-}
 
-.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu:active {
-    color: black!important;
-}
 
-.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
-    background-color: white;
-}
 
-.pro-inner-item:hover {
-    color: #fa9043!important;
-}
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item .pro-inner-item:before{content: none}
 
@@ -126,67 +110,52 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
 }
 
-.popper-inner {
-    background-color: white!important;
-    color: black;
-}
+
 
 .MuiPaper-elevation4 {
     box-shadow: none!important;
 }
 
 .app-bar {
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
-    width: calc(100% - 300px);
-    float: right;
-    margin-right: 15px;
-    margin-top: 15px;
+    position: fixed;
+    top: 0;
+    left: 270px;
+    width: 86%;
+    z-index: 1000;
 }
 
 .app-bar.collapse {
-    width: calc(100% - 110px);
-    transition: 0.3s;
+    position: fixed;
+    top: 0;
+    left: 80px;
+    width: 96%;
 }
 
 .app-bar.full {
-    width: calc(100% - 30px);
+    position: absolute;
+    top: -15px;
+    height: 996px;
+    left: 0px;
+    width: 100%;   
+    opacity: 0.9;
+    z-index: 0;
 }
 
-.MuiAppBar-colorPrimary {
-    /*background-color: #1667a6!important;*/
-    background-color: white!important;
-    color: black!important;
-}
 
 .app-body {
-    width: calc(100% - 300px);
+    width: calc(100% - 350px);
     float: right;
-    margin-top: 10px;
+    margin-top: 125px;
     margin-right: 15px;
-    background-color: #e6e5e5;
-    height: 100vh;
+    
 }
 
 .app-body.collapse {
-    width: calc(100% - 110px);
-    transition: 0.3s;
+    width: calc(100% - 168px);
 }
 
 .app-body.full {
-    width: calc(100% - 30px);
+    margin-top: 360px;
+    width: calc(100% - 300px);
 }
 
-#root {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    background-color: #e6e5e5;
-
-}
-
-.pro-sidebar .pro-menu.shaped .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
-    background-color: white;
-}

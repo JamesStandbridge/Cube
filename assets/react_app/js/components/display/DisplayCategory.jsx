@@ -19,7 +19,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 require("../../../css/category.css");
 
-const DisplayCategory = ({AuthHandler}) => {
+const DisplayCategory = ({AuthHandler, update}) => {
 	useEffect(() => {
         const init = async () => {
             let res = await CategoryRepository.visualise(AuthHandler.token);
@@ -27,7 +27,7 @@ const DisplayCategory = ({AuthHandler}) => {
             setCategories(newcategories);
         }
         init();
-    }, [])
+    }, [update])
 
     const [ categories, setCategories ] = useState([]) 
 

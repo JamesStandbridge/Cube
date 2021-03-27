@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MUILink from '@material-ui/core/Link';
 
 //navbar
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
@@ -66,9 +67,11 @@ const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 							Accueil
 						</Typography>
 						<div className="app-bar-actions">
-							<IconButton>
-								<AccountCircleIcon />
-							</IconButton>
+							<Link to={`/profil/details`}>
+								<IconButton>
+									<AccountCircleIcon />
+								</IconButton>
+							</Link>
 							<IconButton onClick={onDisconnect}>
 								<PowerSettingsNewIcon />
 							</IconButton>

@@ -11,7 +11,6 @@ import CardCatalogDisplay from "../../../components/display/front/cardCatalogDis
 const Home = (props) => {
   return (
     <Layout>
-    	<h1>Accueil</h1>
         <CardCatalogDisplay/>
     </Layout>
   )

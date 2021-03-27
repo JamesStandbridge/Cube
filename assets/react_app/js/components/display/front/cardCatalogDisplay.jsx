@@ -20,6 +20,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
+import { format } from "date-fns";
+
 import * as tileData from "core-js";
 
 
@@ -48,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: red[500],
     },
     root: {
-        display: 'flex',
         flex:1,
         flexWrap: 'wrap',
         justifyContent: 'space-around',
@@ -56,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
         width: 1500,
-        height: 450,
         // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
     },
@@ -90,8 +90,6 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
     return (
         <div>
-            {console.log('RENDER', resources )}
-            <p>Card Ressource</p>
             <div className={classes.root}>
                 <GridList cellHeight={400} className={classes.gridList} cols={3}>
 
@@ -122,13 +120,8 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                             R
                                         </Avatar>
                                     }
-                                    action={
-                                        <IconButton aria-label="settings">
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                    }
                                     title={resource.title}
-                                    subheader={resource.createdAt}
+                                    subheader={format(Date.parse(resource.createdAt), "d MMM yyyy")}
                                 />
                                 <CardMedia
                                     className={classes.media}
@@ -143,7 +136,7 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                 <CardActions disableSpacing>
                                     <IconButton onClick={() => handleFavoriteChange(resource.id)} aria-label="add to favorites">
                                         <FavoriteIcon style={{
-                                            color: isFavorite ? "#f34f6b" : "#0000008a"
+                                            color: isFavorite ? "#E71D36" : "#0000008a"
                                         }}/>
                                     </IconButton>
                                     <IconButton onClick={() => handleAsideChange(resource.id)} aria-label="add to aside resources">

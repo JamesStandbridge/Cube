@@ -17,6 +17,7 @@ import { SnackbarProvider } from 'react-snackbar-alert';
 import Router from './Router'
 
 require("../css/main.css");
+require("../css/cubeApp.scss");
 
 const CubeApp = () => {
 

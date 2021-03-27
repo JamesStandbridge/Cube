@@ -1,0 +1,74 @@
+$darkColor: #011627;
+$lightColor: #FDFFFC;
+$successColor: #457B9D;
+$warningColor: #E63946;
+$infoColor: #FF9F1C;
+
+body {
+	background-color: white;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+    font-family: "OpenSans-SemiBold";
+    background-color: $infoColor;
+    /*	background-image: url(../img/background-vertical.png);*/
+    color: $lightColor!important;
+}
+
+.pro-sidebar {
+	transition: none;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu:active {
+    color: $lightColor!important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus {
+    color: $lightColor!important;
+}
+
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+    background-color: #b79f7e;
+}
+
+.pro-inner-item:hover {
+    color: #fdfffc99!important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover {
+    color: #fdfffc99!important;
+}
+
+.popper-inner {
+    background-color: $infoColor!important;
+    color: $lightColor!important;
+    z-index: 1000!important;
+}
+
+
+.MuiAppBar-colorPrimary {
+    /*background-color: #1667a6!important;*/
+    background-color: $infoColor!important;
+    color: $lightColor!important;
+}
+
+.pro-sidebar .pro-menu.shaped .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
+    background-color: $infoColor;
+    color: $lightColor;
+}
+
+.app-bar .MuiIconButton-root {
+	color: $lightColor;
+}
+
+.app-bar .btn.connect {
+
+}
+
+.app-bar .btn.register {
+	
+}
+
+.app.bar .btn {
+	background-color: white!important
+}

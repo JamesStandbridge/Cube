@@ -9,6 +9,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build/')
+    .enableSassLoader()
     .addEntry('cube_app', './assets/react_app/js/CubeApp.jsx')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
@@ -23,7 +24,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    
 ;
 
 module.exports = Encore.getWebpackConfig();
