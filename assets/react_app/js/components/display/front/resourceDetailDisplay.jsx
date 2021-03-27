@@ -35,16 +35,13 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
     //const [ category, setCategory ] = useState([])
     //const [ contents, setContents ] = useState([])
     const [ attribute, setAttribute ] = useState([])
-    console.log(resource.content)
-    console.log(author)
-    console.log(type)
 
     const checkTagModel=(label, content) => {
         console.log(label)
        switch (label) {
            case 'image':
                return(
-                   <img src={resource.stringValue} alt={content.stringValue}/>
+                   <img src={content.stringValue} alt={content.stringValue}/>
                )
            case 'video':
                return(
@@ -83,12 +80,6 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                 null
             ) : (
                 <div>
-                    <h1>{resource.title}</h1>
-                    <p>about {resourceId}</p>
-                    <p>{resource.createdAt}</p>
-                    <p>{resource.author.firstname}</p>
-                </div>
-            )}
             <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth="lg">
@@ -101,11 +92,9 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                         {
                             resource.contents.map(content=>(
                                 <div key={content.id}>
-
-
-                                        <div>
                                             {checkTagModel(content.attribute.label, content)}
-                                        ? <div><iframe src={content.stringValue}
+                                        ? <div>
+                                                <iframe src={content.stringValue}
                                                     frameBorder="0"
                                                     allow="autoplay; encrypted-media"
                                                     allowFullScreen={true}
@@ -113,7 +102,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                                             </div>
                                          :<div>{content.textValue}</div>
                                     }
-                                        </div>
+
                                 </div>
                             ))
                         }
@@ -121,6 +110,8 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                     </Typography>
                 </Container>
             </React.Fragment>
+                </div>
+                )}
         </div>
 
     )
