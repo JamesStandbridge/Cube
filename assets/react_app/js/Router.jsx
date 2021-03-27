@@ -15,6 +15,9 @@ import CreateResource from "./pages/app/citizenSpace/resourceManagement/CreateRe
 import MyResources from "./pages/app/citizenSpace/resourceManagement/MyResources"
 import Home from "./pages/app/front/home"
 
+//moderator
+import ModerateResources from "./pages/app/moderatorSpace/ModerateResources"
+
 //routes
 import CitizenRoute from "./components/router/CitizenRoute";
 import ModeratorRoute from "./components/router/ModeratorRoute";
@@ -42,13 +45,14 @@ const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 					<AdminRoute path="/categories/creer" component={CreateCategory} />
 					<AdminRoute path="/categories/visualise" component={VisualiseCategory} />
 
+
 					<CitizenRoute path="/profil/relations" component={RelationShips} />
 					<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
 					<CitizenRoute path="/profil/ressources" component={MyResources} />
 					<CitizenRoute path="/profil" component={DashboardCitizen} />
 
 					<ModeratorRoute path="/moderation/commentaires" component={null} />
-					<ModeratorRoute path="/moderation/resources" component={null} />
+					<ModeratorRoute path="/moderation/resources" component={ModerateResources} />
 
 					<Route path="/catalogue/:id" component={ResourceTemplate}/>
 					<Route path="/register" component={Register} />

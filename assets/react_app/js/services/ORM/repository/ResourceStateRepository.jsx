@@ -24,6 +24,20 @@ const ResourceStateRepository = {
             HeaderBuilder.GET_HEADER_AUTHORIZATION(token),
         )
     },
+
+    exploitResource: async function(resourceID, token) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_EXPLOIT_RESOURCE(resourceID),
+            HeaderBuilder.GET_HEADER_AUTHORIZATION(token),
+        )
+    },
+
+    updateAside: async function(resourceID, token) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_UPDATE_ASIDE_RESOURCE(resourceID),
+            HeaderBuilder.GET_HEADER_AUTHORIZATION(token),
+        )
+    },
 }
 
 export default ResourceStateRepository;

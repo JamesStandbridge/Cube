@@ -21,6 +21,7 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+
     /**
      * @Route("/register", name="register")
      */
@@ -28,6 +29,7 @@ class RedirectController extends AbstractController
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
+
 
     /**
      * @Route("/login", name="login")
@@ -68,6 +70,15 @@ class RedirectController extends AbstractController
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
+
+    /**
+     * @Route("/moderation/resources", name="register")
+     */
+    public function moderateResources()
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 
     /**
      * @Route("/categories/visualise", name="visualise_category")

@@ -28,12 +28,14 @@ class Category
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"category:list","category:create"})
+     * @groups("read:resources")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"category:list","category:create","resource:list","resource:read"})
+     * @groups("read:resources")
      *
      */
     private $label;

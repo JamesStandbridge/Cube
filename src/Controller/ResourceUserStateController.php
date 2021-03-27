@@ -22,26 +22,23 @@ use App\Entity\ResourceUserState;
 class ResourceUserStateController extends AbstractController
 {
 
-	/**
-	 * @Route("/api/resource/favorite", name="app_resource_like", methods={"GET"})
-	 * @param  Request $request 
-	 */
+    /**
+     * @Route("/api/resource/favorite", name="app_resource_like", methods={"GET"})
+     * @param Request $request
+     * @param ResourceUserStateRepository $repo
+     * @param ResourceRepository $resRepo
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
 	public function likeResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo) {
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
-
 			$em = $this->getDoctrine()->getManager();
 			$resourceState = $repo->findByResourceID($resourceID, $user->getId());
 
 			if(!$resourceState) {
-				$resourceState = new ResourceUserState();
-				$resourceState->setUserEntity($user)
-							  ->setIsFavorite(true)
-							  ->setIsAside(false)
-							  ->setIsExploited(false)
-							  ->setResource($resRepo->find($resourceID))
-				;
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+				$resourceState->setIsFavorite(true);
 			} else {
 				$resourceState->setIsFavorite(!$resourceState->getIsFavorite());
 			}
@@ -57,6 +54,80 @@ class ResourceUserStateController extends AbstractController
 	            'error' => "bad request"
 	        ], 500);
 		}
+	}
+
+
+    /**
+     * @Route("/api/resource/exploited", name="app_resource_exploit", methods={"GET"})
+     * @param Request $request
+     * @param ResourceUserStateRepository $resRepo
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+	public function exploitResource(Request $request, ResourceUserStateRepository $resRepo) {
+		try {
+			$resourceID = $request->get('resource_id');
+			$user = $this->getUser();
+			$em = $this->getDoctrine()->getManager();
+			$resourceState = $resRepo->findByResourceID($resourceID, $user->getId());
+
+			if(!$resourceState) {
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+			} 
+
+			$resourceState->setIsExploited(true);
+			
+			$em->persist($resourceState);
+			$em->flush();			
+	        return $this->json([
+	            'resourceState' => $resourceState
+	        ], 200, [], ['groups' => 'read:resource_state']);
+		} catch(ErrorException $e) {
+	        return $this->json([
+	            'error' => "bad request"
+	        ], 500);
+		}
+	}
+
+	/**
+	 * @Route("/api/resource/aside", name="app_resource_aside", methods={"GET"})
+	 * @param  Request $request 
+	 */
+	public function asideResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo) {
+		try {
+			$resourceID = $request->get('resource_id');
+			$user = $this->getUser();
+			$em = $this->getDoctrine()->getManager();
+			$resourceState = $repo->findByResourceID($resourceID, $user->getId());
+
+			if(!$resourceState) {
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+				$resourceState->setIsAside(true);
+			} else {
+				$resourceState->setIsAside(!$resourceState->getIsAside());
+			}
+			
+			$em->persist($resourceState);
+			$em->flush();			
+	        return $this->json([
+	            'resourceState' => $resourceState
+	        ], 200, [], ['groups' => 'read:resource_state']);
+		} catch(ErrorException $e) {
+	        return $this->json([
+	            'error' => "bad request"
+	        ], 500);
+		}
+	}
+
+
+	private function initResourceState($em, $user, $resource) {
+		$resourceState = new ResourceUserState();
+		$resourceState->setUserEntity($user)
+					  ->setIsFavorite(false)
+					  ->setIsAside(false)
+					  ->setIsExploited(false)
+					  ->setResource($resource)
+		;
+		return $resourceState;
 	}
 
 	/**

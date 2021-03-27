@@ -18,6 +18,23 @@ const ResourceRepository = {
         )
     },
 
+    getNewResources: async function(token) {
+        //console.log(resource)
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_NEW_RESOURCES,
+            HeaderBuilder.GET_HEADER_AUTHORIZATION(token),
+        )
+    },
+
+    moderateResource: async function(body, token) {
+        //console.log(resource)
+        return await HttpService.sendPostRequest(
+            EndPoints.URL_MODERATE_RESOURCE,
+            HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
+            body
+        )
+    },
+
     create: async function(resource, token) {
         console.log(resource)
         return await HttpService.sendPostRequest(

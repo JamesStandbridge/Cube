@@ -17,6 +17,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
 import * as tileData from "core-js";
 
 
@@ -79,6 +82,12 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
         })
     }
 
+    const handleAsideChange = (resourceID) => {
+        ResourceStateRepository.updateAside(resourceID, AuthHandler.token).then(res => {
+            dispatch({type: "RESET_UPDATE_RESOURCE_STATES"})
+        })
+    }
+
     return (
         <div>
             {console.log('RENDER', resources )}
@@ -91,14 +100,22 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
                     const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resource.id)
                     let isFavorite = false
-
+                    let isExploited = false
+                    let isAside = false
                     if(stateIndex !== -1) {
                         isFavorite = ResourceUserStateHandler.resourceStates[stateIndex].isFavorite
+                        isExploited = ResourceUserStateHandler.resourceStates[stateIndex].isExploited
+                        isAside = ResourceUserStateHandler.resourceStates[stateIndex].isAside
                     }
-
+                    console.log(isExploited)
                     return (
                         <GridListTile key={resource.id} cols={resource.cols || 1}>
-                            <Card className={classes.rootCard}>
+                            <Card 
+                                style={{
+                                    backgroundColor: isExploited ? "#80808045" : "white"
+                                }} 
+                                className={classes.rootCard}
+                            >
                                 <CardHeader
                                     avatar={
                                         <Avatar aria-label="recipe" className={classes.avatar}>
@@ -128,6 +145,14 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                         <FavoriteIcon style={{
                                             color: isFavorite ? "#f34f6b" : "#0000008a"
                                         }}/>
+                                    </IconButton>
+                                    <IconButton onClick={() => handleAsideChange(resource.id)} aria-label="add to aside resources">
+                                        {isAside ? (
+                                            <BookmarkIcon />
+                                        ) : (
+                                            <BookmarkBorderIcon />
+                                        )}
+
                                     </IconButton>
                                     <IconButton aria-label="share">
                                         <ShareIcon />

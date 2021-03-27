@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import {Container, CssBaseline} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
+import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
+import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 
-const ResourceDetailDisplay = ({resourceId}) => {
+const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch}) => {
     const [ resource, setResource ] = useState(null)
     const [ loading, setLoading ] = useState(true)
 
     useEffect(() => {
-
         const init = async () => {
             let res = await ResourceRepository.getResource(resourceId);
             console.log(res.data);
@@ -20,6 +20,13 @@ const ResourceDetailDisplay = ({resourceId}) => {
         }
         setLoading(true)
         init()
+
+        const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resourceId)
+        if(stateIndex === -1 || ResourceUserStateHandler.resourceStates[stateIndex].isExploited === false) {
+          ResourceStateRepository.exploitResource(resourceId, AuthHandler.token).then(res => {
+            dispatch({type: "RESET_UPDATE_RESOURCE_STATES"})
+          })
+        }
     }, [])
 
 
@@ -65,13 +72,14 @@ const ResourceDetailDisplay = ({resourceId}) => {
                            height="50vh"
                    />
                   )
-           
            default:
                return(<a href={content.stringValue}>{content.stringValue}</a>)
             break
        }
     }
-    console.log(resource)
+
+
+
     return (
         <div>
             {loading ? null : (
@@ -79,7 +87,6 @@ const ResourceDetailDisplay = ({resourceId}) => {
             <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth="lg">
-
                     <Typography component="div" style={{ backgroundColor: '#FFFAFA', height: '50vh' }}>
                     <h1>{resource.title}</h1>
                     <div>{resource.createdAt}</div>
@@ -107,6 +114,7 @@ const ResourceDetailDisplay = ({resourceId}) => {
 
     )
 }
+
 const mapStateToProps = (state) => {
     return state
 }

@@ -23,6 +23,9 @@ const EndPoints = {
 	//resources
 	URL_POST_RESOURCE: "/api/resources",
 	URL_GET_RESOURCE_LIST: "/api/resources",
+	URL_GET_NEW_RESOURCES: "/api/resources/new",
+
+	URL_MODERATE_RESOURCE: "/api/resources/moderate",
 
 	URL_GET_RESOURCE: function(resourceId) {
 		return `/api/resources/${resourceId}`
@@ -34,6 +37,14 @@ const EndPoints = {
 
 	URL_UPDATE_FAVORITE_RESOURCE: function(resourceId) {
 		return `/api/resource/favorite?resource_id=${resourceId}`
+	},
+
+	URL_UPDATE_ASIDE_RESOURCE: function(resourceId) {
+		return `/api/resource/aside?resource_id=${resourceId}`
+	},
+
+	URL_EXPLOIT_RESOURCE: function(resourceId) {
+		return `/api/resource/exploited?resource_id=${resourceId}`
 	},
 
 	URL_GET_RESOURCE_USER_STATES: "/api/resource-user-states",

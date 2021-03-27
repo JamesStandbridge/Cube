@@ -28,12 +28,14 @@ class ResourceType
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"resource:read"})
+     * @groups("read:resources")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"resource:read", "type:read"})
+     * @groups("read:resources")
      */
     private $label;
 
