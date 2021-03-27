@@ -5,7 +5,9 @@
 
 import { combineReducers } from 'redux'
 import AuthHandler from './securityReducers/AuthHandler'
+import ResourceUserStateHandler from './resources/ResourceUserStateHandler'
 
 export default combineReducers({
-	AuthHandler
+	AuthHandler,
+	ResourceUserStateHandler
 })

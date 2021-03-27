@@ -32,6 +32,8 @@ class Resource
      * @ORM\Column(type="integer")
      *
      * @Groups({"resource:list","resource:read"})
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $id;
 
@@ -39,6 +41,7 @@ class Resource
      * @ORM\Column(type="string", length=255)
      *
      * @Groups({"resource:list", "resource:read", "resource:create"})
+     * @groups("read:resource_state")
      */
     private $title;
 

@@ -19,6 +19,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import * as tileData from "core-js";
 
+
+import ResourceStateRepository from '../../../services/ORM/repository/ResourceStateRepository'
+
 require("../../../../css/resource.css");
 const useStyles = makeStyles((theme) => ({
     rootCard: {
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'translateZ(0)',
     },
 }));
-const CardCatalogDisplay = ({}) => {
+const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
     const classes = useStyles();
 
     useEffect(() => {
@@ -70,6 +73,12 @@ const CardCatalogDisplay = ({}) => {
     }, [])
     const [ resources, setResources ] = useState([])
 
+    const handleFavoriteChange = (resourceID) => {
+        ResourceStateRepository.updateFavorite(resourceID, AuthHandler.token).then(res => {
+            dispatch({type: "RESET_UPDATE_RESOURCE_STATES"})
+        })
+    }
+
     return (
         <div>
             {console.log('RENDER', resources )}
@@ -78,54 +87,66 @@ const CardCatalogDisplay = ({}) => {
                 <GridList cellHeight={400} className={classes.gridList} cols={3}>
 
             {
-                resources.map(resource => (
-                        <GridListTile key={resource.id} cols={resource.cols || 1}>
-                        <Card className={classes.rootCard}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar}>
-                                        R
-                                    </Avatar>
-                                }
-                                action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                }
-                                title={resource.title}
-                                subheader={resource.createdAt}
-                            />
-                            <CardMedia
-                                className={classes.media}
-                                image="https://wiki.tripwireinteractive.com/images/4/47/Placeholder.png"
-                                title="Paella dish"
-                            />
-                            <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {resource.category.label}
-                                </Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
-                                </IconButton>
-                                <IconButton aria-label="share">
-                                    <ShareIcon />
-                                </IconButton>
-                                <IconButton
-                                    href={`/catalogue/${resource.id}`}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                        </Card>
-                        {/*    <h5><a href={`/catalogue/${resource.id}`}>{resource.title}</a></h5>*/}
-                        {/*<p>{resource.createdAt}</p>*/}
-                        {/*<p>{resource.category.label}</p>*/}
+                resources.map(resource => {
 
-                    </GridListTile>
-                ))
+                    const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resource.id)
+                    let isFavorite = false
+
+                    if(stateIndex !== -1) {
+                        isFavorite = ResourceUserStateHandler.resourceStates[stateIndex].isFavorite
+                    }
+
+                    return (
+                        <GridListTile key={resource.id} cols={resource.cols || 1}>
+                            <Card className={classes.rootCard}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar aria-label="recipe" className={classes.avatar}>
+                                            R
+                                        </Avatar>
+                                    }
+                                    action={
+                                        <IconButton aria-label="settings">
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                    }
+                                    title={resource.title}
+                                    subheader={resource.createdAt}
+                                />
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://wiki.tripwireinteractive.com/images/4/47/Placeholder.png"
+                                    title="Paella dish"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {resource.category.label}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions disableSpacing>
+                                    <IconButton onClick={() => handleFavoriteChange(resource.id)} aria-label="add to favorites">
+                                        <FavoriteIcon style={{
+                                            color: isFavorite ? "#f34f6b" : "#0000008a"
+                                        }}/>
+                                    </IconButton>
+                                    <IconButton aria-label="share">
+                                        <ShareIcon />
+                                    </IconButton>
+                                    <IconButton
+                                        href={`/catalogue/${resource.id}`}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                </CardActions>
+                            </Card>
+                            {/*    <h5><a href={`/catalogue/${resource.id}`}>{resource.title}</a></h5>*/}
+                            {/*<p>{resource.createdAt}</p>*/}
+                            {/*<p>{resource.category.label}</p>*/}
+
+                        </GridListTile>
+                    )
+                })
             }
 
 

@@ -19,32 +19,39 @@ class ResourceUserStateRepository extends ServiceEntityRepository
         parent::__construct($registry, ResourceUserState::class);
     }
 
-    // /**
-    //  * @return ResourceUserState[] Returns an array of ResourceUserState objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    /**
+     * Find an array of resource state by user id
+     * @param  int    $userID 
+     * @return ResourceUserState[]
+     */
+    public function findAllByUser(int $userID) : array
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('r.userEntity = :userID')
+            ->setParameter('userID', $userID)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
-    public function findOneBySomeField($value): ?ResourceUserState
+    /**
+     * find a resource state by user and resourceid
+     * @param  int    $resourceID 
+     * @param  int    $userID    
+     * @return ?ResourceUserState   
+     */
+    public function findByResourceID(int $resourceID, int $userID): ?ResourceUserState
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('r.resource = :resourceID')
+            ->andWhere('r.userEntity = :userID')
+            ->setParameter('resourceID', $resourceID)
+            ->setParameter('userID', $userID)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

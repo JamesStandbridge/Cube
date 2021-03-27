@@ -6,6 +6,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ResourceUserStateRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=ResourceUserStateRepository::class)
  * @ApiResource
@@ -16,21 +18,29 @@ class ResourceUserState
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $id;
 
     /**
      * @ORM\Column(type="boolean")
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $isFavorite;
 
     /**
      * @ORM\Column(type="boolean")
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $isExploited;
 
     /**
      * @ORM\Column(type="boolean")
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $isAside;
 
@@ -43,6 +53,8 @@ class ResourceUserState
     /**
      * @ORM\ManyToOne(targetEntity=Resource::class)
      * @ORM\JoinColumn(nullable=false)
+     * @groups("read:resource_state")
+     * @groups("read:resource_states")
      */
     private $resource;
 

@@ -42,6 +42,14 @@ const ResourceRepository = {
             HeaderBuilder.GET_HEADER(),
             resource.id
         )
+    },
+
+    updateFavorite: async function(resourceID) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_UPDATE_FAVORITE_RESOURCE(resource),
+            `${HeaderBuilder.GET_HEADER_AUTHORIZATION(token)}?resource_id=${resource.id}`,
+            
+        )
     }
 }
 
