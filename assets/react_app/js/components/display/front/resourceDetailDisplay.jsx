@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import CommentForm from "../../form/app/commentForm";
 import CustomModal from "../../modals/Modal";
+import {Container, CssBaseline} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 
 const ResourceDetailDisplay = ({resourceId, props}) => {
@@ -16,18 +18,17 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
             console.log(res);
             const newResource = res.data;
             setResource(newResource);
-
         }
 
         setLoading(true)
         init()
     }, [])
 
-    const [ resource, setResource ] = useState([])
-    const [ author, setAuthor ] = useState([])
-    const [ type, setType ] = useState([])
-    const [ category, setCategory ] = useState([])
-    const [ contents, setContents ] = useState([])
+
+    //const [ author, setAuthor ] = useState([])
+    //const [ type, setType ] = useState([])
+    //const [ category, setCategory ] = useState([])
+    //const [ contents, setContents ] = useState([])
     const [ attribute, setAttribute ] = useState([])
     console.log(resource.content)
     console.log(author)
@@ -38,7 +39,7 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
        switch (label) {
            case 'image':
                return(
-                   <img src={content.stringValue} alt={content.stringValue}/>
+                   <img src={resource.stringValue} alt={content.stringValue}/>
                )
            case 'video':
                return(
@@ -89,15 +90,16 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                     <Typography component="div" style={{ backgroundColor: '#FFFAFA', height: '50vh' }}>
                     <h1>{resource.title}</h1>
                     <div>{resource.createdAt}</div>
-                    <div>{author.email}</div>
-                    <div>{category.label}</div>
+                    <div>{resource.author.email}</div>
+                    <div>{resource.category.label}</div>
                     <div>
                         {
-                            contents.map(content=>(
+                            resource.contents.map(content=>(
                                 <div key={content.id}>
 
-                                    { content.stringValue
-                                        //  <div>{checkTagModel(content.attribute.label, content)}
+
+                                        <div>
+                                            {checkTagModel(content.attribute.label, content)}
                                         ? <div><iframe src={content.stringValue}
                                                     frameBorder="0"
                                                     allow="autoplay; encrypted-media"
@@ -106,7 +108,7 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
                                             </div>
                                          :<div>{content.textValue}</div>
                                     }
-
+                                        </div>
                                 </div>
                             ))
                         }
