@@ -219,7 +219,6 @@ App\Entity\Resource:
         createdAt: <(new DateTime())>
         updatedAt: <(new DateTime())>
         numberViews: 0
-        isValidated: true
         author: '@user_citizen_1'
         isPublic: true
         typeofrelationship: ['@type_relation_1']
@@ -231,7 +230,6 @@ App\Entity\Resource:
         createdAt: <(new DateTime())>
         updatedAt: <(new DateTime())>
         numberViews: 0
-        isValidated: true
         author: '@user_citizen_1'
         isPublic: true
         typeofrelationship: ['@type_relation_5']
@@ -243,7 +241,6 @@ App\Entity\Resource:
         createdAt: <(new DateTime())>
         updatedAt: <(new DateTime())>
         numberViews: 0
-        isValidated: true
         author: '@user_citizen_1'
         isPublic: true
         typeofrelationship: ['@type_relation_3']
@@ -255,7 +252,6 @@ App\Entity\Resource:
         createdAt: <(new DateTime())>
         updatedAt: <(new DateTime())>
         numberViews: 0
-        isValidated: true
         author: '@user_citizen_2'
         isPublic: true
         typeofrelationship: ['@type_relation_4']
@@ -267,7 +263,6 @@ App\Entity\Resource:
         createdAt: <(new DateTime())>
         updatedAt: <(new DateTime())>
         numberViews: 0
-        isValidated: true
         author: '@user_citizen_2'
         isPublic: true
         typeofrelationship: ['@type_relation_1']

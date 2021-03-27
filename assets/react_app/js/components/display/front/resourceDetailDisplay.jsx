@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+
+
 import { connect } from 'react-redux';
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import CommentForm from "../../form/app/commentForm";
@@ -7,6 +9,8 @@ import {Container, CssBaseline} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
+
+
 
 const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch}) => {
     const [ resource, setResource ] = useState(null)
@@ -77,7 +81,6 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
 
     return (
         <div>
-
             {loading ? (
                 null
             ) : (
@@ -123,3 +126,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ResourceDetailDisplay)
+
+

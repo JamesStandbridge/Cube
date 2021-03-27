@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=TypeOfRelationshipRepository::class)
  * @ApiResource
@@ -18,11 +20,13 @@ class TypeOfRelationship
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @groups("read:resources")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @groups("read:resources")
      */
     private $label;
 

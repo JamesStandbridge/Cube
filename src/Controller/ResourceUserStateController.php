@@ -87,7 +87,7 @@ class ResourceUserStateController extends AbstractController
 	 * @Route("/api/resource/aside", name="app_resource_aside", methods={"GET"})
 	 * @param  Request $request 
 	 */
-	public function asideResource(Request $request, ResourceUserStateRepository $repo) {
+	public function asideResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo) {
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
@@ -122,6 +122,7 @@ class ResourceUserStateController extends AbstractController
 					  ->setIsExploited(false)
 					  ->setResource($resource)
 		;
+		return $resourceState;
 	}
 
 	/**

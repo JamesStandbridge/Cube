@@ -40,6 +40,7 @@ class Resource
      * @Groups({"resource:read"})
      * @groups("read:resource_state")
      * @groups("read:resource_states")
+     * @groups("read:resources")
      */
     private $id;
 
@@ -48,6 +49,7 @@ class Resource
      *
      * @Groups({"resource:read", "resource:create"})
      * @groups("read:resource_state")
+     * @groups("read:resources")
      */
     private $title;
 
@@ -55,6 +57,7 @@ class Resource
      * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="resources")
      * @ApiSubresource(maxDepth=1)
      * @Groups({"resource:read", "resource:create"})
+     * @groups("read:resources")
      */
     private $type;
 
@@ -62,24 +65,26 @@ class Resource
      * @ORM\Column(type="datetime")
      *
      * @Groups({"resource:list", "resource:read", "resource:create"})
+     * @groups("read:resources")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
-     *
+     * @groups("read:resources")
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     *
+     * @groups("read:resources")
      */
     private $numberViews;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"resource:read"})
+     * @groups("read:resources")
      */
     private $isValidated;
 
@@ -87,6 +92,7 @@ class Resource
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resources")
      * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
+     * @groups("read:resources")
      */
     private $author;
 
@@ -102,12 +108,14 @@ class Resource
      * @ORM\Column(type="boolean",nullable=true)
      *
      * @Groups({"resource:read"})
+     * @groups("read:resources")
      */
     private $isPublic;
 
     /**
      * @ORM\ManyToMany(targetEntity=TypeOfRelationship::class, inversedBy="resources")
      * @ORM\JoinColumn(nullable=true)
+     * @groups("read:resources")
      */
     private $typeofrelationship;
 
@@ -115,6 +123,7 @@ class Resource
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="resources")
      * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
+     * @groups("read:resources")
      */
     private $category;
 
