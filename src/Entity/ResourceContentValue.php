@@ -56,7 +56,7 @@ class ResourceContentValue
     /**
      * @ORM\ManyToOne(targetEntity=ResourceAttribute::class)
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"resource:create", "contents:read"})
+     * @Groups({"resource:create", "contents:read", "resource:read"})
      */
     private $attribute;
 
