@@ -3,33 +3,26 @@ import { connect } from 'react-redux';
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import CommentForm from "../../form/app/commentForm";
 import CustomModal from "../../modals/Modal";
-import {array} from "prop-types";
-import Typography from "@material-ui/core/Typography";
-import {Container, CssBaseline} from "@material-ui/core";
 
 
 const ResourceDetailDisplay = ({resourceId, props}) => {
+    const [ resource, setResource ] = useState(null)
+    const [ loading, setLoading ] = useState(true)
 
 
-            useEffect(() => {
+    useEffect(() => {
         const init = async () => {
             let res = await ResourceRepository.getResource(resourceId);
-            setResource(res.data)
-            let resAuth = await ResourceRepository.getResourceAuthor(resourceId)
-            setAuthor(resAuth.data)
-            let resType = await ResourceRepository.getResourceType(resourceId)
-            setType(resType.data)
-            let resCat = await ResourceRepository.getResourceCategory(resourceId)
-            setCategory(resCat.data)
-            let resCont = await ResourceRepository.getResourceContents(resourceId)
-            setContents(resCont.data['hydra:member'])
-            let resAttr = await ResourceRepository.getResourceAttribute(contentId)
-            setAttribute(resCont.data)
+            console.log(res);
+            const newResource = res.data;
+            setResource(newResource);
 
         }
-        init()
 
+        setLoading(true)
+        init()
     }, [])
+
     const [ resource, setResource ] = useState([])
     const [ author, setAuthor ] = useState([])
     const [ type, setType ] = useState([])
@@ -79,6 +72,17 @@ const ResourceDetailDisplay = ({resourceId, props}) => {
 
     return (
         <div>
+
+            {loading ? (
+                null
+            ) : (
+                <div>
+                    <h1>{resource.title}</h1>
+                    <p>about {resourceId}</p>
+                    <p>{resource.createdAt}</p>
+                    <p>{resource.author.firstname}</p>
+                </div>
+            )}
             <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth="lg">
