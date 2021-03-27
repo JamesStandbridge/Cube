@@ -70,12 +70,12 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     top: 0;
     position: fixed;
-
 }
+
+
 
 .app-bar-actions {
     margin-left: auto;
-
 }
 
 .app-bar-actions a {
@@ -117,36 +117,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app-bar {
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
-    width: calc(100% - 300px);
-    float: right;
-    margin-right: 15px;
-    margin-top: 15px;
+    position: fixed;
+    top: 0;
+    left: 270px;
+    width: 86%;
+    z-index: 1000;
 }
 
 .app-bar.collapse {
-    width: calc(100% - 110px);
-    transition: 0.3s;
+    position: fixed;
+    top: 0;
+    left: 80px;
+    width: 96%;
 }
 
 .app-bar.full {
-    width: calc(100% - 30px);
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 100%;   
+    opacity: 0.9;
 }
 
+
 .app-body {
-    width: calc(100% - 300px);
+    width: calc(100% - 350px);
     float: right;
-    margin-top: 10px;
+    margin-top: 125px;
     margin-right: 15px;
     height: 100vh;
 }
 
 .app-body.collapse {
-    width: calc(100% - 110px);
-    transition: 0.3s;
+    width: calc(100% - 168px);
 }
 
 .app-body.full {
-    width: calc(100% - 30px);
+    margin-top: 250px;
+    width: calc(100% - 300px);
 }
 

@@ -4,6 +4,8 @@
  */
 
 import React, { useState } from 'react'
+import styled from 'styled-components'
+
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -86,14 +88,13 @@ const LoginForm = ({dispatch}) => {
 	}
 
 	return (
-		<form className="form form-login">
+		<FormContainer> 
 	        <TextField				
 				label="Email"
 				className="form-field email"
 				type="email"
 				variant="outlined"
 				name="email"
-				size="small"
 				value={credentials.email.value}
 				onChange={handleChange}
 				error={credentials.email.error !== ""}
@@ -105,7 +106,6 @@ const LoginForm = ({dispatch}) => {
 	       		className="form-field password"
 				label="Mot de passe"
 				variant="outlined"
-				size="small"
 				type="password"
           		autoComplete="current-password"
           		name="password"
@@ -116,10 +116,21 @@ const LoginForm = ({dispatch}) => {
           		required
 			/>
 
-			<Button className="btn btn-success btn-confirm" variant="contained" onClick={handleSubmit}>
+			<Button 
+				className="btn btn-success btn-confirm" 
+				variant="contained" 
+				onClick={handleSubmit}
+				style={{
+					backgroundColor: "#577590",
+					color: "white",
+					marginTop: "50px",
+					height: "56px",
+					fontSize: "25px"
+				}}
+			>
 				Confirmer
 			</Button>
-		</form>
+		</FormContainer>
 	)
 }
 
@@ -128,3 +139,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(LoginForm);
+
+const FormContainer = styled.div`
+	margin-left: 27.5%;
+    width: 50%;
+`

@@ -15,6 +15,10 @@ body {
     color: $lightColor!important;
 }
 
+.pro-sidebar {
+	transition: none;
+}
+
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu:active {
     color: $lightColor!important;
 }
@@ -38,6 +42,7 @@ body {
 .popper-inner {
     background-color: $infoColor!important;
     color: $lightColor!important;
+    z-index: 1000!important;
 }
 
 
@@ -54,4 +59,16 @@ body {
 
 .app-bar .MuiIconButton-root {
 	color: $lightColor;
+}
+
+.app-bar .btn.connect {
+
+}
+
+.app-bar .btn.register {
+	
+}
+
+.app.bar .btn {
+	background-color: white!important
 }

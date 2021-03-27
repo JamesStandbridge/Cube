@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: red[500],
     },
     root: {
-        display: 'flex',
         flex:1,
         flexWrap: 'wrap',
         justifyContent: 'space-around',
@@ -91,8 +90,6 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
     return (
         <div>
-            {console.log('RENDER', resources )}
-            <p>Card Ressource</p>
             <div className={classes.root}>
                 <GridList cellHeight={400} className={classes.gridList} cols={3}>
 
@@ -139,7 +136,7 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                 <CardActions disableSpacing>
                                     <IconButton onClick={() => handleFavoriteChange(resource.id)} aria-label="add to favorites">
                                         <FavoriteIcon style={{
-                                            color: isFavorite ? "#f34f6b" : "#0000008a"
+                                            color: isFavorite ? "#E71D36" : "#0000008a"
                                         }}/>
                                     </IconButton>
                                     <IconButton onClick={() => handleAsideChange(resource.id)} aria-label="add to aside resources">
