@@ -20,7 +20,7 @@ const CustomModal = ({btnTitle, children}) => {
                 open = {open}
                 onClose = {handleClose}
             >
-                {children}
+                {React.cloneElement(children, { onCloseModal: handleClose })}
             </Modal>
         </div>
     )

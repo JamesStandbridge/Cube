@@ -13,7 +13,7 @@ import styled from 'styled-components'
 
 require("../../../../css/category.css");
 
-const CategoryForm = ({ dispatch, AuthHandler}) => {
+const CategoryForm = ({ dispatch, AuthHandler, onCloseModal, refresh}) => {
 	const [ category, setCategory ] = useState({
 		label: {value: "", error: ""}
 	})
@@ -29,7 +29,12 @@ const CategoryForm = ({ dispatch, AuthHandler}) => {
 				label: category.label.value
 			}
 
-			CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {})
+			CategoryRepository.create(categoryToSend, AuthHandler.token).then(res => {
+				if(res.status === 201) {
+					onCloseModal()
+					refresh()
+				}
+			})
 		}
 	}
 
@@ -45,7 +50,12 @@ const CategoryForm = ({ dispatch, AuthHandler}) => {
 	}
 
 	return (
-		<div>
+		<div               style={{
+                  position: 'absolute', 
+                  left: '50%', 
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+              }}>
 		  <Container>
           <Title>Ajouter une nouvelle catégorie</Title>
           <FormContainer>

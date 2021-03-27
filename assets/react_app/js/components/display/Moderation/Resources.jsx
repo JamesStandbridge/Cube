@@ -48,7 +48,7 @@ const Resources = ({AuthHandler}) => {
 				<TableBody>
 					{resources.map(resource => {
 						return (
-							<TableRow >
+							<TableRow key={resource.id}>
 								<TableCell component="th" scope="row">{resource.title}</TableCell>
 								<TableCell align="right">{resource.type.label}</TableCell>
 								<TableCell align="right">{resource.category.label}</TableCell>

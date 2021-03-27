@@ -20,6 +20,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
+import { format } from "date-fns";
+
 import * as tileData from "core-js";
 
 
@@ -56,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
         width: 1500,
-        height: 450,
         // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
     },
@@ -122,13 +123,8 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                             R
                                         </Avatar>
                                     }
-                                    action={
-                                        <IconButton aria-label="settings">
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                    }
                                     title={resource.title}
-                                    subheader={resource.createdAt}
+                                    subheader={format(Date.parse(resource.createdAt), "d MMM yyyy")}
                                 />
                                 <CardMedia
                                     className={classes.media}
