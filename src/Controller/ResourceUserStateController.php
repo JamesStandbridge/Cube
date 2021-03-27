@@ -83,6 +83,37 @@ class ResourceUserStateController extends AbstractController
 		}
 	}
 
+	/**
+	 * @Route("/api/resource/aside", name="app_resource_aside", methods={"GET"})
+	 * @param  Request $request 
+	 */
+	public function asideResource(Request $request, ResourceUserStateRepository $repo) {
+		try {
+			$resourceID = $request->get('resource_id');
+			$user = $this->getUser();
+			$em = $this->getDoctrine()->getManager();
+			$resourceState = $repo->findByResourceID($resourceID, $user->getId());
+
+			if(!$resourceState) {
+				$resourceState = $this->initResourceState($em, $user, $resRepo->find($resourceID));
+				$resourceState->setIsAside(true);
+			} else {
+				$resourceState->setIsAside(!$resourceState->getIsAside());
+			}
+			
+			$em->persist($resourceState);
+			$em->flush();			
+	        return $this->json([
+	            'resourceState' => $resourceState
+	        ], 200, [], ['groups' => 'read:resource_state']);
+		} catch(ErrorException $e) {
+	        return $this->json([
+	            'error' => "bad request"
+	        ], 500);
+		}
+	}
+
+
 	private function initResourceState($em, $user, $resource) {
 		$resourceState = new ResourceUserState();
 		$resourceState->setUserEntity($user)

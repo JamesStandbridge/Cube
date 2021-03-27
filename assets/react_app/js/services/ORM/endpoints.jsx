@@ -36,6 +36,10 @@ const EndPoints = {
 		return `/api/resource/favorite?resource_id=${resourceId}`
 	},
 
+	URL_UPDATE_ASIDE_RESOURCE: function(resourceId) {
+		return `/api/resource/aside?resource_id=${resourceId}`
+	},
+
 	URL_EXPLOIT_RESOURCE: function(resourceId) {
 		return `/api/resource/exploited?resource_id=${resourceId}`
 	},

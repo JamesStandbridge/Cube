@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
 
-const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler}) => {
+const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch}) => {
     const [ resource, setResource ] = useState(null)
     const [ loading, setLoading ] = useState(true)
 
@@ -24,8 +24,10 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
         init()
 
         const stateIndex = ResourceUserStateHandler.resourceStates.findIndex(item => item.resource.id === resourceId)
-        if(ResourceUserStateHandler.resourceStates[stateIndex].isExploited === false) {
-          ResourceStateRepository.exploitResource(resourceId, AuthHandler.token).then(res => {})
+        if(stateIndex === -1 || ResourceUserStateHandler.resourceStates[stateIndex].isExploited === false) {
+          ResourceStateRepository.exploitResource(resourceId, AuthHandler.token).then(res => {
+            dispatch({type: "RESET_UPDATE_RESOURCE_STATES"})
+          })
         }
     }, [])
 
