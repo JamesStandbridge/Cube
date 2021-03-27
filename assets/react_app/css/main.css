@@ -132,8 +132,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app-bar.full {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: -15px;
+    height: 996px;
     left: 0px;
     width: 100%;   
     opacity: 0.9;
@@ -153,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app-body.full {
-    margin-top: 250px;
+    margin-top: 360px;
     width: calc(100% - 300px);
 }
 
