@@ -19,22 +19,27 @@ const CommentForm = ({ dispatch, resourceId, commentId, AuthHandler}) => {
         userEntity: {value:""},
     })
 
-
     const handleChange = (event) => {
         const value = event.currentTarget.value
         setComment({...comment, content: {...comment.content, value}})
     }
+
+
     const handleSubmit = () => {
-        let parentComment = ""
-        if (commentId !== "") {
-            parentComment =`api/comments/${commentId}`
-        }
-        const commentToSend = {
+        let commentToSend = {
             content: comment.content.value,
             resource:comment.resource.value ,
             createdAt:comment.createdAt.value,
-            parentComment:parentComment,
-            userEntity: `api/users/${AuthHandler.user.id}`
+            userEntity: `api/users/${AuthHandler.user.id}`,
+        }
+        if (commentId && commentId.isInt()) {
+           commentToSend = {
+                content: comment.content.value,
+                resource:comment.resource.value ,
+                createdAt:comment.createdAt.value,
+                userEntity: `api/users/${AuthHandler.user.id}`,
+                parentComment: `api/comments/${commentId}`
+            }
         }
         console.log(commentToSend)
         CommentRepository.create(commentToSend).then(res => {})

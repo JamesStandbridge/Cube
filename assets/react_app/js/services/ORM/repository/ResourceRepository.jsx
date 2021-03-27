@@ -42,6 +42,36 @@ const ResourceRepository = {
             HeaderBuilder.GET_HEADER(),
             resource.id
         )
+    },
+    getResourceAuthor : async function(resourceId) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_AUTHOR_RESOURCE(resourceId),
+            HeaderBuilder.GET_HEADER(),
+        )
+    },
+    getResourceType: async function(resourceId) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_TYPE_RESOURCE(resourceId),
+            HeaderBuilder.GET_HEADER(),
+        )
+    },
+    getResourceCategory: async function(resourceId) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_CATEGORY_RESOURCE(resourceId),
+            HeaderBuilder.GET_HEADER(),
+        )
+    },
+    getResourceContents: async function(resourceId) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_CONTENTS_RESOURCE(resourceId),
+            HeaderBuilder.GET_HEADER(),
+        )
+    },
+    getResourceAttribute: async function(contentId) {
+        return await HttpService.sendGetRequest(
+            EndPoints.URL_GET_ATTRIBUTE_RESOURCE(contentId),
+            HeaderBuilder.GET_HEADER(),
+        )
     }
 }
 

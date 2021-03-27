@@ -17,7 +17,7 @@
 }
 
 {
-    --colorWhite: #FFF8F0;
+    --colorWhite: #F8F8FF;
     --colorBlue: #0A0A73;
     --colorLightBlue: #117BCF;
     --colorYellow: #FF9F1C;
@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 .pro-sidebar > .pro-sidebar-inner {
     color: white;
     font-family: "OpenSans-SemiBold";
-    background-color: white;
+    background-color: #5F9EA0;
     /*	background-image: url(../img/background-vertical.png);*/
     color: black;
 }

@@ -3,13 +3,26 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ResourceContentValueRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceContentValueRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *     subresourceOperations={
+ *         "api_resources_content_get_subresource"={
+ *              "method"="GET",
+ *               "normalization_context"={
+ *                  "groups"={
+ *                      "contents:read"
+ *                  }
+ *              },
+ *              "path"="/resources/{id}/contents"
+ *          }
+ *     },
+ * )
  */
 class ResourceContentValue
 {
@@ -17,19 +30,20 @@ class ResourceContentValue
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"resource:read", "contents:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read", "resource:create", "contents:read"})
      */
     private $stringValue;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read", "resource:create", "contents:read"})
      */
     private $textValue;
 
@@ -42,7 +56,7 @@ class ResourceContentValue
     /**
      * @ORM\ManyToOne(targetEntity=ResourceAttribute::class)
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"resource:create"})
+     * @Groups({"resource:create", "contents:read"})
      */
     private $attribute;
 
