@@ -87,6 +87,14 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+    /**
+     * @Route("/admin/utilisateur", name="moderate_user")
+     */
+    public function moderateUsers()
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 
     /**
      * @Route("/categories/visualise", name="visualise_category")

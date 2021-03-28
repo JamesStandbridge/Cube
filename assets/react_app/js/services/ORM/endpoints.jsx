@@ -20,6 +20,15 @@ const EndPoints = {
 	URL_GET_TYPE_RELATION_SHIP: "/api/type_of_relationships",
 	URL_POST_RELATION: "/api/citizen-relationships",
 
+	//admin
+	URL_GET_UTILISATEUR_LIST: "/api/users",
+	URL_UPDATE_ENABLED_USER: function(userID) {
+		return `/api/resource/enabled?user_id=${userID}`
+	},
+	URL_GET_UTILISATEUR:function(userID) {
+		return `/api/users/${userID}`
+	},
+
 	//resources
 	URL_POST_RESOURCE: "/api/resources",
 	URL_GET_RESOURCE_LIST: "/api/resources",
