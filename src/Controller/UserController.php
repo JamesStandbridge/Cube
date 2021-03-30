@@ -17,28 +17,23 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route("/api/resource/enabled", name="app_resource_like", methods={"GET"})
+     * @Route("/api/resource/enabled", name="app_update_user_state", methods={"GET"})
      * @param Request $request
      * @param UtilisateursRepository $repo
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-	public function disabledUser(Request $request, UserRepository $repo) {
+	public function changeUserState(Request $request, UserRepository $repo) {
 		try {
 			$userID = $request->get('user_id');
 			$em = $this->getDoctrine()->getManager();
-			$User = $repo->getUser($userID);
+			$user = $repo->find($userID);
 
-			if($User->getEnabled() == true) {
-				$User->setEnabled(false);
-			} else {
-				$User->setEnabled(true);
-			}
-			
+			$user->setEnabled(!$user->isEnabled());
 
-			$em->persist($User);
+			$em->persist($user);
 			$em->flush();			
 	        return $this->json([
-	            'user' => $User
+	            'user' => $user
 	        ], 200, [], []);
 		} catch(ErrorException $e) {
 	        return $this->json([

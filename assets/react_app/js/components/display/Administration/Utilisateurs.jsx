@@ -13,25 +13,32 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import MUILink from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-
+import Chip from '@material-ui/core/Chip';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import UtilisateursRepository from '../../../services/ORM/repository/UtilisateursRepository'
 
-const Utilisateurs = ({AuthHandler}) => {
-   
-	const [ utilisateurs, setUtilisateurs ] = useState([])
+const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
+
+    const utilisateurs = UserListHandler.list
+
+    const fetchUsers = async () => {
+        const res = await UtilisateursRepository.getUtilisateurList(AuthHandler.token)
+        
+        dispatch({
+            type: "REPLACE_USER_LIST",
+            list: res.data["hydra:member"]
+        })
+    }
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const res = await UtilisateursRepository.getUtilisateurList(AuthHandler.token)
-			setUtilisateurs(res.data["hydra:member"])
-		}
-
-		fetchData()
-	} ,[])
+        if(UserListHandler.isUpdated === false || UserListHandler.list.length === 0) {
+            fetchUsers()
+        }
+	}, [UserListHandler.isUpdated])
 
     const handleChangeActivationCompte = (userID) => {
         UtilisateursRepository.updateUserEnabled(userID, AuthHandler.token)
-        
+        dispatch({type: "RESET_UPDATE_USER_LIST"})
     }
 
     
@@ -48,8 +55,7 @@ const Utilisateurs = ({AuthHandler}) => {
                             <TableCell align="right">Nom</TableCell>
                             <TableCell align="right">Prenom</TableCell>
                             <TableCell align="right">Username</TableCell>
-                            <TableCell align="right">Actif</TableCell>
-                            <TableCell align="right">Moderer</TableCell>
+                            <TableCell align="right">Statut</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -60,10 +66,26 @@ const Utilisateurs = ({AuthHandler}) => {
                                     <TableCell align="right">{utilisateur.lastname}</TableCell>
                                     <TableCell align="right">{utilisateur.firstname}</TableCell>
                                     <TableCell align="right">{utilisateur.username}</TableCell>
-                                    <TableCell align="right">{utilisateur.enabled ? 'Actif' : 'Inactif'}</TableCell>
-                                    <TableCell align="right" style={{cursor: "pointer"}}>
-                                            <Button onClick={() => {handleChangeActivationCompte}} variant="outlined">désactiver</Button>
-                                    </TableCell>               
+                                    <TableCell align="right">
+
+                                    {utilisateur.enabled ? (
+                                        <Chip
+                                            variant="outlined"
+                                            size="small"
+                                            label="Désactiver"
+                                            onClick={() => handleChangeActivationCompte(utilisateur.id)}
+                                            icon={<PowerSettingsNewIcon />}
+                                        />  
+                                    ) : (
+                                        <Chip
+                                            variant="outlined"
+                                            size="small"
+                                            label="Activer"
+                                            onClick={() => handleChangeActivationCompte(utilisateur.id)}
+                                            icon={<PowerSettingsNewIcon />}
+                                        />                              
+                                    )}
+                                    </TableCell>            
                                 </TableRow>
                             )
                         })}
