@@ -10,6 +10,7 @@ import ResourceTemplate from "./pages/app/front/resourceTemplate"
 
 import CreateCategory from "./pages/app/adminSpace/category/CreateCategory"
 import VisualiseCategory from "./pages/app/adminSpace/category/VisualiseCategory"
+import UserAdmin from "./pages/app/adminSpace/admin/UserAdmin"
 import RelationShips from "./pages/app/citizenSpace/RelationShips"
 import CreateResource from "./pages/app/citizenSpace/resourceManagement/CreateResource"
 import MyResources from "./pages/app/citizenSpace/resourceManagement/MyResources"
@@ -46,6 +47,7 @@ const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 				<Switch>
 					<AdminRoute path="/categories/creer" component={CreateCategory} />
 					<AdminRoute path="/categories/visualise" component={VisualiseCategory} />
+					<AdminRoute path="/admin/utilisateur" component={UserAdmin} />
 
 					<CitizenRoute path="/profil/details" component={Profile} />
 					<CitizenRoute path="/profil/relations" component={RelationShips} />
