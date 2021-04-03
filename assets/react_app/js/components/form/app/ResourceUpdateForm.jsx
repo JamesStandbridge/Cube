@@ -45,21 +45,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHandler}) {
+const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackbar, dispatch, AuthHandler}) {
 
     const classes = useStyles();
     const [ resource, setResource ] = useState({
-        title: {value: "", error: ""},
-        createdAt: {value: new Date()},
+        title: {value: currentResource.title , error: ""},
+        createdAt: {value: currentResource.createdAt},
+        updatedAt: {value: ""},
         author:{value: `/api/users/${AuthHandler.user.id}`},
         type: {
-            value:"",
+            value:currentResource.type.label,
         },
-        category: { value:""},
+        category: { value:currentResource.category.label},
         content: [{
-            stringValue: {value: ""},
-            textValue: {value: ""},
-            attribute:{value: ""}
+            stringValue: {value: currentResource.content.stringValue},
+            textValue: {value: currentResource.content.textValue},
+            attribute:{value: currentResource.content.attribute.label}
         }]
     })
     useEffect(() => {
@@ -383,14 +384,7 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps)(ResourceForm)
+export default connect(mapStateToProps)(ResourceUpdateForm)
 
-/*<Fab size="small"
-color="secondary"
-aria-label="add"
-className={classes.margin}
-onClick={addAttributeContent(click)}>
-    <AddIcon/>
-    </Fab>*/
 
 

@@ -16,7 +16,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/", name="entry")
      */
-    public function homepage()
+    public function homepage(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -25,7 +25,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function registerRoute()
+    public function registerRoute(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -34,7 +34,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login()
+    public function login(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -43,6 +43,30 @@ class RedirectController extends AbstractController
      * @Route("/profil/ressources/nouveau", name="resource_new")
      */
     public function createResource(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
+     * @Route("/profil/ressources/{id}/modifier", name="resource_update")
+     */
+    public function updateResource(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
+     * @Route("/profil/ressources/supprimer", name="resource_delete")
+     */
+    public function deleteResource(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
+     * @Route("/profil/mesRessources", name="my_resources")
+     */
+    public function getMyResources(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -58,7 +82,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function catalogue()
+    public function catalogue(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -74,7 +98,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/profil/details", name="user_profile")
      */
-    public function user_profile()
+    public function user_profile(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -82,7 +106,7 @@ class RedirectController extends AbstractController
     /**
      * @Route("/moderation/resources", name="register")
      */
-    public function moderateResources()
+    public function moderateResources(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -95,11 +119,19 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+    /**
+     * @Route("/admin/dashboardAdmin", name="dashboard_admin")
+     */
+    public function dashboardAdmin()
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 
     /**
      * @Route("/categories/visualise", name="visualise_category")
      */
-    public function visualiseCategory()
+    public function visualiseCategory(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
@@ -107,7 +139,8 @@ class RedirectController extends AbstractController
     /**
      * @Route("/profil/relations", name="user_relations")
      */
-    public function userRelations() {
+    public function userRelations(): Response
+    {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 

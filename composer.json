@@ -38,7 +38,8 @@
         "symfony/twig-pack": "^1.0",
         "symfony/validator": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "4.4.*"
+        "symfony/yaml": "4.4.*",
+      "ext-json": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",

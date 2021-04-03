@@ -29,13 +29,28 @@ const HeaderBuilder = {
 		}
 	},
 
+	PUT_HEADER_AUTHORIZATION: function(token) {
+		return {
+			"Content-type": "application/json",
+			"Authorization": "Bearer " + token,
+			"method": "PUT"
+		}
+	},
+
 	GET_HEADER_AUTHORIZATION: function(token) {
 		return {
 			"Content-type": "application/json",
 			"Authorization": "Bearer " + token,
 			"method": "GET"
 		}	
-	}
+	},
+    DELETE_HEADER_AUTHORIZATION: function(token) {
+		return {
+			'Content-Type' : 'application / json',
+			"Authorization": "Bearer " + token,
+			"method": "DELETE"
+		}
+    }
 };
 
 export default HeaderBuilder;

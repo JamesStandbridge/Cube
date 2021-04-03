@@ -362,7 +362,6 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                                 ) : (
                                                     <BookmarkBorderIcon />
                                                 )}
-
                                             </IconButton>
                                             <IconButton aria-label="share">
                                                 <ShareIcon />

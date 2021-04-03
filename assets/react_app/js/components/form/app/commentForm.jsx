@@ -9,7 +9,7 @@ import ResourceRepository from "../../../services/ORM/repository/ResourceReposit
 import {TextareaAutosize} from "@material-ui/core";
 import CommentRepository from "../../../services/ORM/repository/commentRepository";
 
-const CommentForm = ({ dispatch, resourceId, commentId, AuthHandler}) => {
+const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}) => {
 
     const [ comment, setComment ] = useState({
         content: {value:""},
@@ -24,25 +24,22 @@ const CommentForm = ({ dispatch, resourceId, commentId, AuthHandler}) => {
         setComment({...comment, content: {...comment.content, value}})
     }
 
-
     const handleSubmit = () => {
         let commentToSend = {
             content: comment.content.value,
-            resource:comment.resource.value ,
+            resource:comment.resource.value,
             createdAt:comment.createdAt.value,
             userEntity: `api/users/${AuthHandler.user.id}`,
+            parentComment: commentId ? `api/comments/${commentId}`: ""
         }
-        if (commentId && commentId.isInt()) {
-           commentToSend = {
-                content: comment.content.value,
-                resource:comment.resource.value ,
-                createdAt:comment.createdAt.value,
-                userEntity: `api/users/${AuthHandler.user.id}`,
-                parentComment: `api/comments/${commentId}`
-            }
-        }
+
         console.log(commentToSend)
-        CommentRepository.create(commentToSend).then(res => {})
+        CommentRepository.create(commentToSend).then(res => {
+            if(res.status === 201) {
+                //commentId ? onCloseModal(): null
+                refresh()
+            }
+        })
     }
 
     return (
@@ -60,7 +57,7 @@ const CommentForm = ({ dispatch, resourceId, commentId, AuthHandler}) => {
                 color='primary'
                 variant="contained"
                 >
-                Envoyer
+                Laisser un commentaire
             </Button>
         </div>
     )

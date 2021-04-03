@@ -46,7 +46,8 @@ const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
 	console.log(utilisateurs)
 
 	return (
-		<div>            
+		<div>  
+            <h3>Tableau des citoyens</h3>          
 			<TableContainer component={Paper}>
                 <Table  size="small" aria-label="a dense table">
                     <TableHead>

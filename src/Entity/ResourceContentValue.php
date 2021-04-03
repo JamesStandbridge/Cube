@@ -11,17 +11,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=ResourceContentValueRepository::class)
  * @ApiResource(
- *     subresourceOperations={
- *         "api_resources_content_get_subresource"={
- *              "method"="GET",
- *               "normalization_context"={
- *                  "groups"={
- *                      "contents:read"
- *                  }
- *              },
- *              "path"="/resources/{id}/contents"
- *          }
- *     },
  * )
  */
 class ResourceContentValue
