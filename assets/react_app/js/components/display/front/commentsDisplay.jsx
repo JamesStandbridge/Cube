@@ -90,6 +90,7 @@ const CommentsDisplay = ({resourceId}) => {
                 comments.map(parentComment => (
                     <div key={parentComment.id} parent={null} response={parentComment.id}
                     >{isParentResponseComment(parentComment, parentComment.id)}
+
                     {
                         comments.map(responseComment => (
                             <div key={responseComment.id} parent={(parentComment.id)} response={responseComment.id}>

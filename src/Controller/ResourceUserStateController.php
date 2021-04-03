@@ -8,6 +8,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,9 +28,10 @@ class ResourceUserStateController extends AbstractController
      * @param Request $request
      * @param ResourceUserStateRepository $repo
      * @param ResourceRepository $resRepo
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
-	public function likeResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo) {
+	public function likeResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo): JsonResponse
+    {
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
@@ -61,9 +63,10 @@ class ResourceUserStateController extends AbstractController
      * @Route("/api/resource/exploited", name="app_resource_exploit", methods={"GET"})
      * @param Request $request
      * @param ResourceUserStateRepository $resRepo
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
-	public function exploitResource(Request $request, ResourceUserStateRepository $resRepo) {
+	public function exploitResource(Request $request, ResourceUserStateRepository $resRepo): JsonResponse
+    {
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
@@ -88,11 +91,15 @@ class ResourceUserStateController extends AbstractController
 		}
 	}
 
-	/**
-	 * @Route("/api/resource/aside", name="app_resource_aside", methods={"GET"})
-	 * @param  Request $request 
-	 */
-	public function asideResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo) {
+    /**
+     * @Route("/api/resource/aside", name="app_resource_aside", methods={"GET"})
+     * @param Request $request
+     * @param ResourceUserStateRepository $repo
+     * @param ResourceRepository $resRepo
+     * @return JsonResponse
+     */
+	public function asideResource(Request $request, ResourceUserStateRepository $repo, ResourceRepository $resRepo): JsonResponse
+    {
 		try {
 			$resourceID = $request->get('resource_id');
 			$user = $this->getUser();
@@ -119,7 +126,8 @@ class ResourceUserStateController extends AbstractController
 	}
 
 
-	private function initResourceState($em, $user, $resource) {
+	private function initResourceState($em, $user, $resource): ResourceUserState
+    {
 		$resourceState = new ResourceUserState();
 		$resourceState->setUserEntity($user)
 					  ->setIsFavorite(false)
@@ -134,7 +142,8 @@ class ResourceUserStateController extends AbstractController
 	 * @Route("/api/resource-user-states", name="app_resource_states_get", methods={"GET"})
 	 * @param  ResourceUserStateRepository $repo
 	 */
-	public function getStates(ResourceUserStateRepository $repo) {
+	public function getStates(ResourceUserStateRepository $repo): JsonResponse
+    {
 		$user = $this->getUser();
 		$states = $repo->findAllByUser($user->getId());
 

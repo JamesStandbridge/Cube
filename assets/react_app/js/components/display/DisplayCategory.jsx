@@ -55,7 +55,6 @@ const DisplayCategory = ({AuthHandler, update}) => {
                         {
                         categories.map(category => (
                             <p key={category.id}>{category.label}</p>
-
                         ))
                         } 
                         </TableCell>

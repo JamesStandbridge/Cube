@@ -19,6 +19,19 @@ const AxiosService = {
 			headers: headers
 		})
 		return res
+	},
+
+	sendDeleteRequest: async function(url, headers){
+		return await axios.get(url, {
+			headers: headers
+		})
+
+	},
+
+	sendPutRequest: async function(url, headers, body) {
+    	return await axios.put(url,body,{
+    		headers:headers
+		})
 	}
 };
 

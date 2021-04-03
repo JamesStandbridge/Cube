@@ -158,9 +158,6 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                     </IconButton>
                                 </CardActions>
                             </Card>
-                            {/*    <h5><a href={`/catalogue/${resource.id}`}>{resource.title}</a></h5>*/}
-                            {/*<p>{resource.createdAt}</p>*/}
-                            {/*<p>{resource.category.label}</p>*/}
 
                         </GridListTile>
                     )

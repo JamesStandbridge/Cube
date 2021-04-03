@@ -29,12 +29,6 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
         }
     }, [])
 
-
-    //const [ author, setAuthor ] = useState([])
-    //const [ type, setType ] = useState([])
-    //const [ category, setCategory ] = useState([])
-    //const [ contents, setContents ] = useState([])
-
     const checkTagModel=(label, content) => {
         console.log(label)
         if (content.textValue) {

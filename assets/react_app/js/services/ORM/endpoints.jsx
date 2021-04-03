@@ -56,21 +56,13 @@ const EndPoints = {
 
 	URL_POST_RESOURCE_TYPE_LIST: "/api/resource_types",
 	URL_POST_RESOURCE_ATTRIBUTES_LIST: "/api/resource_attributes",
-    URL_GET_AUTHOR_RESOURCE: function (resourceId) {
-        return `/api/resources/${resourceId}/author`
-    },
-	URL_GET_TYPE_RESOURCE: function(resourceId) {
-		return `/api/resources/${resourceId}/type`;
+
+	URL_GET_MY_RESOURCES: function(currentUserId) {
+		return `/api/users/${currentUserId}/resources`;
 	},
-	URL_GET_CATEGORY_RESOURCE: function (resourceId) {
-		return `/api/resources/${resourceId}/category`;
-	},
-	URL_GET_CONTENTS_RESOURCE: function (resourceId) {
-		return `/api/resources/${resourceId}/contents`;
-	},
-	URL_GET_ATTRIBUTE_RESOURCE: function(contentId) {
-		return `/api/resource_content_values/${contentId}/attribute`;
-	}
+    URL_DELETE_RESOURCE: function(resourceId) {
+		return `/api/resources/${resourceId}`
+    }
 }
 	export default EndPoints
 

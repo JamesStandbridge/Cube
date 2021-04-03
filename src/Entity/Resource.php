@@ -23,11 +23,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     order={"createdAt"="DESC"},
  *     paginationEnabled=true,
  *     subresourceOperations={
- *          "api_resources_type_get_subresource"={
+ *          "api_user_resources_get_subresource"={
  *              "method"="GET",
- *              "path"="/resources/{id}/type",
- *           },
- *
+ *              "path"="/user/{id}/resources",
+ *          }
  *     }
  * )
  */
@@ -47,7 +46,7 @@ class Resource
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"resource:read", "resource:create"})
+     * @Groups({"resource:read", "resource:create", "resource:update"})
      * @groups("read:resource_state")
      * @groups("read:resources")
      */
@@ -55,7 +54,6 @@ class Resource
 
     /**
      * @ORM\ManyToOne(targetEntity=ResourceType::class, inversedBy="resources")
-     * @ApiSubresource(maxDepth=1)
      * @Groups({"resource:read", "resource:create"})
      * @groups("read:resources")
      */
@@ -90,7 +88,6 @@ class Resource
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resources")
-     * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
      * @groups("read:resources")
      */
@@ -99,7 +96,6 @@ class Resource
     /**
      * @ORM\OneToMany(targetEntity=ResourceContentValue::class, mappedBy="resource", cascade="persist")
      * @ORM\JoinColumn(nullable=true)
-     * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
      */
     private $content;
@@ -121,7 +117,6 @@ class Resource
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="resources")
-     * @ApiSubresource
      * @Groups({"resource:read", "resource:create"})
      * @groups("read:resources")
      */

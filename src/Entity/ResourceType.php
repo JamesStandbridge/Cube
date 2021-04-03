@@ -13,12 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=ResourceTypeRepository::class)
  * @ApiResource(
- *      subresourceOperations={
- *          "api_resource_type_attributes_get_subresource"={
- *              "method"="GET",
- *              "path"="resource_types/{id}/attributes",
- *           }
- *     }
  * )
  */
 class ResourceType
@@ -47,7 +41,6 @@ class ResourceType
     /**
      * @ORM\ManyToMany(targetEntity=ResourceAttribute::class)
      * @ORM\JoinColumn(nullable=true)
-     * @ApiSubresource
      */
     private $attributes;
 
