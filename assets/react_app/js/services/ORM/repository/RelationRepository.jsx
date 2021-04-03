@@ -21,7 +21,7 @@ const RelationRepository = {
 	getRelationTypes: async function(token) {
 		const res = await HttpService.sendGetRequest(
 			EndPoints.URL_GET_TYPE_RELATION_SHIP,
-			HeaderBuilder.GET_HEADER_AUTHORIZATION(token)
+			HeaderBuilder.GET_HEADER()
 		)
 
 		return res.data['hydra:member']

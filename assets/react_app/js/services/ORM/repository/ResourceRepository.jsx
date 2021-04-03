@@ -10,8 +10,15 @@ import EndPoints from "../endpoints";
 
 const ResourceRepository = {
 
+    searchResources: async function (filters) {
+        return await HttpService.sendPostRequest(
+            EndPoints.URL_SEARCH_RESOURCES,
+            HeaderBuilder.POST_HEADER(),
+            filters
+        )
+    },
+
     getResourceList: async function() {
-        //console.log(resource)
         return await HttpService.sendGetRequest(
             EndPoints.URL_GET_RESOURCE_LIST,
             HeaderBuilder.GET_HEADER(),

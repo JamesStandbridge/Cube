@@ -51,7 +51,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
     const [ resource, setResource ] = useState({
         title: {value: currentResource.title , error: ""},
         createdAt: {value: currentResource.createdAt},
-        updatedAt: {value: ""},
+        updatedAt: {value: new Date()},
         author:{value: `/api/users/${AuthHandler.user.id}`},
         type: {
             value:currentResource.type.label,
@@ -63,6 +63,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
             attribute:{value: currentResource.content.attribute.label}
         }]
     })
+
     useEffect(() => {
         const init = async () => {
             let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token);
@@ -76,7 +77,6 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
             let resCat = await CategoryRepository.getCategoriesList();
             const resourceCategories = resCat.data["hydra:member"];
             setResourceCategoryList(resourceCategories);
-
         }
         init()
     }, [])
@@ -131,11 +131,11 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
         //let contentType = resource.content.textValue !== "" ? 'textValue':'stringValue';
         //let value = resource.content.textValue !== "" ? resource.content.textValue.value : resource.content.stringValue.value
         const resourceToSend = {
-
             author:resource.author.value,
             title: resource.title.value,
             type: resourceType,
             createdAt: resource.createdAt.value,
+            updatedAt: resource.updatedAt.value,
             content: [
                 {
                     stringValue: resource.content.textValue.value,
@@ -183,7 +183,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
                                     variant="outlined"
                                     onChange={handleChange}
                                     size="small"
-                                />
+                                >{currentResource.content.textValue}</TextareaAutosize>
                             </div>
                         )
                     case 'file':
@@ -204,7 +204,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
                                 variant="outlined"
                                 onChange={handleChange}
                                 size="small"
-                            />)
+                            >{currentResource.content.stringValue}</TextField>)
 
                 }
             }
@@ -257,6 +257,8 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
 
     let i;
     let click;
+
+
     return (
         <div>
 
@@ -269,7 +271,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
                         onChange={handleChange}
                         helperText={resource.title.error}
                         size="small"
-                    />
+                    >{currentResource.title}</TextField>
                 ) : (
                     <TextField
     title="Title"
@@ -337,14 +339,23 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
                                     label="resourceAttribute"
 
                                 >
+
                                     {
-                                        resourceAttributes.map(
-                                            resourceAttribute => (
-                                                <MenuItem key={'/api/resource_attributes/' + resourceAttribute.id}
-                                                          value={'/api/resource_attributes/' + resourceAttribute.id}
-                                                >
-                                                    {resourceAttribute.label} {resourceAttribute.type}
-                                                </MenuItem>
+                                        resourceTypeList.map(
+                                            resourceTypeSelect => (
+                                                resourceType === '/api/resource_types/'+ resourceTypeSelect.id ?
+                                                    (
+                                                        resourceTypeSelect.attributes.map(
+                                                            resourceAttribute => (
+                                                                <MenuItem
+                                                                    key={'/api/resource_attributes/' + resourceAttribute.id}
+                                                                    value={'/api/resource_attributes/' + resourceAttribute.id}
+                                                                >
+                                                                    {resourceAttribute.label} {resourceAttribute.type}
+                                                                </MenuItem>
+                                                            )
+                                                        )
+                                                    ): null
                                             )
                                         )
                                     }

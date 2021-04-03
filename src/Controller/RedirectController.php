@@ -119,6 +119,14 @@ class RedirectController extends AbstractController
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }
 
+    /**
+     * @Route("/admin/dashboardAdmin", name="dashboard_admin")
+     */
+    public function dashboardAdmin()
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
 
     /**
      * @Route("/categories/visualise", name="visualise_category")

@@ -1,19 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
-import CategoryRepository from "../../../services/ORM/repository/CategoryRepository"
-
-import { wrapComponent } from 'react-snackbar-alert';
 
 import styled from 'styled-components'
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import {Delete} from "@material-ui/icons";
 
-require("../../../../css/category.css");
+
 
 const ResourceDeleteConfirmation = ({ dispatch,resourceId,AuthHandler, onCloseModal, refresh}) => {
 
@@ -47,7 +41,7 @@ const ResourceDeleteConfirmation = ({ dispatch,resourceId,AuthHandler, onCloseMo
 
                     <Button
                         onClick={handleSubmit}
-                        color='primary'
+                        color='danger'
                         variant="contained"
                         value="supprimer"
                     >

@@ -8,6 +8,10 @@ body {
 	background-color: white;
 }
 
+body .MuiCheckbox-colorSecondary.Mui-checked {
+    color: #fe4a49;
+}
+
 .pro-sidebar > .pro-sidebar-inner {
     font-family: "OpenSans-SemiBold";
     background-color: $infoColor;

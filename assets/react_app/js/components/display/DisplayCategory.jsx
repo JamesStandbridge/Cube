@@ -42,7 +42,7 @@ const DisplayCategory = ({AuthHandler, update}) => {
 
     return (
     	<div>
-            <h1>CATEGORIE</h1>
+            <h3>Tableau des catégories</h3>
             <TableContainer component={Paper}> 
                 <Table className={classes.table} aria-label="customized table">
                     <TableHead>
