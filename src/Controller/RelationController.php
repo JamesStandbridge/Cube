@@ -86,4 +86,17 @@ class RelationController extends AbstractController
             'relations' => $relations
         ], 200, [], ['groups'=>'app:read:relations']);
     }
+
+    /**
+     * @Route("/public/type-of-relationships", name="api_get_public_relations")
+     * @param  TypeOfRelationshipRepository $repo
+     * @return [type]                             
+     */
+    public function getRelations(TypeOfRelationshipRepository $repo)
+    {
+        $relations = $repo->findAll();
+        return $this->json([
+            'relations' => $relations
+        ], 200, [], ['groups'=>'app:read:relations']);        
+    }
 }

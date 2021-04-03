@@ -48,6 +48,7 @@ security:
         - { path: ^/api/resource_attributes, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/resource_types, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/categories, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/type_of_relationships, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/comments/, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/,         roles: IS_AUTHENTICATED_FULLY }

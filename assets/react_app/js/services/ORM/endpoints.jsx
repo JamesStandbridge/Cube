@@ -33,6 +33,7 @@ const EndPoints = {
 	URL_POST_RESOURCE: "/api/resources",
 	URL_GET_RESOURCE_LIST: "/api/resources",
 	URL_GET_NEW_RESOURCES: "/api/resources/new",
+	URL_SEARCH_RESOURCES: "/xhr/search-resources",
 
 	URL_MODERATE_RESOURCE: "/api/resources/moderate",
 

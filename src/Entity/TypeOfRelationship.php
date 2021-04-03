@@ -12,7 +12,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TypeOfRelationshipRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('IS_AUTHENTICATED_FULLY')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "get"={"security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *     }
+ * )
  */
 class TypeOfRelationship
 {

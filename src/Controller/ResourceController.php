@@ -22,6 +22,23 @@ use App\Entity\Resource;
 
 class ResourceController extends AbstractController
 {
+
+	/**
+	 * @Route("/xhr/search-resources", name="xhr_search_resources", methods={"POST"})
+	 * @param  Request            $request
+	 * @param  ResourceRepository $repo    
+	 */
+	public function search(Request $request, ResourceRepository $repo) {
+		
+		$filters = json_decode($request->getContent(), true);
+
+		$resources = $repo->search($filters, 15);
+
+        return $this->json([
+            'resources' => $resources
+        ], 200);
+	}
+
 	/**
 	 * @Route("/api/resources/new", name="app_resource_new_get", methods={"GET"})
 	 * 
