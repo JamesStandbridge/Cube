@@ -33,7 +33,7 @@ const AdminLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 					</SidebarHeader>
 					<SidebarContent>
 						<Menu iconShape="square" popperArrow={true}>
-							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/compte/boutiques" replace/> </MenuItem>
+							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/admin/dashboard" replace/> </MenuItem>
 							<MenuItem className="sub-item"> Catégories <Link to="/categories/visualise" replace/></MenuItem>
 							<MenuItem className="sub-item"> Utilisateurs <Link to="/admin/utilisateur" replace/></MenuItem>
 						</Menu>

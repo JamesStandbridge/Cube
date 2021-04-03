@@ -10,7 +10,7 @@ const UpdateResource = (resource) => {
                 <h1>Modifier une ressource</h1>
             </div>
             <div>
-                <ResourceUpdateForm currentResource{resource}/>
+                <ResourceUpdateForm currentResource = {resource}/>
             </div>
         </Layout>
     )
