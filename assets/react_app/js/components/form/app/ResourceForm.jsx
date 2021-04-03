@@ -22,10 +22,7 @@ import ResourceAttributeRepository from "../../../services/ORM/repository/Resour
 import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository";
 import CategoryRepository from "../../../services/ORM/repository/CategoryRepository";
 
-
-
 require("../../../../css/resource.css");
-
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -48,6 +45,13 @@ const useStyles = makeStyles((theme) => ({
 const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHandler}) {
 
     const classes = useStyles();
+    const [ loading, setLoading ] = useState(true)
+    const [ resourceAttributes, setResourceAttributesList ] = useState([])
+    const [ resourceTypeList, setResourceTypeList ] = useState([])
+    const [ resourceCategoryList, setResourceCategoryList ] = useState([]);
+    const [ resourceType, setResourceType ] = useState( '')
+    const [ resourceAttribute, setResourceAttribute ] = useState( '')
+    const [ resourceCategory, setResourceCategory ] = useState( '')
     const [ resource, setResource ] = useState({
         title: {value: "", error: ""},
         createdAt: {value: new Date()},
@@ -56,12 +60,15 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
             value:"",
         },
         category: { value:""},
-        content: [{
-            stringValue: {value: ""},
-            textValue: {value: ""},
-            attribute:{value: ""}
-        }]
+        content: [
+            {
+                stringValue: {value: ""},
+                textValue: {value: ""},
+                attribute:{value: ""}
+            }
+        ]
     })
+
     useEffect(() => {
         const init = async () => {
             let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token);
@@ -75,17 +82,12 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
             let resCat = await CategoryRepository.getCategoriesList();
             const resourceCategories = resCat.data["hydra:member"];
             setResourceCategoryList(resourceCategories);
+            setLoading(false)
 
         }
+        setLoading(true)
         init()
     }, [])
-
-    const [ resourceAttributes, setResourceAttributesList ] = useState([])
-    const [resourceTypeList, setResourceTypeList] = useState([])
-    const [resourceCategoryList, setResourceCategoryList] = useState([]);
-    const [ resourceType, setResourceType ] = useState( '')
-    const [ resourceAttribute, setResourceAttribute ] = useState( '')
-    const [ resourceCategory, setResourceCategory ] = useState( '')
 
 
 
@@ -105,15 +107,18 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
             {
                 ...resource,
                 title: {...resource.title, value, error: ""},
-                content: [{
-                    stringValue: {...resource.content.stringValue, value},
-                    textValue: {...resource.content.textValue, value}
-                }]
+                content: [
+                    {
+                        stringValue: {...resource.content.stringValue, value},
+                        textValue: {...resource.content.textValue, value}
+                    }
+                ]
             }
         )
+
         console.log(resource)
     }
-    console.log(resource)
+
     const handleChangeType = (event) => {
         setResourceType(event.target.value)
     }
@@ -127,24 +132,30 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
     }
 
     const handleSubmit = () => {
+        console.log(resource.content[0].textValue.value)
+        console.log(resource.content[0].stringValue.value)
         //let contentType = resource.content.textValue !== "" ? 'textValue':'stringValue';
         //let value = resource.content.textValue !== "" ? resource.content.textValue.value : resource.content.stringValue.value
+
+
         const resourceToSend = {
 
             author:resource.author.value,
             title: resource.title.value,
             type: resourceType,
             createdAt: resource.createdAt.value,
-            content: [
+            content:[
                 {
-                    stringValue: resource.content.textValue.value,
-                    textValue: resource.content.textValue.value,
+                    stringValue: resource.content[0].stringValue.value,
+                    textValue: resource.content[0].textValue.value,
                     attribute: resourceAttribute
                 }
-            ],
+            ]
+            ,
             category: resourceCategory
         }
         console.log(resourceToSend)
+
         ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
             showSnackbar('success', "Nouvelle ressource enregistrée")
         })
@@ -165,14 +176,15 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
 
         let attribute = attributeUri.resourceAttribute.split('/')
         let attributeIdSelect = attribute[3]
-        console.log(typeof(attributeIdSelect))
         let  contentType=""
 
         for (let i = 0; i < attributes.resourceAttributes.length; i++) {
             let id = attributes.resourceAttributes[i].id
+            //let id = attributes.resourceAttributes.id
 
             if (id.toString() === attributeIdSelect ) {
                 contentType = attributes.resourceAttributes[i].type
+                //contentType = attributes.resourceAttributes.type
                 switch (contentType) {
                     case 'textArea':
                         return (
@@ -208,10 +220,6 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
                 }
             }
        }
-    }
-
-    const viewAttribute=()=>{
-
     }
 
     const addAttributeContent=(click)=> {
@@ -257,8 +265,10 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
     let i;
     let click;
     return (
-        <div>
 
+        <div>
+            {loading ? null : (
+                <div>
             {
                 resource.title.error !== "" ? (
                     <TextField
@@ -271,11 +281,11 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
                     />
                 ) : (
                     <TextField
-    title="Title"
-    variant="outlined"
-    onChange={handleChange}
-    size="small"
-    />
+                        title="Title"
+                        variant="outlined"
+                        onChange={handleChange}
+                        size="small"
+                    />
                 )}
             <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="resourceCategory-label">resourceCategory</InputLabel>
@@ -337,13 +347,20 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
 
                                 >
                                     {
-                                        resourceAttributes.map(
-                                            resourceAttribute => (
-                                                <MenuItem key={'/api/resource_attributes/' + resourceAttribute.id}
-                                                          value={'/api/resource_attributes/' + resourceAttribute.id}
-                                                >
-                                                    {resourceAttribute.label} {resourceAttribute.type}
-                                                </MenuItem>
+                                        resourceTypeList.map(
+                                            resourceTypeSelect => (
+                                                resourceType === '/api/resource_types/'+ resourceTypeSelect.id ? (
+                                                    resourceTypeSelect.attributes.map(
+                                                        resourceAttribute => (
+                                                            <MenuItem
+                                                                key={'/api/resource_attributes/' + resourceAttribute.id}
+                                                                value={'/api/resource_attributes/' + resourceAttribute.id}
+                                                            >
+                                                                {resourceAttribute.label} {resourceAttribute.type}
+                                                            </MenuItem>
+                                                            )
+                                                        )
+                                                ): null
                                             )
                                         )
                                     }
@@ -375,6 +392,8 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
                 Envoyer
             </Button>
 
+                </div>
+            )}
         </div>
     )
 })

@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ResourceAttributeRepository::class)
- * @ApiResource
+ * @ApiResource( normalizationContext={"groups"="type:read"})
  */
 class ResourceAttribute
 {
@@ -17,17 +17,19 @@ class ResourceAttribute
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"type:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"resource:read", "contents:read"})
+     * @Groups({"resource:read", "contents:read", "type:read"})
      */
     private $label;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"type:read"})
      */
     private $type;
 
