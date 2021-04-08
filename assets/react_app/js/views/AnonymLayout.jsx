@@ -66,7 +66,8 @@ const AppBar = styled.div`
 	background-image: url(${WaveSVG});
 	background-image: rebeccapurple;
     background-repeat: no-repeat;
-    background-size: 100% 42.555%;
+    background-size: 100% 180%; 
+	
 `
 
 const AppActions = styled.div`

@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ResourceContentValueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -48,6 +50,12 @@ class ResourceContentValue
      * @Groups({"resource:create", "contents:read", "resource:read"})
      */
     private $attribute;
+
+    /**
+     * @ORM\OneToOne(targetEntity=MediaObject::class, mappedBy="resourceContentValue", cascade={"persist", "remove"})
+     * @Groups({"resource:read", "resource:create", "contents:read"})
+     */
+    private $mediaObject;
 
     public function getId(): ?int
     {
@@ -98,6 +106,28 @@ class ResourceContentValue
     public function setAttribute(?ResourceAttribute $attribute): self
     {
         $this->attribute = $attribute;
+
+        return $this;
+    }
+
+    public function getMediaObject(): ?MediaObject
+    {
+        return $this->mediaObject;
+    }
+
+    public function setMediaObject(?MediaObject $mediaObject): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($mediaObject === null && $this->mediaObject !== null) {
+            $this->mediaObject->setResourceContentValue(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($mediaObject !== null && $mediaObject->getResourceContentValue() !== $this) {
+            $mediaObject->setResourceContentValue($this);
+        }
+
+        $this->mediaObject = $mediaObject;
 
         return $this;
     }

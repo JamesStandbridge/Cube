@@ -39,11 +39,7 @@ const CommentsDisplay = ({resourceId}) => {
 
     const [ comments, setComments ] = useState([])
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
-    const isCommentsNull = ()=>{
-
-    }
     const viewComment=(comment)=> {
         return(
             <Card key={comment.id} className={classes.root}>
@@ -85,19 +81,34 @@ const CommentsDisplay = ({resourceId}) => {
     return (
         <div>
             {console.log('RENDER', comments )}
-            <p>Card Comment</p>
+            <p>Il y a {comments.length} commentaires : </p>
             {
-                comments.map(parentComment => (
-                    <div key={parentComment.id} parent={null} response={parentComment.id}
-                    >{isParentResponseComment(parentComment, parentComment.id)}
-
-                    {
-                        comments.map(responseComment => (
-                            <div key={responseComment.id} parent={(parentComment.id)} response={responseComment.id}>
-                                {isParentResponseComment(responseComment, parentComment.id)}
-                            </div>
-                        ))
-                    }
+                comments.map(comment => (
+                    <div key={comment.id}>
+                        <Card key={comment.id} className={classes.root}>
+                        <CardContent>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom>
+                                Commenté le {comment.createdAt} par {comment.userEntity.firstname}
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                {comment.content}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <CustomModal
+                                btnTitle={"Répondre"}
+                            >
+                                <div style={{
+                                    position: 'absolute',
+                                    left: '50%',
+                                    top: '50%',
+                                    transform: 'translate(-50%, -50%)'
+                                }}>
+                                    <CommentForm resourceId = {resourceId} commentId = {comment.id}/>
+                                </div>
+                            </CustomModal>
+                        </CardActions>
+                    </Card>
                     </div>
                 ))
             }

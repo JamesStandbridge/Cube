@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import {Container, CssBaseline} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-
+import parse from 'html-react-parser';
 import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 
@@ -33,7 +33,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
         console.log(label)
         if (content.textValue) {
             return (
-                <div>{content.textValue}</div>
+                <div>{parse(content.textValue)}</div>
             )
         }
 
@@ -72,8 +72,6 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
        }
     }
 
-
-
     return (
         <div>
             {loading ? null : (
@@ -86,7 +84,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                     <div>{resource.createdAt}</div>
                     <div>{resource.author.email}</div>
                     <div>{resource.category.label}</div>
-                        <div>{resource.type.label}</div>
+                    <div>{resource.type.label}</div>
 
                         <div>
                             {

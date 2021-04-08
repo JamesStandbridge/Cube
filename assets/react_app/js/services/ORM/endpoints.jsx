@@ -43,6 +43,7 @@ const EndPoints = {
 	URL_MODERATE_RESOURCE: "/api/resources/moderate",
 
 	URL_GET_RESOURCE: function(resourceId) {
+		console.log(resourceId)
 		return `/api/resources/${resourceId}`
 	},
 
@@ -77,7 +78,11 @@ const EndPoints = {
 	},
     URL_DELETE_RESOURCE: function(resourceId) {
 		return `/api/resources/${resourceId}`
-    }
+    },
+	URL_PUT_RESOURCE: function (resourceId) {
+		return `/api/resources/${resourceId}`;
+	},
+    URL_UPLOAD_RESOURCE : "/public/uploads"
 }
 	export default EndPoints
 
