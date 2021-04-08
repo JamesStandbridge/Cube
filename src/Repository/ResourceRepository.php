@@ -76,6 +76,7 @@ class ResourceRepository extends ServiceEntityRepository
         if(count($filters['relations']) > 0) {
             $query .= " HAVING count(R.id) = ".count($filters['relations']);
         }
+        $query .= " ORDER BY R.created_at DESC";
         $query .= " LIMIT ".$limit." OFFSET ".$filters['page'];
         $stmt = $conn->prepare($query);
         $stmt->execute($params);

@@ -37,4 +37,14 @@ class StatsController extends AbstractController
             'serie' => $serie
         ], 200);    
 	}
+
+	/**
+	 * @Route("/api/user/kpi", name="app_get_kpi")
+	 * @param  DataProvider $provider 
+	 */
+	public function getMainKPI(DataProvider $provider)
+	{
+		$user = $this->getUser();
+		dd();
+	}
 }
