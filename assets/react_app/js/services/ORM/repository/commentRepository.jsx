@@ -6,6 +6,7 @@ import EndPoints from "../endpoints";
 const CommentRepository = {
 
     create: async function (comment) {
+        console.log(comment)
         const res = await HttpService.sendPostRequest(
             EndPoints.URL_POST_COMMENT,
             HeaderBuilder.POST_HEADER(),

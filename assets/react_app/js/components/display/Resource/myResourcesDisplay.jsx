@@ -19,6 +19,7 @@ import UserRepository from "../../../services/ORM/repository/userRepository";
 import CommentForm from "../../form/app/commentForm";
 import CustomModal from "../../modals/Modal";
 import {Delete} from "@material-ui/icons";
+import Button from "@material-ui/core/Button";
 
 const MyResourcesDisplay = ({AuthHandler}) => {
 
@@ -65,7 +66,7 @@ const MyResourcesDisplay = ({AuthHandler}) => {
 											{`voir`}
 										</MUILink>
 									</Link>
-									<Link to={`/profil/ressources/${resource.id}/modifier`} currentresource={resource}>
+									<Link currentResource={resource.id} to={`/profil/ressources/${resource.id}/modifier`} >
 										<MUILink style={{cursor: "pointer"}}>
 											{`modifier`}
 										</MUILink>

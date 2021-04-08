@@ -12,16 +12,20 @@ import {Delete} from "@material-ui/icons";
 const ResourceDeleteConfirmation = ({ dispatch,resourceId,AuthHandler, onCloseModal, refresh}) => {
 
     const handleSubmit = () => {
-            ResourceRepository.deleteResource(resourceId, AuthHandler.token).then(res => {
-                if(res.status === 204) {
-                    onCloseModal()
-                    refresh()
-                }
-            })
+
+    }
+
+    function handleRemove() {
+        ResourceRepository.deleteResource(resourceId, AuthHandler.token).then(res => {
+            if(res.status === 204) {
+                onCloseModal()
+                refresh()
+            }
+        })
     }
 
     return (
-        <div               style={{
+        <div style={{
             position: 'absolute',
             left: '50%',
             top: '50%',
@@ -33,17 +37,17 @@ const ResourceDeleteConfirmation = ({ dispatch,resourceId,AuthHandler, onCloseMo
                     <Button
                         onClick={null}
                         color='primary'
-                        variant="true"
+                        variant="contained"
                         value={false}
                     >
                         Annuler
                     </Button>
 
                     <Button
-                        onClick={handleSubmit}
-                        color='danger'
+                        onClick={handleRemove}
+                        color='secondary'
                         variant="contained"
-                        value="supprimer"
+                        value={resourceId}
                     >
                        supprimer
                     </Button>

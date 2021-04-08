@@ -30,7 +30,7 @@ const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}
             resource:comment.resource.value,
             createdAt:comment.createdAt.value,
             userEntity: `api/users/${AuthHandler.user.id}`,
-            parentComment: commentId ? `api/comments/${commentId}`: ""
+            parentComment: commentId ? `api/comments/${commentId}`: null
         }
 
         console.log(commentToSend)
