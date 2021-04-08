@@ -27,7 +27,14 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
             title: {
                 text: 'Traffic sur vos ressources'
             },
+            colors:['#577590', '#fb4a49'], 
+            markers: {
+                colors: ['#577590', '#fb4a49']
+            },
             dataLabels: {
+                style: {
+                    colors:['#577590', '#fb4a49']
+                },
                 enabled: true,
                 enabledOnSeries: [1]
             },
