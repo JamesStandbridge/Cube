@@ -23,7 +23,7 @@ class ResourceRepository extends ServiceEntityRepository
         $whereAdded = false;
         $conn = $this->getEntityManager()->getConnection();
         $params = [];
-        $query = "SELECT R.id, R.title, R.created_at, R.category_id, COUNT(*) OVER() FROM resource as R JOIN resource_type_of_relationship as RR ON RR.resource_id = R.id";
+        $query = "SELECT R.id, R.title, R.created_at, R.category_id, R.number_views, COUNT(*) OVER() FROM resource as R JOIN resource_type_of_relationship as RR ON RR.resource_id = R.id WHERE (R.is_validated = true OR R.is_validated IS NULL)";
 
 
         if(count($filters['relations']) > 0) {
@@ -36,12 +36,7 @@ class ResourceRepository extends ServiceEntityRepository
                 }   
                 $params["relation".$key] = $relation['id'];
             }
-            if(!$whereAdded) {
-                $query .= " WHERE";
-                $whereAdded = true;
-            } else {
-                $query .= " AND";
-            }
+            $query .= " AND";
             $query .= $subQuery.")";
         }
 
@@ -55,44 +50,24 @@ class ResourceRepository extends ServiceEntityRepository
                 }   
                 $params["category".$key] = $category['id'];
             }
-            if(!$whereAdded) {
-                $query .= " WHERE";
-                $whereAdded = true;
-            } else {
-                $query .= " AND";
-            }
+            $query .= " AND";
             $query .= $subQuery.")";
         }
 
         if(strlen($filters['title']) > 0) {
-            if(!$whereAdded) {
-                $query .= " WHERE";
-                $whereAdded = true;
-            } else {
-                $query .= " AND";
-            }
+            $query .= " AND";
             $query .= " (LOWER(R.title) like LOWER(:query))";
             $params["query"] = "%".$filters['title']."%";     
         }
 
         if(strlen($filters['dateFrom']) > 0) {
-            if(!$whereAdded) {
-                $query .= " WHERE";
-                $whereAdded = true;
-            } else {
-                $query .= " AND";
-            }
+            $query .= " AND";
             $query .= " (R.created_at >= :dateFrom)";
             $params["dateFrom"] = $filters['dateFrom'];     
         }
 
         if(strlen($filters['dateTo']) > 0) {
-            if(!$whereAdded) {
-                $query .= " WHERE";
-                $whereAdded = true;
-            } else {
-                $query .= " AND";
-            }
+            $query .= " AND";
             $query .= " (R.created_at <= :dateTo)";
             $params["dateTo"] = $filters['dateTo'];     
         }

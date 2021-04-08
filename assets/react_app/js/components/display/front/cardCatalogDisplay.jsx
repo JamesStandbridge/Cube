@@ -26,6 +26,7 @@ import {
 
 import { red } from "@material-ui/core/colors";
 
+import VisibilityIcon from '@material-ui/icons/Visibility';  
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -308,7 +309,7 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                 </PageBTN>
             </Pagination>
 
-            <div className={classes.root}>
+            <ResourceList className={classes.root}>
                 <GridList cellHeight={400} className={classes.gridList} cols={3}>
 
             {
@@ -324,7 +325,8 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                         isAside = ResourceUserStateHandler.resourceStates[stateIndex].isAside
                     }
                     
-
+                    const categoryIndex = categories.findIndex(item => item.id === resource.category_id)
+                    console.log(resource)
                     return (
                         <GridListTile key={resource.id} cols={resource.cols || 1}>
                             <Card 
@@ -349,34 +351,48 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="textSecondary" component="p">
-                                        {resource.category_id}
+                                        {categories[categoryIndex]?.label}
                                     </Typography>
                                 </CardContent>
-                                    {isConnected ? (
+                                    
                                         <CardActions disableSpacing>
-                                            <IconButton onClick={() => handleFavoriteChange(resource.id)} aria-label="add to favorites">
-                                                <FavoriteIcon style={{
-                                                    color: isFavorite ? "#E71D36" : "#0000008a"
-                                                }}/>
-                                            </IconButton>
-                                            <IconButton onClick={() => handleAsideChange(resource.id)} aria-label="add to aside resources">
-                                                {isAside ? (
-                                                    <BookmarkIcon />
-                                                ) : (
-                                                    <BookmarkBorderIcon />
-                                                )}
-                                            </IconButton>
-                                            <IconButton aria-label="share">
-                                                <ShareIcon />
-                                            </IconButton>
-                                            <IconButton
+                                            {isConnected ? (
+                                                <>
+                                                    <IconButton onClick={() => handleFavoriteChange(resource.id)} aria-label="add to favorites">
+                                                        <FavoriteIcon style={{
+                                                            color: isFavorite ? "#E71D36" : "#0000008a"
+                                                        }}/>
+                                                    </IconButton>
+                                                    <IconButton onClick={() => handleAsideChange(resource.id)} aria-label="add to aside resources">
+                                                        {isAside ? (
+                                                            <BookmarkIcon />
+                                                        ) : (
+                                                            <BookmarkBorderIcon />
+                                                        )}
+                                                    </IconButton>
+                                                    <IconButton aria-label="share">
+                                                        <ShareIcon />
+                                                    </IconButton>
+                                                </>
+                                            ) : (null)} 
+                                            {`${resource.number_views} `}<VisibilityIcon /> 
+                                            <Button 
+                                                className="btn" 
+                                                variant="contained" 
+                                                style={{
+                                                    backgroundColor: "#FE4A49",
+                                                    marginLeft: "auto",
+                                                    color: "white"
+                                                }}
                                                 href={`/catalogue/${resource.id}`}
-                                                aria-label="show more"
                                             >
-                                                <ExpandMoreIcon />
-                                            </IconButton>
+                                                Voir
+                                            </Button>
+
+                                            
+
                                         </CardActions>
-                                    ) : (null)}                                
+                                                                 
                             </Card>
                         </GridListTile>
                     )
@@ -385,7 +401,7 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
 
                 </GridList>
-            </div>
+            </ResourceList>
         </div>
     )
 }
@@ -396,6 +412,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(CardCatalogDisplay)
 
+const ResourceList = styled.div`
+    margin-left: 6%;
+`
 
 const FilterBox = styled.div`
     border: solid 1px gainsboro;
@@ -449,6 +468,7 @@ const FilterAccordeon = styled.div`
 const Pagination = styled.div`
     display: flex;
     align-items: center;
+    margin: 48px 0;
 `
 
 const CurrentPage = styled.h3`
