@@ -14,6 +14,8 @@ import {
 	IconButton
 } from '@material-ui/core'
 
+import PieChart from '../../../stats/components/PieChart'
+
 const RelationTable = ({AuthHandler, refresh}) => {
 	const [ relations, setRelations ] = useState([])
 	const [ loading, setLoading ] = useState(false);
@@ -137,6 +139,25 @@ const RelationTable = ({AuthHandler, refresh}) => {
 
 	const tableData = dataTableFormat();
 
+	const buildSerie = () => {
+		let serie = {labels: [], data: []}
+
+		relations.map(relation => {
+			const index = serie.labels.findIndex(item => { 
+				return item == relation.type.label
+			})
+			if(index === -1) {
+				serie.labels.push(relation.type.label)
+				serie.data.push(1)
+			} else {
+				serie.data[index]++
+			}
+		})
+		console.log(serie)
+		return serie
+	}
+
+	const data = buildSerie()
 
 	return (
 	    <div className={"muiDatatableDiv"} style={{ position: "relative" }}>
@@ -147,6 +168,8 @@ const RelationTable = ({AuthHandler, refresh}) => {
 			  columns={columns}
 			  options={options}
 			/>
+
+			<PieChart serie={data}/>
 		</div>
 	)
 }
