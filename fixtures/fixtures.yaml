@@ -268,6 +268,16 @@ App\Entity\Resource:
         typeofrelationship: ['@type_relation_1']
         category: '@category_4'
 
+    resource_{20..50}: 
+        title: 'Le solfège'
+        type: '@resource_type_2'
+        createdAt: <genDate()>
+        updatedAt: <genDate()>
+        numberViews: 0
+        author: '@user_citizen_1'
+        isPublic: true
+        typeofrelationship: ['@type_relation_5']
+        category: '@category_2'
 
 App\Entity\ResourceContentValue:
     content_value_1: 
@@ -330,7 +340,7 @@ App\Entity\ResourceContentValue:
                     la situation en aurait été changée.'
 
 App\Entity\CitizenRelationship:
-    relation_{1..500}:
+    relation_{1..30}:
         UserSource: '@user_citizen_*'
         UserTarget: '@user_citizen_*'
         type: '@type_relation_*'

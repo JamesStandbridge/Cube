@@ -90,5 +90,29 @@ class ResourceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
+
+    public function getResourcesByDate(int $user_id, $from = null, $to = null): array
+    {
+        $query = $this->createQueryBuilder('r')
+            ->andWhere('r.author = :user_id')
+            ->setParameter('user_id', $user_id);
+
+        if($from != null) {
+            $query = $query 
+                ->andWhere('r.createdAt >= :from')
+                ->setParameter('from', $from);   
+        }
+
+        if($to != null) {
+            $query = $query 
+                ->andWhere('r.createdAt <= :to')
+                ->setParameter('to', $to);
+        }
+
+        $query = $query
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }

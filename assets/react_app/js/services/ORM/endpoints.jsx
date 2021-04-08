@@ -7,6 +7,9 @@ import React from "react";
 import resources from "@api-platform/admin/lib/__fixtures__/resources";
 
 const EndPoints = {
+	//stats
+	URL_GET_USER_RESOURCE_STATS: "/api/resources/stats",
+
 	//security
 	URL_GET_TOKEN: "/api/login_check",
 	URL_REGISTER: "/app/security/register",
