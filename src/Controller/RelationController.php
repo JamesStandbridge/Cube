@@ -79,8 +79,8 @@ class RelationController extends AbstractController
      */
     public function getCitizenRelations(CitizenRelationshipRepository $repo)
     {
-
-        $relations = $this->getUser()->getRelationships();
+        $user = $this->getUser();
+        $relations = $repo->findByUser($user->getId());
 
         return $this->json([
             'relations' => $relations
@@ -98,5 +98,29 @@ class RelationController extends AbstractController
         return $this->json([
             'relations' => $relations
         ], 200, [], ['groups'=>'app:read:relations']);        
+    }
+
+    /**
+     * @Route("/api/citizen-relationships/{relationID}/delete", name="api_delete_relation")
+     * @param  int                           $relationID 
+     * @param  CitizenRelationshipRepository $repo  
+     */
+    public function deleteRelation(int $relationID, CitizenRelationshipRepository $repo) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $relation = $repo->findRelationByIds($user->getId(), $relationID);     
+
+        if($relation != null) {
+            $em->remove($relation);
+            $em->flush();
+            return $this->json([
+                'message' => "relation deleted"
+            ], 200);        
+        }  else {
+            return $this->json([
+                'message' => "relation unfound"
+            ], 404);     
+        }
     }
 }

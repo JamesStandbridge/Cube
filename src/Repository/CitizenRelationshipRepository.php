@@ -31,6 +31,17 @@ class CitizenRelationshipRepository extends ServiceEntityRepository
         ;
     }
     
+    public function findRelationByIds(int $user_id, int $relation_id)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.UserSource = :user_id')
+            ->andWhere('c.id = :relation_id')
+            ->setParameter('user_id', $user_id)
+            ->setParameter('relation_id', $relation_id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;        
+    }
 
     /*
     public function findOneBySomeField($value): ?CitizenRelationship

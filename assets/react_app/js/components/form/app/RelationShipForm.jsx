@@ -10,7 +10,7 @@ import {
 
 import RelationRepository from '../../../services/ORM/repository/RelationRepository'
 
-const RelationShipForm = ({AuthHandler}) => {
+const RelationShipForm = ({AuthHandler, onRefresh}) => {
 	const [relation, setRelation] = useState({
 		type: "",
 		user: ""
@@ -28,15 +28,16 @@ const RelationShipForm = ({AuthHandler}) => {
 		setError("")
 	}
 
-	console.log(relation)
-
 	const handleSubmit = () => {
 		if(isValid()) {
 			RelationRepository.createRelation(
 				{type_id: relation.type.value, user_id: relation.user.value},
 				AuthHandler.token
 			).then(res => {
-				if(res.status === 200) setRelation({type: "", user: ""})
+				if(res.status === 200) {
+					setRelation({type: "", user: ""})
+					onRefresh()
+				}
 			})
 		}
 	}
@@ -51,7 +52,6 @@ const RelationShipForm = ({AuthHandler}) => {
 
 	return (
 		<Container>
-
 			<Title>Ajouter une nouvelle relation</Title>
 			<FormContainer>
 				<SearchUser value={relation.user} onChange={handleUserChange} />
@@ -61,7 +61,7 @@ const RelationShipForm = ({AuthHandler}) => {
 					<Button 
 						variant="contained" 
 						onClick={handleSubmit}
-						style={{marginLeft: 'auto', color: 'white', backgroundColor: '#50bd50'}}
+						style={{marginLeft: 'auto', color: 'white', backgroundColor: '#577590'}}
 					>
 						Ajouter
 					</Button>
@@ -90,5 +90,7 @@ const Container = styled.div`
 	width: 40%;
 	box-shadow: 0 0 6px 2px rgba(0,0,0,.1);
 	border-bottom: 2px solid transparent;
-	margin: 1%;
+    margin-top: 8%;
+    margin-left: 28%;
+    margin-bottom: 10%;
 `

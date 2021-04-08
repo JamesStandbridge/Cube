@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 //icons
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import PowerSettingsNewIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -34,8 +34,10 @@ const AdminLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 					<SidebarContent>
 						<Menu iconShape="square" popperArrow={true}>
 							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/admin/dashboard" replace/> </MenuItem>
-							<MenuItem className="sub-item"> Catégories <Link to="/categories/visualise" replace/></MenuItem>
-							<MenuItem className="sub-item"> Utilisateurs <Link to="/admin/utilisateur" replace/></MenuItem>
+							<SubMenu title="Administration" icon={<VisibilityIcon className="navbar-icon"/>}>
+								<MenuItem className="sub-item"> Catégories <Link to="/categories/visualise" replace/></MenuItem>
+								<MenuItem className="sub-item"> Utilisateurs <Link to="/admin/utilisateur" replace/></MenuItem>
+							</SubMenu>
 						</Menu>
 					</SidebarContent>
 					<SidebarFooter>

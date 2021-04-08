@@ -18,6 +18,24 @@ const RelationRepository = {
 		return res
 	},
 
+	getRelations: async function(token) {
+		const res = await HttpService.sendGetRequest(
+			EndPoints.URL_GET_USER_RELATIONS,
+			HeaderBuilder.GET_HEADER_AUTHORIZATION(token)
+		)
+
+		return res
+	},
+
+	deleteRelation: async function(relationID, token) {
+		const res = await HttpService.sendGetRequest(
+			EndPoints.URL_DELETE_USER_RELATION(relationID),
+			HeaderBuilder.GET_HEADER_AUTHORIZATION(token)
+		)
+
+		return res
+	},
+
 	getRelationTypes: async function(token) {
 		const res = await HttpService.sendGetRequest(
 			EndPoints.URL_GET_TYPE_RELATION_SHIP,

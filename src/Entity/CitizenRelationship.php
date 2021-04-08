@@ -6,6 +6,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CitizenRelationshipRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=CitizenRelationshipRepository::class)
  * @ApiResource
@@ -16,12 +18,14 @@ class CitizenRelationship
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @groups("app:read:relations")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeOfRelationship::class)
      * @ORM\JoinColumn(nullable=false)
+     * @groups("app:read:relations")
      */
     private $type;
 
@@ -34,6 +38,7 @@ class CitizenRelationship
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @groups("app:read:relations")
      */
     private $UserTarget;
 

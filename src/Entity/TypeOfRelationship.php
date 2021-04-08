@@ -30,12 +30,14 @@ class TypeOfRelationship
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @groups("read:resources")
+     * @groups("app:read:relations")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @groups("read:resources")
+     * @groups("app:read:relations")
      */
     private $label;
 

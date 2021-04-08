@@ -19,9 +19,14 @@ const EndPoints = {
 	URL_SEARCH_USER: "/api/user/search",
 	URL_GET_TYPE_RELATION_SHIP: "/api/type_of_relationships",
 	URL_POST_RELATION: "/api/citizen-relationships",
+	URL_GET_USER_RELATIONS: "/api/citizen-relationships",
+	URL_DELETE_USER_RELATION: function(relationID) {
+		return `/api/citizen-relationships/${relationID}/delete`
+	},
 
 	//admin
 	URL_GET_UTILISATEUR_LIST: "/api/users",
+
 	URL_UPDATE_ENABLED_USER: function(userID) {
 		return `/api/resource/enabled?user_id=${userID}`
 	},

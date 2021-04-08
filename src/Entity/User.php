@@ -22,7 +22,8 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *  @groups("read:resources")
+     * @groups("read:resources")
+     * @groups("app:read:relations")
      */
     protected $id;
 
@@ -34,14 +35,16 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255)
-     *  @groups("read:resources")
+     * @groups("read:resources")
+     * @groups("app:read:relations")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"resource:read", "comments:read"})
-     *  @groups("read:resources")
+     * @groups("read:resources")
+     * @groups("app:read:relations")
      */
     private $firstname;
 
