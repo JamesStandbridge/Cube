@@ -28,18 +28,18 @@ const Layout = ({dispatch, AuthHandler, children}) => {
 	}
 	
 	const bodyClassName = () => {
-		if(AuthHandler.token === null) return "app-body full"
-		if(isCollapsed) return "app-body collapse"
+		if(AuthHandler.token === null) return "app-body-full"
+		if(isCollapsed) return "app-body-collapse"
 		return "app-body"
 	}
 
 	return (
-		<div>
+		<>
 			{layoutToDisplay()}
 			<div className={bodyClassName()}>
 				{children}
 			</div>
-		</div>
+		</>
 	)
 }
 

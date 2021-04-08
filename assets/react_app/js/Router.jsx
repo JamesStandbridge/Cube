@@ -51,13 +51,13 @@ const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 					<AdminRoute path="/admin/utilisateur" component={UserAdmin} />
 					<AdminRoute path="/admin/dashboard" component={DashboardAdmin} />
 
-					<CitizenRoute path="/profil/details" component={Profile} />
-					<CitizenRoute path="/profil/relations" component={RelationShips} />
-					<CitizenRoute path="/profil/ressources/nouveau" component={CreateResource} />
-					<CitizenRoute path="/profil/ressources/:id/modifier" component={UpdateResource} />
-					<CitizenRoute path="/profil/ressources/:id/delete" component={null} />
-					<CitizenRoute path="/profil/mesRessources" component={MyResources} />
-					<CitizenRoute path="/profil" component={DashboardCitizen} />
+					<CitizenRoute path="/ressources/nouveau" component={CreateResource} />
+					<CitizenRoute path="/ressources/:id/modifier" component={UpdateResource} />
+					<CitizenRoute path="/ressources/:id/delete" component={null} />				
+					<CitizenRoute path="/relations" component={RelationShips} />
+					<CitizenRoute path="/mesRessources" component={MyResources} />
+					<CitizenRoute path="/dashboard" component={DashboardCitizen} />
+					<CitizenRoute path="/profil" component={Profile} />
 
 					<ModeratorRoute path="/moderation/commentaires" component={null} />
 					<ModeratorRoute path="/moderation/resources" component={ModerateResources} />

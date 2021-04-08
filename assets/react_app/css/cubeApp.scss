@@ -1,3 +1,23 @@
+
+
+@font-face {
+    font-family: "Open-Sans-light";
+    src: url("../fonts/OpenSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "OpenSans-Bold";
+    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "OpenSans-SemiBold";
+    src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
+}
+
 $darkColor: #011627;
 $lightColor: #FDFFFC;
 $successColor: #457B9D;
@@ -6,6 +26,7 @@ $infoColor: #FF9F1C;
 
 body {
 	background-color: white;
+    margin: 0;
 }
 
 body .MuiCheckbox-colorSecondary.Mui-checked {
@@ -61,7 +82,7 @@ body .MuiCheckbox-colorSecondary.Mui-checked {
     color: $lightColor;
 }
 
-.app-bar .MuiIconButton-root {
+.app-bar .MuiIconButton-root, .app-bar-collapse .MuiIconButton-root {
 	color: $lightColor;
 }
 
@@ -76,3 +97,140 @@ body .MuiCheckbox-colorSecondary.Mui-checked {
 .app.bar .btn {
 	background-color: white!important
 }
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "OpenSans-Bold"
+}
+
+
+.app-login-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.form-register{
+    margin: auto;
+    width: 50%;
+}
+
+.MuiFormControl-root.form-field {
+    margin: 5px;
+    width: 60%;
+}
+
+.MuiButtonBase-root.btn-confirm {
+    width: 60%;
+    margin: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.MuiFormControl-root.cp input::-webkit-outer-spin-button,
+.MuiFormControl-root.cp input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.MuiFormControl-root.cp input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+
+.app-nav-bar {
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+}
+
+
+
+.app-bar-actions {
+    margin-left: auto;
+}
+
+.app-bar-actions a {
+    text-decoration: none;
+}
+
+.app-bar-actions .MuiButtonBase-root:first-letter {
+    text-transform: capitalize!important;
+}
+
+
+
+
+
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item .pro-inner-item:before{content: none}
+
+
+.pro-sidebar-header {
+    height: 70px;
+}
+
+.pro-sidebar-header h1 {
+    width: 100px;
+    display: block;
+    margin: 15px auto;
+    font-family: "OpenSans-Bold"
+}
+
+.pro-sidebar-header h1.collapse {
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+
+
+.MuiPaper-elevation4 {
+    box-shadow: none!important;
+}
+
+.app-bar {
+    position: fixed;
+    top: 0;
+    left: 270px;
+    width: 86%;
+    z-index: 1000;
+}
+
+.app-bar-collapse {
+    position: fixed;
+    top: 0;
+    left: 80px;
+    width: 96%;
+    z-index: 1000;
+}
+
+.app-bar-full {
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    width: 100%;   
+    z-index: 0;
+}
+
+
+.app-body {
+    margin-left: 330px;
+    margin-top: 100px;
+}
+
+.app-body-collapse {
+    margin-left: 120px;
+    margin-top: 100px;
+}
+
+.app-body-full {
+    margin-top: 160px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+

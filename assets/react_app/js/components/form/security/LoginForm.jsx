@@ -27,7 +27,7 @@ const LoginForm = ({dispatch}) => {
 		password: {value: "", error:""}
 	})
 
-	const [ redirect, setRedirect ] = useState(false)
+	const [ redirect, setRedirect ] = useState(null)
 
 	const handleChange = ({currentTarget}) => {
 		const nextValue = {value: currentTarget.value, error: ""}
@@ -72,7 +72,7 @@ const LoginForm = ({dispatch}) => {
 						}
 
 						dispatch({type: "SET_AUTH", auth});
-						setRedirect(true);
+						setRedirect(TokenManager.getRole(token));
 					})
 				}
 			}).catch(error => {
@@ -84,8 +84,16 @@ const LoginForm = ({dispatch}) => {
 		}
 	}
 
-	if(redirect) {
-		return (<Redirect to="/" />)
+	if(redirect !== null) {
+		if(redirect === "ROLE_CITIZEN") {
+			return (<Redirect to="/dashboard" />)
+		} else if (redirect === "ROLE_MODERATOR") {
+			return (<Redirect to="/moderation/resources" />)
+		} else if (redirect === "ROLE_ADMIN") {
+			return (<Redirect to="/admin/dashboard" />)
+		} else if (redirect === "ROLE_SUPER_ADMIN") {
+			return (<Redirect to="/dashboard" />)
+		}
 	}
 
 	return (

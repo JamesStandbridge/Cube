@@ -22,7 +22,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 const SuperAdminLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 
 	const appBarClassName = () => {
-		if(isCollapsed) return "app-bar collapse"
+		if(isCollapsed) return "app-bar-collapse"
 		return "app-bar"
 	}
 

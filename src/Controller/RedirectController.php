@@ -40,7 +40,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/ressources/nouveau", name="resource_new")
+     * @Route("/ressources/nouveau", name="resource_new")
      */
     public function createResource(): Response
     {
@@ -48,7 +48,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/ressources/{id}/modifier", name="resource_update")
+     * @Route("/ressources/{id}/modifier", name="resource_update")
      */
     public function updateResource(): Response
     {
@@ -56,7 +56,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/ressources/supprimer", name="resource_delete")
+     * @Route("/ressources/supprimer", name="resource_delete")
      */
     public function deleteResource(): Response
     {
@@ -64,7 +64,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/mesRessources", name="my_resources")
+     * @Route("/mesRessources", name="my_resources")
      */
     public function getMyResources(): Response
     {
@@ -96,7 +96,7 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/details", name="user_profile")
+     * @Route("/profil", name="user_profile")
      */
     public function user_profile(): Response
     {
@@ -137,9 +137,17 @@ class RedirectController extends AbstractController
     }
 
     /**
-     * @Route("/profil/relations", name="user_relations")
+     * @Route("/relations", name="user_relations")
      */
     public function userRelations(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard_get")
+     */
+    public function dashboardRoute(): Response
     {
         return $this->render('cube_react_app/appEntryPoint.html.twig');
     }

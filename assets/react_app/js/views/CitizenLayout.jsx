@@ -26,7 +26,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 	const appBarClassName = () => {
-		if(isCollapsed) return "app-bar collapse"
+		if(isCollapsed) return "app-bar-collapse"
 		return "app-bar"
 	}
 
@@ -39,15 +39,15 @@ const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 					</SidebarHeader>
 					<SidebarContent>
 						<Menu iconShape="square" popperArrow={true}>
-							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/" replace/> </MenuItem>
+							<MenuItem icon={<DashboardIcon className="navbar-icon"/>}>Tableau de bord <Link to="/dashboard" replace/> </MenuItem>
 							<SubMenu title="Ressources" icon={<MenuBookIcon className="navbar-icon"/>}>
 								<MenuItem className="sub-item"> Catalogue <Link to="/catalogue" replace/></MenuItem>
-								<MenuItem className="sub-item"> Mes ressources <Link to="/profil/mesRessources" replace/></MenuItem>
+								<MenuItem className="sub-item"> Mes ressources <Link to="/mesRessources" replace/></MenuItem>
 								<SubMenu title="Ressources" icon={<MenuBookIcon className="navbar-icon"/>}>
-									<MenuItem className="sub-item"> Nouvelle ressource <Link to="/profil/ressources/nouveau" replace/></MenuItem>
+									<MenuItem className="sub-item"> Nouvelle ressource <Link to="/ressources/nouveau" replace/></MenuItem>
 								</SubMenu>
 							</SubMenu>   
-							<MenuItem icon={<PeopleAltIcon className="navbar-icon"/>}>Mes relations<Link to="/profil/relations" replace/> </MenuItem>
+							<MenuItem icon={<PeopleAltIcon className="navbar-icon"/>}>Mes relations<Link to="/relations" replace/> </MenuItem>
  
 						</Menu>
 					</SidebarContent>
@@ -67,7 +67,7 @@ const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 							Accueil
 						</Typography>
 						<div className="app-bar-actions">
-							<Link to={`/profil/details`}>
+							<Link to={`/profil`}>
 								<IconButton>
 									<AccountCircleIcon />
 								</IconButton>

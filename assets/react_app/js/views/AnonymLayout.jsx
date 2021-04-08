@@ -15,10 +15,15 @@ import 'react-pro-sidebar/dist/css/styles.css';
 
 const AnonymLayout = ({children}) => {
 
-	console.log(WaveSVG)
+	const waveStyle = {
+		position: "absolute",
+		zIndex: "1",
+		top: "-5px"
+	}
+
 	return (
-		<div>
-			<AppBar className="app-bar full">
+		<>
+			<AppBar className="app-bar-full">
 				<AppBarContent>
 					<CubeTitle className="app-title">
 						CUBE
@@ -52,27 +57,26 @@ const AnonymLayout = ({children}) => {
 					</AppActions>
 
 				</AppBarContent>
-				<WabeBar>
-
-				</WabeBar>
+				
+				<svg style={waveStyle} className="wave-background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+					<path fill="#fca938" fillOpacity="1" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,202.7C672,224,768,224,864,202.7C960,181,1056,139,1152,133.3C1248,128,1344,160,1392,176L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+				</svg>
+			
 			</AppBar>
-		</div>
+		</>
 	)
 }
-
+//<Wave className="wave-background">
 export default AnonymLayout;
 
 const AppBar = styled.div`
-	background-image: url(${WaveSVG});
-	background-image: rebeccapurple;
-    background-repeat: no-repeat;
-    background-size: 100% 180%; 
-	
+	position: relative;	
 `
 
 const AppActions = styled.div`
     margin-top: 50px;
     margin-right: 50px;
+    z-index: 1000;
 `
 
 const CubeTitle = styled.h1`
@@ -82,12 +86,13 @@ const CubeTitle = styled.h1`
     margin-bottom: 28px;
     margin-left: 43.7%;
     color: white;
+    z-index: 1000;
 `
 
 const AppBarContent = styled.div`
 	display: flex;
 `
 
-const WabeBar = styled.div`
-	
+const Wave = styled.div`
+	position: absolute;
 `

@@ -16,7 +16,7 @@ import UtilisateursRepository from '../../../services/ORM/repository/Utilisateur
 const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
     const [ loading, setLoading ] = useState(false)
     const utilisateurs = UserListHandler.list
-
+    console.log(utilisateurs)
     const fetchUsers = async () => {
         const res = await UtilisateursRepository.getUtilisateurList(AuthHandler.token)
         
@@ -49,6 +49,14 @@ const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
             }
         },
         {
+            name: "role",
+            label: "Role",
+            options: {
+                filter: true,
+                sort: true,
+            }
+        },
+        {
             name: "firstname",
             label: "Prénom",
             options: {
@@ -68,7 +76,7 @@ const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
             name: "email",
             label: "Email",
             options: {
-                filter: true,
+                filter: false,
                 sort: true,
             }
         },
@@ -148,8 +156,15 @@ const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
     const dataTableFormat = () => {
         let newTableData = []
         utilisateurs.map(user => {
+
+            let role = "Citoyen"
+            if(user.roles.includes("ROLE_SUPER_ADMIN")) role = "Super-administrateur"
+            else if(user.roles.includes("ROLE_ADMIN")) role = "Administrateur"   
+            else if(user.roles.includes("ROLE_MODERATOR")) role = "Modérateur"
+
             const newUser = {
                 id: user.id,
+                role: role,
                 firstname: user.firstname,
                 lastname: user.lastname,
                 email: user.email,

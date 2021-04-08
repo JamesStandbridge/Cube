@@ -124,13 +124,16 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
     }, [])
 
     const handleResetFilters = () => {
-        setFilters({
+        const newFilters = {
             categories: [],
             relations: [],
             title: "",
             dateFrom: "",
-            dateTo: ""
-        })
+            dateTo: "",
+            page: 0
+        }
+        setFilters(newFilters)
+        fetchResources(newFilters)
     }
 
     const handleFavoriteChange = (resourceID) => {
