@@ -40,7 +40,7 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
             },
             labels: ['Jan 2020', 'Feb 2020', 'Mar 2020', 'Apr 2020', 'May 2020', 'Jun 2020', 'July 2020', 'Aug 2020', 'Sep 2020', 'Oct 2020', 'Nov 2020', 'Dec 2020'],
             xaxis: {
-                type: 'datetime'
+                type: 'string'
             },
             yaxis: [{
                 title: {
