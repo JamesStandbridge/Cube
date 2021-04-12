@@ -58,7 +58,7 @@ class MediaObject
      * @ORM\GeneratedValue
      * @ORM\Id
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string|null

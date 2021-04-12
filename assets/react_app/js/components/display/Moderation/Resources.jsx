@@ -53,7 +53,7 @@ const Resources = ({AuthHandler}) => {
 								<TableCell align="right">{resource.type.label}</TableCell>
 								<TableCell align="right">{resource.category.label}</TableCell>
 								<TableCell align="right">{format(Date.parse(resource.createdAt), "d MMM yyyy hh:mm")}</TableCell>
-								<TableCell align="right">{format(Date.parse(resource.updatedAt), "d MMM yyyy hh:mm")}</TableCell>
+								<TableCell align="right">{resource.updatedAt ? format(Date.parse(resource.updatedAt), "d MMM yyyy hh:mm") : "N/A"}</TableCell>
 								<TableCell align="right">
 									<MUILink>
 										{`${resource.author.firstname} ${resource.author.lastname}`}
