@@ -3,8 +3,8 @@
  * date: 22/01/2021
  */
 
-import React from "react";
-import axios from "axios";
+import React from "react"
+import axios from "axios"
 
 const AxiosService = {
     sendPostRequest: async function(url, headers, body) {
@@ -33,7 +33,7 @@ const AxiosService = {
     		headers:headers
 		})
 	}
-};
+}
 
-export default AxiosService;
+export default AxiosService
 

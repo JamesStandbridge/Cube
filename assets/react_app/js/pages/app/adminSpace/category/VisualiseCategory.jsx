@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import Layout from '../../../../views/Layout'
 import DisplayCategory from '../../../../components/display/DisplayCategory'
@@ -22,4 +22,4 @@ const VisualiseCategory = (props) => {
   )
 }
 
-export default VisualiseCategory;
+export default VisualiseCategory

@@ -18,9 +18,9 @@ function UserListHandler(state = initialState, action) {
 			return {...state, isUpdated: false}
 
 		default:
-			return state;
+			return state
 	}
 }
 
-export default UserListHandler;
+export default UserListHandler
 

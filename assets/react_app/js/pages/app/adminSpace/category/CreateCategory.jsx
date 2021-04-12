@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import CategoryForm from '../../../../components/form/app/CategoryForm'
 import Layout from '../../../../views/Layout'
@@ -11,4 +11,4 @@ const CreateCategory = (props) => {
   )
 }
 
-export default CreateCategory;
+export default CreateCategory

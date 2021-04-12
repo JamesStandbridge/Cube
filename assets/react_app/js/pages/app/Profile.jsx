@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../views/Layout'
 
@@ -16,4 +16,4 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Profile)

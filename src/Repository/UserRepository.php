@@ -19,7 +19,13 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function search(string $query, int $maxResults = 15) 
+    /**
+     * Search users by a query
+     * @param  string      $query     
+     * @param  int|integer $maxResults default 15
+     * @return User[]
+     */
+    public function search(string $query, int $maxResults = 15) : array
     {
         return $this->createQueryBuilder('u')
             ->where('LOWER(u.firstname) like LOWER(:query) or LOWER(u.lastname) like LOWER(:query)')

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography'
 
 const WelcomeBlock = ({AuthHandler}) => {
 	const user = AuthHandler.user
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(WelcomeBlock);
+export default connect(mapStateToProps)(WelcomeBlock)
 
 const Container = styled.div`
 	background-color: white;

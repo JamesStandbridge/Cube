@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 class App extends React.Component {
     componentDidMount() {
         this.unlisten = this.props.history.listen((location, action) => {
-            console.log("on route change");
+            console.log("Todo: handle router history");
         });
     }
     componentWillUnmount() {

@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect, useState} from 'react'
+import { connect } from 'react-redux'
 
 import styled from 'styled-components'
 import TokenManager from "../../../services/security/TokenManager"
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 
 import Layout from '../../../views/Layout'
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
-import CommentsDisplay from "../../../components/display/front/commentsDisplay";
-import CommentForm from "../../../components/form/app/commentForm";
-import ResourceDetailDisplay from "../../../components/display/front/resourceDetailDisplay";
+import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
+import CommentsDisplay from "../../../components/display/front/commentsDisplay"
+import CommentForm from "../../../components/form/app/commentForm"
+import ResourceDetailDisplay from "../../../components/display/front/resourceDetailDisplay"
 
 const ResourceTemplate = ({AuthHandler, match:{params:{id}}}) => {
     const [ value, refresh ] = useState(0)
@@ -56,7 +56,7 @@ const ResourceTemplate = ({AuthHandler, match:{params:{id}}}) => {
 const mapStateToProps = (state) => {
     return state
 }
-export default connect(mapStateToProps)(ResourceTemplate);
+export default connect(mapStateToProps)(ResourceTemplate)
 
 const BTNModerate = styled.div`
   float: right;

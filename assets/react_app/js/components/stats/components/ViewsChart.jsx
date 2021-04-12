@@ -63,8 +63,6 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
             rSerie.push(item.value)
         })
 
-
-
         const newSeries = [{
             name: 'Nombre de vues',
             type: 'column',
@@ -79,7 +77,7 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
     }, [resourcesSerie])
 
 	const handleChange = (e) => {
-		console.log(e);
+		console.log(e)
 	}
 
 	return (     

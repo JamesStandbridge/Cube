@@ -34,22 +34,6 @@ const PieChart = ({serie}) => {
         })
     }, [serie])
 
-    // useEffect(() => {
-    //     if(!distribution) return
-    //     const data = []
-    //     const labels = []
-
-    //     distribution.map(paymentMethod => {
-    //         data.push(paymentMethod.totalPayed / 100)
-    //         labels.push(paymentMethod.name)
-    //     })
-
-        // setState({...state, 
-        //     series: [{data}], 
-        //     options: {...state.options, xaxis: {...state.options.xaxis, categories: labels}}
-        // })
-    // }, [distribution])
-
     return (
         <div className="chart">
             <h3>Répartition selon mes relations</h3>

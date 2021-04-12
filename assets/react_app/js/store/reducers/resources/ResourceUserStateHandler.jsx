@@ -21,9 +21,9 @@ function ResourceUserStateHandler(state = initialState, action) {
 			return initialState
 
 		default:
-			return state;
+			return state
 	}
 }
 
-export default ResourceUserStateHandler;
+export default ResourceUserStateHandler
 

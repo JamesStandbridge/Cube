@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
-import { connect } from 'react-redux';
-import AddIcon from '@material-ui/icons/Add';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import AddIcon from '@material-ui/icons/Add'
+import { Redirect } from 'react-router-dom'
 import {
     Checkbox,
     TextField,
@@ -11,21 +11,18 @@ import {
     Select,
     MenuItem,
     FormControl, makeStyles, Input, Chip, Icon, Fab
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
 
-import { wrapComponent } from 'react-snackbar-alert';
+import { wrapComponent } from 'react-snackbar-alert'
 
-import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository";
-import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository";
-import CategoryRepository from "../../../services/ORM/repository/CategoryRepository";
+import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository"
+import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository"
+import CategoryRepository from "../../../services/ORM/repository/CategoryRepository"
 
-
-
-require("../../../../css/resource.css");
-
+require("../../../../css/resource.css")
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -52,17 +49,17 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
             let res = await ResourceRepository.getResource("35")
             setOldResource(res.data)
 
-            let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token);
-            const resourceTypes = resType.data["hydra:member"];
-            setResourceTypeList(resourceTypes);
+            let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token)
+            const resourceTypes = resType.data["hydra:member"]
+            setResourceTypeList(resourceTypes)
 
-            let resAttr = await ResourceAttributeRepository.getResourceAttributeList();
-            const newResourceAttributes = resAttr.data["hydra:member"];
-            setResourceAttributesList(newResourceAttributes);
+            let resAttr = await ResourceAttributeRepository.getResourceAttributeList()
+            const newResourceAttributes = resAttr.data["hydra:member"]
+            setResourceAttributesList(newResourceAttributes)
 
-            let resCat = await CategoryRepository.getCategoriesList();
-            const resourceCategories = resCat.data["hydra:member"];
-            setResourceCategoryList(resourceCategories);
+            let resCat = await CategoryRepository.getCategoriesList()
+            const resourceCategories = resCat.data["hydra:member"]
+            setResourceCategoryList(resourceCategories)
 
             setLoading(false)
         }
@@ -74,7 +71,7 @@ const ResourceUpdateForm = wrapComponent(function({currentResource, createSnackb
     const [ loading, setLoading ] = useState(true)
     const [ resourceAttributes, setResourceAttributesList ] = useState([])
     const [ resourceTypeList, setResourceTypeList ] = useState([])
-    const [ resourceCategoryList, setResourceCategoryList ] = useState([]);
+    const [ resourceCategoryList, setResourceCategoryList ] = useState([])
     const [ oldResource, setOldResource ] = useState(null)
     const [ resourceType, setResourceType ] = useState( '')
     const [ resourceAttribute, setResourceAttribute ] = useState( '')

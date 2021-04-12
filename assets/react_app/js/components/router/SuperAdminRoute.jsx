@@ -3,14 +3,14 @@
  * date: 24/01/2021
  */
 
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Route, Redirect } from "react-router-dom"
 
 import TokenManager from "../../services/security/TokenManager"
 
 const SuperAdminRoute = ({path, component, AuthHandler, dispatch}) => {
-	const token = AuthHandler.token;
+	const token = AuthHandler.token
   	return (
   		<>
 
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(SuperAdminRoute);
+export default connect(mapStateToProps)(SuperAdminRoute)

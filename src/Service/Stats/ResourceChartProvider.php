@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * author: JamesStandbridge
+ * date: 08/04/2021
+ */
 
 namespace App\Service\Stats;
 
@@ -7,7 +11,11 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Resource;
 
-class DataProvider {
+
+/**
+ * This class give tools in order to get an Array of Resource filtered by date
+ */
+class ResourceChartProvider {
 
 	private $em;
 
@@ -17,7 +25,7 @@ class DataProvider {
 	}
 
 
-	public function getResourceSeries(int $user_id)
+	public function getResourceSeries(int $user_id) : array
 	{
 		$today = new \DateTime();
 
@@ -46,7 +54,7 @@ class DataProvider {
 		return $serie;
 	}
 
-	private function formatSerie($origin)
+	private function formatSerie($origin) : array
 	{
 		$array = [];
 		for($i = 12; $i > 0; $i--) {
@@ -56,16 +64,3 @@ class DataProvider {
 		return $array;
 	}
 }
-
-// janvier
-// fevrier
-// mars
-// avril
-// mai
-// juin
-// juillet
-// aout
-// septembre
-// octobre
-// novembre
-// decembre

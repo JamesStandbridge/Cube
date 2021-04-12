@@ -3,10 +3,10 @@
  * date: 21/02/2021
  */
 
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const ResourceAttributeRepository = {
 	getResourceAttributeList: async function(resourceAttribute) {
@@ -14,7 +14,7 @@ const ResourceAttributeRepository = {
 			EndPoints.URL_GET_RESOURCE_ATTRIBUTES_LIST,
 			HeaderBuilder.GET_HEADER(),
 			resourceAttribute
-		);
+		)
 		return res
 	},
 
@@ -23,10 +23,10 @@ const ResourceAttributeRepository = {
 			EndPoints.URL_POST_RESOURCE_ATTRIBUTES_LIST,
 			HeaderBuilder.POST_HEADER(),
 			resourceAttribute
-		);
+		)
 		return res
 	}
 }
 
-export default ResourceAttributeRepository;
+export default ResourceAttributeRepository
 

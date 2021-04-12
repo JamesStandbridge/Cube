@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import Layout from '../../../../views/Layout'
 
@@ -13,4 +13,4 @@ const DashboardAdmin = (props) => {
   )
 }
 
-export default DashboardAdmin;
+export default DashboardAdmin

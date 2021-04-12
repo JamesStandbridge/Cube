@@ -3,11 +3,11 @@
  * date: 22/01/2021
  */
 
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
-import * as http from "http";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
+import * as http from "http"
 
 const ResourceRepository = {
 
@@ -49,7 +49,7 @@ const ResourceRepository = {
             EndPoints.URL_POST_RESOURCE,
             HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
             resource
-        );
+        )
     },
 
     getResource : async function(resource) {
@@ -73,31 +73,31 @@ const ResourceRepository = {
             EndPoints.URL_DELETE_RESOURCE(resourceId),
             HeaderBuilder.DELETE_HEADER_AUTHORIZATION(token),
             resourceId
-        );
+        )
     },
     updateResource : async function(resourceToSend, token) {
         return await HttpService.sendPutRequest(
             EndPoints.URL_PUT_RESOURCE(resourceToSend.id),
             HeaderBuilder.PUT_HEADER_AUTHORIZATION(token),
             resourceToSend
-        );
+        )
     },
 
     uploadResource : async function(file, onUploadProgress, token) {
-        let formData = new FormData();
-        formData.append("file", file);
+        let formData = new FormData()
+        formData.append("file", file)
         return await HttpService.sendPostRequest(
             EndPoints.URL_UPLOAD_RESOURCE,
             HeaderBuilder.POST_HEADER_AUTHORIZATION(token),
             formData,
             onUploadProgress
-        );
+        )
     },
 
     async getFiles() {
-        return http.get("/files");
+        return http.get("/files")
     }
 
 }
 
-export default ResourceRepository;
+export default ResourceRepository

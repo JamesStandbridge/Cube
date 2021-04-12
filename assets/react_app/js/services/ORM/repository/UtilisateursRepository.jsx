@@ -3,10 +3,10 @@
  * date: 22/01/2021
  */
 
- import React from "react";
- import HttpService from "../axios/AxiosService";
- import HeaderBuilder from "../HeaderBuilder";
- import EndPoints from "../endpoints";
+ import React from "react"
+ import HttpService from "../axios/AxiosService"
+ import HeaderBuilder from "../HeaderBuilder"
+ import EndPoints from "../endpoints"
  
  const UtilisateursRepository = {
  
@@ -45,4 +45,4 @@
  */
  }
  
- export default UtilisateursRepository;
+ export default UtilisateursRepository

@@ -3,7 +3,7 @@
  * date: 22/01/2021
  */
 
-import React from "react";
+import React from "react"
 
 const HeaderBuilder = {
 
@@ -59,7 +59,7 @@ const HeaderBuilder = {
 			"method": "POST"
 		}
 	}
-};
+}
 
-export default HeaderBuilder;
+export default HeaderBuilder
 

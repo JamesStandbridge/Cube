@@ -3,7 +3,7 @@
  * date: 09/03/2021
  */
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Dashboard from '../../../components/stats/Dashboard'
 import Layout from '../../../views/Layout'
 
@@ -21,4 +21,4 @@ const RelationShip = (props) => {
 	)
 }
 
-export default RelationShip;
+export default RelationShip

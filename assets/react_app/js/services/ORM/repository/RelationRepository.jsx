@@ -3,10 +3,10 @@
  * date: 09/03/2021
  */
 
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const RelationRepository = {
 	searchUser: async function(input, token) {
@@ -56,5 +56,5 @@ const RelationRepository = {
 	},
 }
 
-export default RelationRepository;
+export default RelationRepository
 

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { format } from "date-fns";
+import { format } from "date-fns"
 
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom"
 
-import MUIDataTable from "mui-datatables";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import MUIDataTable from "mui-datatables"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
-import MUILink from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import MUILink from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
+import Chip from '@material-ui/core/Chip'
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import UtilisateursRepository from '../../../services/ORM/repository/UtilisateursRepository'
 
 const Utilisateurs = ({AuthHandler, dispatch, UserListHandler}) => {
@@ -222,4 +222,4 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(Utilisateurs);
+export default connect(mapStateToProps)(Utilisateurs)

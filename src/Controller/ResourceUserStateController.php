@@ -1,7 +1,7 @@
 <?php
 
 /**
- * author: JamesStandbridge
+ * author: JamesStandbridge, Gregalmi
  * date: 24/01/2021
  */
 
@@ -80,11 +80,8 @@ class ResourceUserStateController extends AbstractController
 			}
 			
 			if($resourceState->getIsExploited() === false) {
-
-
 				$resourceState->setIsExploited(true);
 
-				
 				$resource->setNumberViews($resource->getNumberViews() + 1);
 
 				$em->persist($resource);
@@ -137,19 +134,6 @@ class ResourceUserStateController extends AbstractController
 		}
 	}
 
-
-	private function initResourceState($em, $user, $resource): ResourceUserState
-    {
-		$resourceState = new ResourceUserState();
-		$resourceState->setUserEntity($user)
-					  ->setIsFavorite(false)
-					  ->setIsAside(false)
-					  ->setIsExploited(false)
-					  ->setResource($resource)
-		;
-		return $resourceState;
-	}
-
 	/**
 	 * @Route("/api/resource-user-states", name="app_resource_states_get", methods={"GET"})
 	 * @param  ResourceUserStateRepository $repo
@@ -162,5 +146,18 @@ class ResourceUserStateController extends AbstractController
         return $this->json([
             'resourceStates' => $states
         ], 200, [], ['groups' => 'read:resource_states']);
+	}
+
+
+	private function initResourceState($em, $user, $resource): ResourceUserState
+    {
+		$resourceState = new ResourceUserState();
+		$resourceState->setUserEntity($user)
+					  ->setIsFavorite(false)
+					  ->setIsAside(false)
+					  ->setIsExploited(false)
+					  ->setResource($resource)
+		;
+		return $resourceState;
 	}
 }

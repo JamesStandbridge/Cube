@@ -4,8 +4,8 @@
  */
 
 import React, { useState } from 'react'
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import SecurityRepository from '../../../services/ORM/repository/SecurityRepository'
 
@@ -13,10 +13,10 @@ import TokenManager from '../../../services/security/TokenManager'
 import FormValidator from '../../../services/validator/FormValidator'
 
 //material-ui
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-require("../../../../css/register.css");
+require("../../../../css/register.css")
 
 const RegisterForm = ({dispatch}) => {
 	const [ user, setUser ] = useState({
@@ -260,4 +260,4 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(RegisterForm);
+export default connect(mapStateToProps)(RegisterForm)

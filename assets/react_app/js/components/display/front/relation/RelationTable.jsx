@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from "mui-datatables"
 import { connect } from 'react-redux'
 
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 import RelationRepository from '../../../../services/ORM/repository/RelationRepository'
 
 
-import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
+import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled'
 import {
 	Button,
 	IconButton
@@ -18,7 +18,7 @@ import PieChart from '../../../stats/components/PieChart'
 
 const RelationTable = ({AuthHandler, refresh}) => {
 	const [ relations, setRelations ] = useState([])
-	const [ loading, setLoading ] = useState(false);
+	const [ loading, setLoading ] = useState(false)
 
 	const fetchData = async () => {
 		const result = await RelationRepository.getRelations(AuthHandler.token)
@@ -137,7 +137,7 @@ const RelationTable = ({AuthHandler, refresh}) => {
 		return newTableData
 	}
 
-	const tableData = dataTableFormat();
+	const tableData = dataTableFormat()
 
 	const buildSerie = () => {
 		let serie = {labels: [], data: []}
@@ -205,4 +205,4 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(RelationTable);
+export default connect(mapStateToProps)(RelationTable)

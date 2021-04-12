@@ -3,8 +3,8 @@
  * date: 22/01/2021
  */
 
-import { createStore } from 'redux';
-import combineReducers from './reducers/reducerIndex';
+import { createStore } from 'redux'
+import combineReducers from './reducers/reducerIndex'
 
 import TokenManager from '../services/security/TokenManager'
 
@@ -16,16 +16,16 @@ import TokenManager from '../services/security/TokenManager'
 
 function saveToLocalStore(state) {
 	try {
-		const serializedState = JSON.stringify(state);
-		localStorage.setItem('cube-app-state', serializedState);
+		const serializedState = JSON.stringify(state)
+		localStorage.setItem('cube-app-state', serializedState)
 	} catch(e) {
-		console.log(e);
+		console.log(e)
 	}
 }
 
 function loadFromLocalStorage() {
 	try {
-		const serializedState = localStorage.getItem('cube-app-state');
+		const serializedState = localStorage.getItem('cube-app-state')
 		if (serializedState === null) {
 			return undefined
 		} else {
@@ -40,12 +40,12 @@ function loadFromLocalStorage() {
 			return state
 		}
 	} catch(e) {
-		console.log(e);
-		return undefined;
+		console.log(e)
+		return undefined
 	}
 }
 
-const persistedState = loadFromLocalStorage();
+const persistedState = loadFromLocalStorage()
 
 const store = createStore(
 	combineReducers,
@@ -53,6 +53,6 @@ const store = createStore(
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-store.subscribe(() => saveToLocalStore(store.getState()));
+store.subscribe(() => saveToLocalStore(store.getState()))
 
 export default store

@@ -1,7 +1,7 @@
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const UserRepository = {
 
@@ -15,4 +15,4 @@ const UserRepository = {
     },
 }
 
-export default UserRepository;
+export default UserRepository

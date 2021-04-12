@@ -3,10 +3,10 @@
  * date: 22/01/2021
  */
 
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const SecurityRepository = {
 	getToken: async function(userData) {
@@ -14,7 +14,7 @@ const SecurityRepository = {
 			EndPoints.URL_GET_TOKEN,
 			HeaderBuilder.POST_HEADER(),
 			userData
-		);
+		)
 		
 		return res.data.token
 	},
@@ -39,5 +39,4 @@ const SecurityRepository = {
 	}
 }
 
-export default SecurityRepository;
-
+export default SecurityRepository

@@ -6,8 +6,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import SecurityRepository from '../../../services/ORM/repository/SecurityRepository'
 
@@ -15,10 +15,10 @@ import TokenManager from '../../../services/security/TokenManager'
 import FormValidator from '../../../services/validator/FormValidator'
 
 //material-ui
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-require("../../../../css/login.css");
+require("../../../../css/login.css")
 
 const LoginForm = ({dispatch}) => {
 
@@ -147,7 +147,7 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(LoginForm)
 
 const FormContainer = styled.div`
 	margin-left: 27.5%;

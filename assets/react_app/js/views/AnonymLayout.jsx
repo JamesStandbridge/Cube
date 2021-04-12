@@ -1,17 +1,21 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom'
+
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'
+
+import {
+	AppBar,
+	Button,
+	IconButton,
+	MenuIcon,
+	Toolbar,
+	Typography
+} from '@material-ui/core'
 	
 import WaveSVG from '../../img/background-waves.svg'
 
-import { Link } from 'react-router-dom';
-
-import 'react-pro-sidebar/dist/css/styles.css';
+import 'react-pro-sidebar/dist/css/styles.css'
 
 const AnonymLayout = ({children}) => {
 
@@ -66,6 +70,7 @@ const AnonymLayout = ({children}) => {
 		</>
 	)
 }
+
 //<Wave className="wave-background">
 export default AnonymLayout;
 

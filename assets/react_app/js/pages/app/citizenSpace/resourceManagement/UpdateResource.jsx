@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import Layout from "../../../../views/Layout"
-import ResourceUpdateForm from "../../../../components/form/app/ResourceUpdateForm";
+import ResourceUpdateForm from "../../../../components/form/app/ResourceUpdateForm"
 
 
 const UpdateResource = (resource) => {
@@ -16,4 +16,4 @@ const UpdateResource = (resource) => {
     )
 }
 
-export default UpdateResource;
+export default UpdateResource

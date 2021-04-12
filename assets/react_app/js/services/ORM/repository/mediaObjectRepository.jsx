@@ -1,7 +1,7 @@
-import React from "react";
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import React from "react"
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const MediaObjectRepository = {
 
@@ -10,7 +10,7 @@ const MediaObjectRepository = {
             EndPoints.URL_POST_MEDIA,
             HeaderBuilder.UPLOAD_MEDIA_HEADER_AUTHORIZATION(token),
             mediaObject
-        );
+        )
     },
 
     getMediaObjects: async function (token) {
@@ -21,4 +21,4 @@ const MediaObjectRepository = {
     }
 }
 
-export default MediaObjectRepository;
+export default MediaObjectRepository

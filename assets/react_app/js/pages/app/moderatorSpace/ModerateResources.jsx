@@ -3,7 +3,7 @@
  * date: 09/03/2021
  */
 
-import React from 'react';
+import React from 'react'
 import Dashboard from '../../../components/stats/Dashboard'
 import Layout from '../../../views/Layout'
 
@@ -17,4 +17,4 @@ const ModerateResources = (props) => {
 	)
 }
 
-export default ModerateResources;
+export default ModerateResources

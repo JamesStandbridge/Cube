@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import clsx from 'clsx';
-import { format } from "date-fns";
+import { connect } from 'react-redux'
+import styled from 'styled-components'
+import clsx from 'clsx'
+import { format } from "date-fns"
 
 
 import {
@@ -24,28 +24,28 @@ import {
     TextField
 } from "@material-ui/core"
 
-import { red } from "@material-ui/core/colors";
+import { red } from "@material-ui/core/colors"
 
-import VisibilityIcon from '@material-ui/icons/Visibility';  
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import ShareIcon from '@material-ui/icons/Share'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
+import BookmarkIcon from '@material-ui/icons/Bookmark'
+import FilterListIcon from '@material-ui/icons/FilterList'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ArrowRightIcon from '@material-ui/icons/ArrowRight'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
+import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
 import ResourceStateRepository from '../../../services/ORM/repository/ResourceStateRepository'
 import CategoryRepository from '../../../services/ORM/repository/CategoryRepository'
 import RelationRepository from '../../../services/ORM/repository/RelationRepository'
 
 
-require("../../../../css/resource.css");
+require("../../../../css/resource.css")
 const useStyles = makeStyles((theme) => ({
     rootCard: {
         maxWidth: 345,
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
-    const classes = useStyles();
+    const classes = useStyles()
     const [ resources, setResources ] = useState([])
     const [ categories, setCategories ] = useState([])
     const [ relations, setRelations ] = useState([])
@@ -100,7 +100,7 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
     const fetchResources = async (customFilters = null) => {
         const filtersToUse = customFilters != null ? customFilters : filters
         console.log(filtersToUse)
-        let res = await ResourceRepository.searchResources(filtersToUse);
+        let res = await ResourceRepository.searchResources(filtersToUse)
         setResources(res.data.resources)
     }
 
@@ -110,16 +110,16 @@ const CardCatalogDisplay = ({AuthHandler, dispatch, ResourceUserStateHandler}) =
 
     useEffect(() => {
         const fetchCategory = async () => {
-            let res = await CategoryRepository.getCategoriesList();
-            setCategories(res.data["hydra:member"]);
+            let res = await CategoryRepository.getCategoriesList()
+            setCategories(res.data["hydra:member"])
         }
         fetchCategory()
     }, [])
 
     useEffect(() => {
         const fetchRelations = async () => {
-            let relations = await RelationRepository.getRelationTypes();
-            setRelations(relations);
+            let relations = await RelationRepository.getRelationTypes()
+            setRelations(relations)
         }
         fetchRelations()       
     }, [])

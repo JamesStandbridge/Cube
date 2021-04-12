@@ -1,40 +1,23 @@
-import React, {useContext, useEffect, useState} from 'react'
-import { connect } from 'react-redux';
-import AddIcon from '@material-ui/icons/Add';
-import { Redirect } from 'react-router-dom';
+
+/**
+ * Author: ManonSeznec
+ * Date: 08/04/2021
+ */
+
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+
+import { Redirect } from 'react-router-dom'
 import {
-    Checkbox,
     TextField,
     Button,
-    TextareaAutosize,
     InputLabel,
     Select,
-    MenuItem,
-    FormControl, makeStyles, Input, Chip, Icon, Fab, CardActions, CardContent, Card, OutlinedInput, ButtonGroup, Tooltip
+    makeStyles, Input, Chip, Icon, Fab, CardActions, CardContent, Card, OutlinedInput, ButtonGroup, Tooltip
 } from '@material-ui/core';
 
+import { wrapComponent } from 'react-snackbar-alert'
 
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
-
-import { wrapComponent } from 'react-snackbar-alert';
-
-import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository";
-import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository";
-import CategoryRepository from "../../../services/ORM/repository/CategoryRepository";
-import 'tinymce/tinymce';
-import 'tinymce/icons/default';
-import 'tinymce/themes/silver';
-import 'tinymce/plugins/paste';
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/image';
-import 'tinymce/plugins/table';
-import 'tinymce/skins/ui/oxide/skin.min.css';
-import 'tinymce/skins/ui/oxide/content.min.css';
-import 'tinymce/skins/content/default/content.min.css';
-import { Editor } from '@tinymce/tinymce-react';
-import clsx from "clsx";
-import {PhotoCamera} from "@material-ui/icons";
-import IconButton from "@material-ui/core/IconButton";
 import MediaObjectRepository from "../../../services/ORM/repository/mediaObjectRepository";
 
 require("../../../../css/resource.css");

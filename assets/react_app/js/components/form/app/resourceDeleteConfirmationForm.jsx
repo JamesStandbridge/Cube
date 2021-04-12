@@ -1,19 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 
 import styled from 'styled-components'
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
-import {Delete} from "@material-ui/icons";
-
-
+import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
+import {Delete} from "@material-ui/icons"
 
 const ResourceDeleteConfirmation = ({ dispatch,resourceId,AuthHandler, onCloseModal, refresh}) => {
-
-    const handleSubmit = () => {
-
-    }
 
     function handleRemove() {
         ResourceRepository.deleteResource(resourceId, AuthHandler.token).then(res => {

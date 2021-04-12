@@ -3,8 +3,8 @@
  * date: 22/01/2021
  */
 
-import React from "react";
-import resources from "@api-platform/admin/lib/__fixtures__/resources";
+import React from "react"
+import resources from "@api-platform/admin/lib/__fixtures__/resources"
 
 const EndPoints = {
 	//stats
@@ -77,13 +77,13 @@ const EndPoints = {
 	URL_POST_RESOURCE_ATTRIBUTES_LIST: "/api/resource_attributes",
 
 	URL_GET_MY_RESOURCES: function(currentUserId) {
-		return `/api/users/${currentUserId}/resources`;
+		return `/api/users/${currentUserId}/resources`
 	},
     URL_DELETE_RESOURCE: function(resourceId) {
 		return `/api/resources/${resourceId}`
     },
 	URL_PUT_RESOURCE: function (resourceId) {
-		return `/api/resources/${resourceId}`;
+		return `/api/resources/${resourceId}`
 	},
     URL_POST_MEDIA: "/api/media_objects",
     URL_GET_MEDIAS:"/api/media_objects",

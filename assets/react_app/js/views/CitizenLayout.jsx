@@ -1,30 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import MUILink from '@material-ui/core/Link';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import MUILink from '@material-ui/core/Link'
 
 //navbar
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'
 
-//material ui
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {
+	AppBar,
+	Button,
+	IconButton,
+	MenuIcon,
+	Toolbar,
+	Typography
+} from '@material-ui/core'
 
 
 //icons
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PowerSettingsNewIcon from '@material-ui/icons/ExitToApp';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
+import MenuBookIcon from '@material-ui/icons/MenuBook'
+import PowerSettingsNewIcon from '@material-ui/icons/ExitToApp'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
-
+import 'react-pro-sidebar/dist/css/styles.css'
 
 const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
+	
 	const appBarClassName = () => {
 		if(isCollapsed) return "app-bar-collapse"
 		return "app-bar"

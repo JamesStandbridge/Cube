@@ -3,11 +3,11 @@
  * date: 22/01/2021
  */
 
-import React from "react";
+import React from "react"
 
-import HttpService from "../axios/AxiosService";
-import HeaderBuilder from "../HeaderBuilder";
-import EndPoints from "../endpoints";
+import HttpService from "../axios/AxiosService"
+import HeaderBuilder from "../HeaderBuilder"
+import EndPoints from "../endpoints"
 
 const ResourceStateRepository = {
 
@@ -40,4 +40,4 @@ const ResourceStateRepository = {
     },
 }
 
-export default ResourceStateRepository;
+export default ResourceStateRepository

@@ -61,18 +61,6 @@ class SecurityController extends AbstractController
         }
     }
 
-    public function createModerator() {
-
-    }
-
-    public function createAdmin() {
-
-    }
-
-    public function createSuperAdmin() {
-        
-    }
-
     /**
      * @Route("/api/user", name="api_get_user")
      * @param  NormalizerInterface $normalizer

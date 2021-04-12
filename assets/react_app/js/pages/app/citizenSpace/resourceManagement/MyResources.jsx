@@ -1,7 +1,7 @@
-import React from 'react';
-import ResourceForm from "../../../../components/form/app/ResourceForm";
+import React from 'react'
+import ResourceForm from "../../../../components/form/app/ResourceForm"
 import Layout from "../../../../views/Layout"
-import MyResourcesDisplay from "../../../../components/display/Resource/myResourcesDisplay";
+import MyResourcesDisplay from "../../../../components/display/Resource/myResourcesDisplay"
 
 const MyResources = (props) => {
     return (
@@ -14,4 +14,4 @@ const MyResources = (props) => {
     )
 }
 
-export default MyResources;
+export default MyResources

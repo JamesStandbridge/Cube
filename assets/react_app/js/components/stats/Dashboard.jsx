@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 	return state
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard)
 
 
 const ContainerFluid = styled.div`

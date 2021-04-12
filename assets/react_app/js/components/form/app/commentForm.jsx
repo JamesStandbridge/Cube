@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
-import {TextareaAutosize} from "@material-ui/core";
-import CommentRepository from "../../../services/ORM/repository/commentRepository";
+import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
+import {TextareaAutosize} from "@material-ui/core"
+import CommentRepository from "../../../services/ORM/repository/commentRepository"
 
 const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}) => {
 
@@ -46,7 +46,6 @@ const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}
         console.log(commentToSend)
         CommentRepository.create(commentToSend).then(res => {
             if(res.status === 201) {
-                //commentId ? onCloseModal(): null
                 refresh()
                 resetComment()
             }
@@ -55,7 +54,6 @@ const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}
 
     return (
         <div>
-
                 <TextareaAutosize
                     label="content"
                     variant="outlined"

@@ -19,8 +19,12 @@ class CitizenRelationshipRepository extends ServiceEntityRepository
         parent::__construct($registry, CitizenRelationship::class);
     }
 
-
-    public function findByUser(int $user_id)
+    /**
+     * Permet de récuperer la liste des relations d'un utilisateur
+     * @param  int    $user_id
+     * @return CitizenRelationShip[]
+     */
+    public function findByUser(int $user_id) : array
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.UserSource = :user_id')
@@ -31,7 +35,13 @@ class CitizenRelationshipRepository extends ServiceEntityRepository
         ;
     }
     
-    public function findRelationByIds(int $user_id, int $relation_id)
+    /**
+     * Permet de trouver une relation selon son ID et l'ID de l'utilisateur source
+     * @param  int    $user_id     
+     * @param  int    $relation_id 
+     * @return ?CitizenRelationShip
+     */
+    public function findRelationByIds(int $user_id, int $relation_id) : ?CitizenRelationship
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.UserSource = :user_id')
@@ -42,16 +52,4 @@ class CitizenRelationshipRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;        
     }
-
-    /*
-    public function findOneBySomeField($value): ?CitizenRelationship
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

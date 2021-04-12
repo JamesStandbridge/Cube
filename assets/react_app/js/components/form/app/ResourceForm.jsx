@@ -1,7 +1,12 @@
+/**
+ * Author: ManonSeznec
+ * Date: 24/03/2021
+ */
+
 import React, {useContext, useEffect, useState} from 'react'
-import { connect } from 'react-redux';
-import AddIcon from '@material-ui/icons/Add';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import AddIcon from '@material-ui/icons/Add'
+import { Redirect } from 'react-router-dom'
 import {
     Checkbox,
     TextField,
@@ -16,25 +21,25 @@ import {
 
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository"
 
-import { wrapComponent } from 'react-snackbar-alert';
+import { wrapComponent } from 'react-snackbar-alert'
 
-import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository";
-import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository";
-import CategoryRepository from "../../../services/ORM/repository/CategoryRepository";
-import 'tinymce/tinymce';
-import 'tinymce/icons/default';
-import 'tinymce/themes/silver';
-import 'tinymce/plugins/paste';
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/image';
-import 'tinymce/plugins/table';
-import 'tinymce/skins/ui/oxide/skin.min.css';
-import 'tinymce/skins/ui/oxide/content.min.css';
-import 'tinymce/skins/content/default/content.min.css';
-import { Editor } from '@tinymce/tinymce-react';
-import clsx from "clsx";
+import ResourceAttributeRepository from "../../../services/ORM/repository/ResourceAttributeRepository"
+import ResourceTypeRepository from "../../../services/ORM/repository/TypeResourceRepository"
+import CategoryRepository from "../../../services/ORM/repository/CategoryRepository"
+import 'tinymce/tinymce'
+import 'tinymce/icons/default'
+import 'tinymce/themes/silver'
+import 'tinymce/plugins/paste'
+import 'tinymce/plugins/link'
+import 'tinymce/plugins/image'
+import 'tinymce/plugins/table'
+import 'tinymce/skins/ui/oxide/skin.min.css'
+import 'tinymce/skins/ui/oxide/content.min.css'
+import 'tinymce/skins/content/default/content.min.css'
+import { Editor } from '@tinymce/tinymce-react'
+import clsx from "clsx"
 
-require("../../../../css/resource.css");
+require("../../../../css/resource.css")
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -87,8 +92,8 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
     const [ loading, setLoading ] = useState(true)
     const [ resourceAttributes, setResourceAttributesList ] = useState([])
     const [ resourceTypeList, setResourceTypeList ] = useState([])
-    const [ resourceCategoryList, setResourceCategoryList ] = useState([]);
-    const [contentEditor, setContentEditor] = useState();
+    const [ resourceCategoryList, setResourceCategoryList ] = useState([])
+    const [contentEditor, setContentEditor] = useState()
     const [ resourceType, setResourceType ] = useState( '')
     const [ attribute, setAttribute ] = useState( '')
     const [ resourceCategory, setResourceCategory ] = useState( '')
@@ -114,17 +119,17 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
 
     useEffect(() => {
         const init = async () => {
-            let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token);
-            const resourceTypes = resType.data["hydra:member"];
-            setResourceTypeList(resourceTypes);
+            let resType = await ResourceTypeRepository.getResourceTypesList(AuthHandler.token)
+            const resourceTypes = resType.data["hydra:member"]
+            setResourceTypeList(resourceTypes)
 
-            let resAttr = await ResourceAttributeRepository.getResourceAttributeList();
-            const newResourceAttributes = resAttr.data["hydra:member"];
-            setResourceAttributesList(newResourceAttributes);
+            let resAttr = await ResourceAttributeRepository.getResourceAttributeList()
+            const newResourceAttributes = resAttr.data["hydra:member"]
+            setResourceAttributesList(newResourceAttributes)
 
-            let resCat = await CategoryRepository.getCategoriesList();
-            const resourceCategories = resCat.data["hydra:member"];
-            setResourceCategoryList(resourceCategories);
+            let resCat = await CategoryRepository.getCategoriesList()
+            const resourceCategories = resCat.data["hydra:member"]
+            setResourceCategoryList(resourceCategories)
             setLoading(false)
 
         }
@@ -133,7 +138,7 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
     }, [])
 
     const upload=()=> {
-        let currentFile = this.state.selectedFiles[0];
+        let currentFile = this.state.selectedFiles[0]
 
         this.setState({
             progress: 0,
@@ -149,7 +154,7 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
                 this.setState({
                     message: response.data.message,
                 });
-                return ResourceRepository.getFiles();
+                return ResourceRepository.getFiles()
             })
             .then((files) => {
                 this.setState({
@@ -227,9 +232,9 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
 
     // handle click event of the Remove button
     const handleRemoveClick = index => {
-        const list = [...contents];
-        list.splice(index, 1);
-        setContents(list);
+        const list = [...contents]
+        list.splice(index, 1)
+        setContents(list)
     };
 
 // handle click event of the Add button

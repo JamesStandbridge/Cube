@@ -19,7 +19,7 @@ use App\Repository\ResourceRepository;
 
 use App\Entity\Resource;
 
-use App\Service\Stats\DataProvider;
+use App\Service\Stats\ResourceChartProvider;
 
 class StatsController extends AbstractController
 {
@@ -28,7 +28,7 @@ class StatsController extends AbstractController
 	/**
 	 * @Route("/api/resources/stats", name="app_get_resource_stats")
 	 */
-	public function getUserResourceStats(DataProvider $provider)
+	public function getUserResourceStats(ResourceChartProvider $provider)
 	{
 		$user = $this->getUser();
 		$serie = $provider->getResourceSeries($user->getId());
@@ -36,15 +36,5 @@ class StatsController extends AbstractController
         return $this->json([
             'serie' => $serie
         ], 200);    
-	}
-
-	/**
-	 * @Route("/api/user/kpi", name="app_get_kpi")
-	 * @param  DataProvider $provider 
-	 */
-	public function getMainKPI(DataProvider $provider)
-	{
-		$user = $this->getUser();
-		dd();
 	}
 }
