@@ -85,7 +85,7 @@ Dans le cas contraire, vous pouvez verifier votre installation via la commande :
 docker-compose --version 
 ``` 
 
-#### Fludifier votre utilisation de docker avec l'ajout du group Docker 
+#### Fludifier votre utilisation de docker avec l'ajout du groupe Docker 
 
 Une dernière étape optionelle mais nécessaire, ajouter l'utilisateur courant dans la liste des utilisateurs autorisés à executer du Docker ou Docker-compose
 car dans le cas contraire, il faudra ajouter 'sudo' comme préfixe sur chaque commandes docker ..
