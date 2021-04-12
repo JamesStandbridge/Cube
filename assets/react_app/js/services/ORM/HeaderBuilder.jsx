@@ -50,7 +50,15 @@ const HeaderBuilder = {
 			"Authorization": "Bearer " + token,
 			"method": "DELETE"
 		}
-    }
+    },
+
+	UPLOAD_MEDIA_HEADER_AUTHORIZATION: function(token) {
+		return {
+			"Content-Type": "multipart/form-data",
+			"Authorization": "Bearer " + token,
+			"method": "POST"
+		}
+	}
 };
 
 export default HeaderBuilder;

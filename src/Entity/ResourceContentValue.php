@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ResourceContentValueRepository;
@@ -52,8 +53,11 @@ class ResourceContentValue
     private $attribute;
 
     /**
+     * @var MediaObject|null
+     *
      * @ORM\OneToOne(targetEntity=MediaObject::class, mappedBy="resourceContentValue", cascade={"persist", "remove"})
-     * @Groups({"resource:read", "resource:create", "contents:read"})
+     * @Groups({"resource:read", "contents:read"})
+     * @ApiProperty(iri="http://localhost:8002/mediaObject")
      */
     private $mediaObject;
 

@@ -38,9 +38,9 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
         }
 
         switch (label) {
-           case 'image':
+           case 'Image':
                return(
-                   <img src={content.stringValue} alt={content.stringValue}/>
+                   <img src={content.mediaObject.contentUrl} alt/>
                )
            case 'Video':
                console.log(content.stringValue)
@@ -61,7 +61,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                )
            case 'file':
                return (
-                   <iframe src={content.stringValue}
+                   <iframe src={content.mediaObject.contentUrl}
                            width="80vh"
                            height="50vh"
                    />
