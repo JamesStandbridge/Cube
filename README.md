@@ -9,7 +9,7 @@
 
 ```shell
 # Fetch project
-git clone git@github.com:JamesStandbridge/Zist.git Cube
+git clone git@github.com:JamesStandbridge/Cube.git Cube
 cd Cube
 
 # Build and launch project
@@ -114,7 +114,7 @@ http://127.0.0.1:8003 avec les identifiants :
 
 Ces informations proviennent du fichier `docker-compose.yaml`.
 
-## Arreter le projet
+## Stopper Docker
 
 ```shell
 docker-compose down
