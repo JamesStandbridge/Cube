@@ -11,7 +11,7 @@ import Chip from "@material-ui/core/Chip";
 const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch, refresh}) => {
     const [ resource, setResource ] = useState(null)
     const [ loading, setLoading ] = useState(true)
-    
+    console.log(resource)
 
     useEffect(() => {
         const init = async () => {

@@ -11,8 +11,11 @@ import TokenManager from '../services/security/TokenManager'
 
 const Layout = ({dispatch, AuthHandler, children}) => {
 	const [ isCollapsed, collapse] = useState(false)
+
 	const handleDisconnect = () => {
+		dispatch({type: 'RESET_STATES'})
 		dispatch({type: 'RESET_AUTH'});
+		
 	}
 
 	const handleCollapse = () => {

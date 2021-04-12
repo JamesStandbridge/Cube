@@ -220,6 +220,7 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
         console.log(resourceToSend)
 
         ResourceRepository.create(resourceToSend,AuthHandler.token).then(res => {
+            setRedirection(true)
             showSnackbar('success', "Nouvelle ressource enregistrée")
         })
     }

@@ -21,7 +21,7 @@ function AuthHandler(state = initialState, action) {
 		case 'RESET_USER':
 			nextState = {...state, user: null}
 			return nextState;
-
+		
 		case 'SET_AUTH':
 			nextState = {...state, token: action.auth.token, user: action.auth.user}
 			return nextState;

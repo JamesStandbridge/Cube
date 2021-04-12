@@ -140,7 +140,7 @@ const MediaForm = wrapComponent(function({ createSnackbar, refresh, AuthHandler,
                                         name="mediaObject"
                                         inputProps={{
                                             accept:
-                                                ".jpeg,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+                                                "*",
                                         }}
                                         onChange={handleCapture}
                                         type="file"
