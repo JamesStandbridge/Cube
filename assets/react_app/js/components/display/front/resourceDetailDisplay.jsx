@@ -5,10 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import parse from 'html-react-parser';
 import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
+import { format } from "date-fns";
 
-const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch}) => {
+const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch, refresh}) => {
     const [ resource, setResource ] = useState(null)
     const [ loading, setLoading ] = useState(true)
+    
 
     useEffect(() => {
         const init = async () => {
@@ -27,7 +29,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
             dispatch({type: "RESET_UPDATE_RESOURCE_STATES"})
           })
         }
-    }, [])
+    }, [refresh])
 
     const checkTagModel=(label, content) => {
         console.log(label)
@@ -81,7 +83,7 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                 <Container maxWidth="lg">
                     <Typography component="div" style={{ backgroundColor: '#FFFAFA', height: '50vh' }}>
                     <h1>{resource.title}</h1>
-                    <div>{resource.createdAt}</div>
+                    <div>{format(Date.parse(resource.createdAt), "d MMM yyyy")}</div>
                     <div>{resource.author.email}</div>
                     <div>{resource.category.label}</div>
                     <div>{resource.type.label}</div>

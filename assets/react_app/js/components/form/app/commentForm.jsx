@@ -24,6 +24,16 @@ const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}
         setComment({...comment, content: {...comment.content, value}})
     }
 
+    const resetComment = () => {
+        setComment({
+            content: {value:""},
+            resource: {value: `/api/resources/${resourceId}`},
+            createdAt: {value: new Date()},
+            parentComment: {value:""},
+            userEntity: {value:""},
+        })
+    }
+
     const handleSubmit = () => {
         let commentToSend = {
             content: comment.content.value,
@@ -38,6 +48,7 @@ const CommentForm = ({resourceId, commentId, onCloseModal, AuthHandler, refresh}
             if(res.status === 201) {
                 //commentId ? onCloseModal(): null
                 refresh()
+                resetComment()
             }
         })
     }

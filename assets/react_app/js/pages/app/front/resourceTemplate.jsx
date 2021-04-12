@@ -14,6 +14,7 @@ import CommentForm from "../../../components/form/app/commentForm";
 import ResourceDetailDisplay from "../../../components/display/front/resourceDetailDisplay";
 
 const ResourceTemplate = ({AuthHandler, match:{params:{id}}}) => {
+    const [ value, refresh ] = useState(0)
 
     const handleModerate = (bool) => {
         ResourceRepository.moderateResource({resource_id: id, bool}, AuthHandler.token).then(res => {
@@ -35,8 +36,13 @@ const ResourceTemplate = ({AuthHandler, match:{params:{id}}}) => {
 
                 <ResourceDetailDisplay resourceId = {id}/>
                 <div>
-                    <CommentForm resourceId = {id}/>
-                    <CommentsDisplay resourceId = {id}/>
+                  { AuthHandler.token ? (
+                    <CommentForm refresh = {() => refresh(value + 1)} resourceId = {id}/>
+                  ) : (
+                    null
+                  )}
+                    
+                    <CommentsDisplay catchRefresh = {value} resourceId = {id}/>
                 </div>
             </div>
         </Layout>

@@ -108,6 +108,8 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
         attribute:""
     }]);
 
+    const [ redirection, setRedirection ] = useState(false)
+
 
 
     useEffect(() => {
@@ -351,6 +353,8 @@ const ResourceForm = wrapComponent(function({ createSnackbar, dispatch, AuthHand
              }
          }
     }
+
+    if(redirection) return (<Redirect to="/mesRessources" />)
 
       return (
 

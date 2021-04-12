@@ -5,7 +5,7 @@ import CommentForm from "../../form/app/commentForm";
 import CustomModal from "../../modals/Modal";
 import {Card, CardActions, CardContent, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-
+import { format } from "date-fns";
 
 require("../../../../css/resource.css");
 const useStyles = makeStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
         marginBottom: 12,
     },
 });
-const CommentsDisplay = ({resourceId}) => {
+const CommentsDisplay = ({resourceId, catchRefresh}) => {
 
     useEffect(() => {
         const init = async () => {
@@ -35,7 +35,7 @@ const CommentsDisplay = ({resourceId}) => {
         }
         init()
 
-    }, [])
+    }, [catchRefresh])
 
     const [ comments, setComments ] = useState([])
     const classes = useStyles();
@@ -45,25 +45,14 @@ const CommentsDisplay = ({resourceId}) => {
             <Card key={comment.id} className={classes.root}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        Commenté le {comment.createdAt} par {comment.userEntity.firstname}
+                        Commenté le {format(Date.parse(comment.createdAt), "d MMM yyyy")} par {comment.userEntity.firstname}
                     </Typography>
                     <Typography variant="body2" component="p">
                         {comment.content}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <CustomModal
-                        btnTitle={"Répondre"}
-                    >
-                        <div style={{
-                            position: 'absolute',
-                            left: '50%',
-                            top: '50%',
-                            transform: 'translate(-50%, -50%)'
-                        }}>
-                            <CommentForm resourceId = {resourceId} commentId = {comment.id}/>
-                        </div>
-                    </CustomModal>
+                   
                 </CardActions>
             </Card>
         )
@@ -88,25 +77,14 @@ const CommentsDisplay = ({resourceId}) => {
                         <Card key={comment.id} className={classes.root}>
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                Commenté le {comment.createdAt} par {comment.userEntity.firstname}
+                                Commenté le {format(Date.parse(comment.createdAt), "d MMM yyyy")} par {comment.userEntity.firstname}
                             </Typography>
                             <Typography variant="body2" component="p">
                                 {comment.content}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <CustomModal
-                                btnTitle={"Répondre"}
-                            >
-                                <div style={{
-                                    position: 'absolute',
-                                    left: '50%',
-                                    top: '50%',
-                                    transform: 'translate(-50%, -50%)'
-                                }}>
-                                    <CommentForm resourceId = {resourceId} commentId = {comment.id}/>
-                                </div>
-                            </CustomModal>
+                        
                         </CardActions>
                     </Card>
                     </div>
