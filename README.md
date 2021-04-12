@@ -10,9 +10,6 @@
 - [Configuration Linux && Docker](https://github.com/JamesStandbridge/Cube/blob/main/documentations/installation-config-ubuntu.md)
 - [Configuration de Git](https://github.com/JamesStandbridge/Cube/blob/main/documentations/installation-config-git.md)
 
-
-![alt text](img/github3.png?raw=true)
-
 ## Quickstart
 
 ```shell
@@ -60,7 +57,7 @@ Pour charger les fixtures, utiliser ces fixtures :
 ```shell 
 docker-compose exec php bin/console hautelook:fixtures:load
 
-# or if already inside the container :
+# ou depuis le container applicatif :
 php bin/console hautelook:fixtures:load
 ```
 
