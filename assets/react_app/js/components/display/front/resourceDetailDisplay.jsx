@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 import ResourceStateRepository from "../../../services/ORM/repository/ResourceStateRepository"
 import ResourceRepository from "../../../services/ORM/repository/ResourceRepository";
 import { format } from "date-fns";
+import Chip from "@material-ui/core/Chip";
 
 const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStateHandler, dispatch, refresh}) => {
     const [ resource, setResource ] = useState(null)
@@ -80,21 +81,25 @@ const ResourceDetailDisplay = ({AuthHandler, resourceId, props, ResourceUserStat
                 <div>
             <React.Fragment>
                 <CssBaseline />
-                <Container maxWidth="lg">
+                <Container maxWidth="lg" style={{
+                    marginTop:'15%',
+                    marginLeft:'5O%',
+
+                }}>
                     <Typography component="div" style={{ backgroundColor: '#FFFAFA', height: '50vh' }}>
                     <h1>{resource.title}</h1>
                     <div>{format(Date.parse(resource.createdAt), "d MMM yyyy")}</div>
+
                     <div>{resource.author.email}</div>
-                    <div>{resource.category.label}</div>
-                    <div>{resource.type.label}</div>
 
                         <div>
                             {
                                 resource.content.map(content=>(
                                     <div key={content.id}>
-                                        <div>{content.attribute.label}</div>
+                                        <Chip label={resource.category.label} variant="outlined" />
+                                        <Chip label={resource.type.label} variant="outlined" />
+                                        <Chip label={content.attribute.label} variant="outlined" />
                                         {checkTagModel(content.attribute.label, content)}
-
                                     </div>
                                 ))
                             }
