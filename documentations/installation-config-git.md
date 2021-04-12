@@ -24,4 +24,4 @@ Maintenant récuperez le contenu de votre clé PUBLIQUE, via la commande suivant
 cat ~/.ssh/id_rsa.pub
 ```
 
-![alt text](https://github.com/[JamesStandbridge]/[cube]/documentations/img/github1.png?raw=true)
+![alt text](https://github.com/JamesStandbridge/Cube/blob/main/documentations/img/github1.png?raw=true)
