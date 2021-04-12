@@ -31,6 +31,7 @@ import SuperAdminRoute from "./components/router/SuperAdminRoute";
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 
 import ResourceStateRepository from './services/ORM/repository/ResourceStateRepository'
+import MediaUploader from "./pages/app/citizenSpace/resourceManagement/mediaUploader";
 
 const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 
@@ -41,6 +42,7 @@ const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 		}
 		if(AuthHandler.token != null && !ResourceUserStateHandler.isUpdated) fetchData()
 	}, [ResourceUserStateHandler.isUpdated])
+
 
 	return (
 		<BrowserRouter>	
@@ -53,12 +55,12 @@ const Router = ({AuthHandler, dispatch, ResourceUserStateHandler}) => {
 
 					<CitizenRoute path="/ressources/nouveau" component={CreateResource} />
 					<CitizenRoute path="/ressources/:id/modifier" component={UpdateResource} />
-					<CitizenRoute path="/ressources/:id/delete" component={null} />				
+					<CitizenRoute path="/ressources/:id/delete" component={null} />
+					<CitizenRoute path={"/media/nouveau"} component={MediaUploader}/>
 					<CitizenRoute path="/relations" component={RelationShips} />
 					<CitizenRoute path="/mesRessources" component={MyResources} />
 					<CitizenRoute path="/dashboard" component={DashboardCitizen} />
 					<CitizenRoute path="/profil" component={Profile} />
-
 					<ModeratorRoute path="/moderation/commentaires" component={null} />
 					<ModeratorRoute path="/moderation/resources" component={ModerateResources} />
 

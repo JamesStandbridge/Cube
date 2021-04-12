@@ -14,6 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity
  * @ApiResource(
+ *     iri="http://localhost:8002/MediaObject",
  *     normalizationContext={
  *         "groups"={"media_object_read"}
  *     },
@@ -61,17 +62,16 @@ class MediaObject
 
     /**
      * @var string|null
-     *
-     * @Groups({"media_object_read"})
+     * @ApiProperty(iri="http://localhost:8002/contentUrl")
+     * @Groups({"media_object_read", "resource:read"})
      */
     public $contentUrl;
 
     /**
      * @var File|null
      *
-     * @Assert\NotNull(groups={"media_object_create"})
+     * @Assert\NotNull(groups={"media_object_create","resource:read" })
      * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
-     * @Groups({"resource:read", "resource:create", "contents:read"})
      */
     public $file;
 
@@ -86,6 +86,11 @@ class MediaObject
      * @ORM\OneToOne(targetEntity=ResourceContentValue::class, inversedBy="mediaObject", cascade={"persist", "remove"})
      */
     private $resourceContentValue;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getResourceContentValue(): ?ResourceContentValue
     {

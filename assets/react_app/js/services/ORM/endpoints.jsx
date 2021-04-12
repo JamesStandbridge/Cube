@@ -85,7 +85,10 @@ const EndPoints = {
 	URL_PUT_RESOURCE: function (resourceId) {
 		return `/api/resources/${resourceId}`;
 	},
-    URL_UPLOAD_RESOURCE : "/public/uploads"
+    URL_POST_MEDIA: "/api/media_objects",
+    URL_GET_MEDIAS:"/api/media_objects",
+
+
 }
 	export default EndPoints
 

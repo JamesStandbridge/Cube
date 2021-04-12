@@ -43,10 +43,9 @@ const CitizenLayout = ({children, onDisconnect, isCollapsed, collapse}) => {
 							<SubMenu title="Ressources" icon={<MenuBookIcon className="navbar-icon"/>}>
 								<MenuItem className="sub-item"> Catalogue <Link to="/catalogue" replace/></MenuItem>
 								<MenuItem className="sub-item"> Mes ressources <Link to="/mesRessources" replace/></MenuItem>
-								<SubMenu title="Ressources" icon={<MenuBookIcon className="navbar-icon"/>}>
-									<MenuItem className="sub-item"> Nouvelle ressource <Link to="/ressources/nouveau" replace/></MenuItem>
-								</SubMenu>
-							</SubMenu>   
+								<MenuItem className="sub-item"> Nouvelle ressource <Link to="/ressources/nouveau" replace/></MenuItem>
+								<MenuItem className="sub-item"> Importer un media <Link to="/media/nouveau" replace/></MenuItem>
+							</SubMenu>
 							<MenuItem icon={<PeopleAltIcon className="navbar-icon"/>}>Mes relations<Link to="/relations" replace/> </MenuItem>
  
 						</Menu>

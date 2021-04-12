@@ -40,6 +40,14 @@ class RedirectController extends AbstractController
     }
 
     /**
+     * @Route("/media/nouveau", name="mediaObject")
+     */
+    public function createMediaObject(): Response
+    {
+        return $this->render('cube_react_app/appEntryPoint.html.twig');
+    }
+
+    /**
      * @Route("/ressources/nouveau", name="resource_new")
      */
     public function createResource(): Response
