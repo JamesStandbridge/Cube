@@ -14,9 +14,8 @@ const RelationShip = (props) => {
 	const [ refresh, setRefresh ] = useState(1)
 	return (
 		<Layout>
-			
-			<RelationTable refresh={refresh}/>
 			<RelationShipForm onRefresh={() => setRefresh(refresh+1)}/>
+			<RelationTable refresh={refresh}/>
 		</Layout>
 	)
 }

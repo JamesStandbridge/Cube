@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom'
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'
 
 import {
-	AppBar,
 	Button,
 	IconButton,
-	MenuIcon,
 	Toolbar,
 	Typography
 } from '@material-ui/core'
 	
+	
+import MenuIcon from '@material-ui/icons/Menu'
 import WaveSVG from '../../img/background-waves.svg'
 
 import 'react-pro-sidebar/dist/css/styles.css'

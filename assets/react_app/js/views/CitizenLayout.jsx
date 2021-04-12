@@ -9,13 +9,13 @@ import {
 	AppBar,
 	Button,
 	IconButton,
-	MenuIcon,
 	Toolbar,
 	Typography
 } from '@material-ui/core'
 
 
 //icons
+import MenuIcon from '@material-ui/icons/Menu'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 import MenuBookIcon from '@material-ui/icons/MenuBook'

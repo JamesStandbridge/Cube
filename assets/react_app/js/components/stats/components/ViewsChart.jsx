@@ -4,13 +4,16 @@ import ApexCharts from 'apexcharts'
 import styled from 'styled-components'
 
 import ReactApexChart from 'react-apexcharts'
+//data: [320, 440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+
+
 
 const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
     const [state, setState] = useState({   
         series: [{
             name: 'Nombre de vues',
             type: 'column',
-            data: [320, 440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }, {
             name: 'Nombre de ressource postées',
             type: 'line',
@@ -40,7 +43,7 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
             },
             labels: ['Jan 2020', 'Feb 2020', 'Mar 2020', 'Apr 2020', 'May 2020', 'Jun 2020', 'July 2020', 'Aug 2020', 'Sep 2020', 'Oct 2020', 'Nov 2020', 'Dec 2020'],
             xaxis: {
-                type: 'string'
+                type: 'datetime'
             },
             yaxis: [{
                 title: {
@@ -66,7 +69,7 @@ const ViewsChart = ({AuthHandler, dateFrom, dateTo, resourcesSerie}) => {
         const newSeries = [{
             name: 'Nombre de vues',
             type: 'column',
-            data: [320, 440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257]
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }, {
             name: 'Nombre de ressource postées',
             type: 'line',

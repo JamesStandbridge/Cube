@@ -6,7 +6,6 @@ import {
 	AppBar,
 	Button,
 	IconButton,
-	MenuIcon,
 	Toolbar,
 	Typography
 } from '@material-ui/core'
@@ -15,6 +14,7 @@ import {
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 import MenuBookIcon from '@material-ui/icons/MenuBook'
+import MenuIcon from '@material-ui/icons/Menu'
 import PowerSettingsNewIcon from '@material-ui/icons/ExitToApp'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 

@@ -150,6 +150,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(LoginForm)
 
 const FormContainer = styled.div`
-	margin-left: 27.5%;
+	margin-left: 35.5%;
     width: 50%;
 `

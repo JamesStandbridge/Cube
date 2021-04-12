@@ -19,7 +19,7 @@ class ResourceRepository extends ServiceEntityRepository
         parent::__construct($registry, Resource::class);
     }
 
-    public function search(array $filters, int $limit = 10) {
+    public function search(array $filters, int $limit = 2) {
         $whereAdded = false;
         $conn = $this->getEntityManager()->getConnection();
         $params = [];
