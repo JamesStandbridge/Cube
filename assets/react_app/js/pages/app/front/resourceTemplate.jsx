@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import TokenManager from "../../../services/security/TokenManager"
 import Button from '@material-ui/core/Button';
 
+import { Redirect } from 'react-router-dom';
 
 
 import Layout from '../../../views/Layout'
@@ -15,12 +16,16 @@ import ResourceDetailDisplay from "../../../components/display/front/resourceDet
 
 const ResourceTemplate = ({AuthHandler, match:{params:{id}}}) => {
     const [ value, refresh ] = useState(0)
+    const [ redirection, setRedirection ] = useState(false)
 
     const handleModerate = (bool) => {
         ResourceRepository.moderateResource({resource_id: id, bool}, AuthHandler.token).then(res => {
             console.log(res)
+            setRedirection(true)
         }) 
     }
+
+    if(redirection) return (<Redirect to="/moderation/resources" />)
 
     return (
         <Layout>

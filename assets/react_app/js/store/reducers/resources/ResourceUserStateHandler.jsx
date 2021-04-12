@@ -17,6 +17,9 @@ function ResourceUserStateHandler(state = initialState, action) {
 		case 'RESET_UPDATE_RESOURCE_STATES':
 			return {...state, isUpdated: false}
 
+		case 'RESET_STATES':
+			return initialState
+
 		default:
 			return state;
 	}
