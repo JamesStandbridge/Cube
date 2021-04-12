@@ -1,9 +1,17 @@
 # CUBE Symfony 4.4 - React|Redux Application
 
-## Requirements
+## Prérequis
 
 - `docker`
 - `docker-compose`
+
+## Documentation
+
+- [Configuration Linux && Docker](https://github.com/JamesStandbridge/Cube/blob/main/documentations/installation-config-ubuntu.md)
+- [Configuration de Git](https://github.com/JamesStandbridge/Cube/blob/main/documentations/installation-config-git.md)
+
+
+![alt text](img/github3.png?raw=true)
 
 ## Quickstart
 
