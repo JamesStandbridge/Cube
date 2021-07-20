@@ -45,6 +45,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "hautelook/alice-bundle": "^2.7",
+        "phpunit/phpunit": "^9.5",
         "symfony/maker-bundle": "^1.19",
         "symfony/profiler-pack": "^1.0"
     },
