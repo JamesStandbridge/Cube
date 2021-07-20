@@ -40,6 +40,7 @@ security:
             anonymous:    true
 
     access_control:
+        - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/app/security/register, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
         - { path: ^/api/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/resources/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -54,3 +55,4 @@ security:
         - { path: ^/api/,         roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        
